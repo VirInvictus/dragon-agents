@@ -23,7 +23,7 @@ Guidance for any agent (or human) working in this repo. It is the source of trut
 
 ## Runtime gotchas (why your edits may look "broken")
 
-- The installed plugin runs from a cache copy (`~/.zcode/cli/plugins/cache/dragon-agents/dragon-agents/<version>/`), not from this repo. After editing, refresh the plugin via Plugin Marketplace so the cache copy follows.
+- The installed plugin runs from a version-pinned cache copy (`~/.zcode/cli/plugins/cache/dragon-agents/dragon-agents/<version>/`), not from this repo. Proven refresh procedure (2026-09-03, v0.1.1 test bump): bump `version` in `.zcode-plugin/plugin.json` and push, then in Plugin Marketplace update the **dragon-agents source**, then **Uninstall → Install** the plugin. A plugin-level Update against a stale source silently no-ops, and there is no Update/Reinstall affordance for directory-marketplace plugins at all (the detail page's "…" menu is Enable + Uninstall only). Verify the new cache slot appeared; roster changes only land in conversations opened after the swap.
 - Plugins from cache marketplaces install DISABLED until first enabled; the bundled official plugins are the ones enabled by default.
 - The agent roster is baked at each conversation's app-server boot: a mid-session enable or roster change never hot-applies to an open conversation. Test in a fresh conversation, canary `dragon-agents:repo-cartographer` on this repo first.
 - The marketplace Enable button may keep saying "Enable" after a successful click. Trust `enabledPlugins` in `~/.zcode/cli/config.json` and a canary dispatch over the button.
