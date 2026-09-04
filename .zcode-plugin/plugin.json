@@ -1,6 +1,6 @@
 {
   "name": "dragon-agents",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Read-only research subagents for repo work: cartography, doc-drift audits, shared-library cascade checks, spec compliance, CI triage, and slop reads.",
   "author": {
     "name": "Brandon (bdkl)"
