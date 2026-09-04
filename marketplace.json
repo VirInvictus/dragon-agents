@@ -1,0 +1,14 @@
+{
+  "name": "dragon-agents",
+  "owner": {
+    "name": "Brandon (bdkl)"
+  },
+  "plugins": [
+    {
+      "name": "dragon-agents",
+      "description": "Read-only research subagents for repo work.",
+      "source": ".",
+      "category": "developer-tools"
+    }
+  ]
+}
