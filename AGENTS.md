@@ -1,10 +1,11 @@
 # AGENTS.md
 
-Guidance for any agent (or human) working in this repo. It is the source of truth for the **dragon-agents** ZCode plugin: six read-only research subagents installed through a local directory marketplace.
+Guidance for any agent (or human) working in this repo. It is the source of truth for the **dragon-agents** ZCode plugin: sixteen read-only research subagents installed through a local directory marketplace.
 
 ## What lives here
 
-- `agents/*.md`: the six agents (repo-cartographer, doc-drift-auditor, cascade-checker, spec-compliance-reviewer, ci-triage, slop-reader). Each file is frontmatter (`name`, `description`, `color`, `tools`) plus the agent's system prompt.
+- `agents/*.md`: the sixteen agents (repo-cartographer, doc-drift-auditor, cascade-checker, spec-compliance-reviewer, ci-triage, slop-reader, release-auditor, workspace-sentinel, ci-posture-auditor, debt-census, code-reviewer, git-archaeologist, claim-verifier, dependency-auditor, test-gap-analyst, duplication-scout). Each file is frontmatter (`name`, `description`, `color`, `tools`) plus the agent's system prompt.
+- `patchnotes.md`: release notes, newest at top (introduced at v0.2.0); release tags carry the entry verbatim per the workspace tag procedure.
 - `marketplace.json`: the marketplace manifest (at the repo root; see Manifest mechanics).
 - `.zcode-plugin/plugin.json`: the plugin manifest (name, version, description, author, license) and nothing else.
 - `scripts/validate.py`: structural checks; CI runs it on every push.
@@ -30,4 +31,4 @@ Guidance for any agent (or human) working in this repo. It is the source of trut
 
 ## Validation
 
-Run `python3 scripts/validate.py` before committing. It checks that both JSON manifests parse and match the expected shape, that every agent file's frontmatter is well-formed (name matches filename, tools exactly `Read, Bash`, non-empty description), that each charter carries the read-only and no-subagent lines, and that the roster is exactly the expected six. CI runs the same script.
+Run `python3 scripts/validate.py` before committing. It checks that both JSON manifests parse and match the expected shape, that every agent file's frontmatter is well-formed (name matches filename, tools exactly `Read, Bash`, non-empty description), that each charter carries the read-only and no-subagent lines, and that the roster is exactly the expected sixteen. CI runs the same script.

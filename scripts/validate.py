@@ -2,7 +2,7 @@
 
 Validates both JSON manifests and every agent charter: frontmatter fields,
 the Read+Bash tool restriction, the read-only and no-subagent charter lines,
-and the six-agent roster. CI runs this on every push.
+and the agent roster. CI runs this on every push.
 """
 
 from __future__ import annotations
@@ -16,11 +16,21 @@ ROOT = Path(__file__).resolve().parent.parent
 AGENTS_DIR = ROOT / "agents"
 EXPECTED_AGENTS = {
     "cascade-checker",
+    "ci-posture-auditor",
     "ci-triage",
+    "claim-verifier",
+    "code-reviewer",
+    "debt-census",
+    "dependency-auditor",
     "doc-drift-auditor",
+    "duplication-scout",
+    "git-archaeologist",
+    "release-auditor",
     "repo-cartographer",
     "slop-reader",
     "spec-compliance-reviewer",
+    "test-gap-analyst",
+    "workspace-sentinel",
 }
 SEMVER = re.compile(r"^\d+\.\d+\.\d+$")
 
@@ -100,7 +110,7 @@ def check_agents() -> None:
     files = sorted(AGENTS_DIR.glob("*.md"))
     found = {f.stem for f in files}
     check(
-        "roster is exactly the expected six agents",
+        "roster is exactly the expected sixteen agents",
         found == EXPECTED_AGENTS,
         f"found {sorted(found)}",
     )
