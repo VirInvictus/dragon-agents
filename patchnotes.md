@@ -2,6 +2,26 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v0.2.1 (2026-09-20)
+
+Maintenance release from the 2026-09-20 setup audit (ci-posture-auditor,
+doc-drift-auditor, and claim-verifier findings, independently verified).
+No roster or charter changes.
+
+- **CI hardened to the house shape** (`ci.yml`): actions SHA-pinned
+  (checkout v4.4.0, setup-python v5.6.0), top-level `permissions:
+  contents: read`, `concurrency` with cancel-in-progress,
+  `timeout-minutes: 10` on the validate job, and `python-version`
+  pinned to 3.14 instead of a floating `3.x`. The repo that audits the
+  fleet's CI now matches the shape it audits against.
+- **README install docs fixed** (blocking doc-drift finding): the
+  install section claimed new plugins are enabled by default; that
+  holds only for bundled official marketplaces. Plugins from a local
+  directory marketplace like this one install disabled until first
+  enabled, which is exactly the trap behind the 2026-09-05
+  silent-reload incident. The section now says so and points at the
+  gotchas in AGENTS.md.
+
 ## v0.2.0 (2026-09-20)
 
 Ten new read-only research agents; the roster grows from six to sixteen.

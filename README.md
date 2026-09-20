@@ -27,7 +27,7 @@ A local ZCode plugin of read-only research subagents for repo work. Sixteen agen
 
 ## Install
 
-In ZCode: Settings → Plugin Management → Discover tab → `+` → add this directory as a local marketplace → install **dragon-agents**. New plugins are enabled by default.
+In ZCode: Settings → Plugin Management → Discover tab → `+` → add this directory as a local marketplace → install **dragon-agents**. Plugins from local (cache) marketplaces like this one install **disabled** until first enabled; only bundled official marketplace plugins are enabled by default. After enabling, trust the `enabledPlugins` key in `~/.zcode/cli/config.json` and a canary dispatch over the UI toggle, and remember the agent roster only lands in conversations opened after an app restart.
 
 ## Model guidance
 
