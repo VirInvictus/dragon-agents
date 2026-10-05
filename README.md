@@ -4,7 +4,7 @@
 [![Release](https://img.shields.io/github/v/tag/VirInvictus/dragon-agents)](https://github.com/VirInvictus/dragon-agents/tags)
 [![ci](https://github.com/VirInvictus/dragon-agents/actions/workflows/ci.yml/badge.svg)](https://github.com/VirInvictus/dragon-agents/actions/workflows/ci.yml)
 
-A local ZCode plugin of read-only research subagents for repo and markets work. Twenty-one agents, each restricted to Read + Bash, each forbidden from writing, committing, or spawning subagents of its own. They gather and report; the main thread decides and edits.
+A local ZCode plugin of read-only research subagents for repo and markets work. Twenty-two agents, each restricted to Read + Bash, each forbidden from writing, committing, or spawning subagents of its own. They gather and report; the main thread decides and edits.
 
 | Agent | Job |
 |---|---|
@@ -29,6 +29,7 @@ A local ZCode plugin of read-only research subagents for repo and markets work. 
 | `librarian` | Calibre library research via read-only cquarry: duplicates, series gaps, tag hygiene, reading queues; book IDs, never writes the DB. |
 | `data-analyst` | Read-only duckdb profiling of named local datasets: schema, nulls, top-N, joins; compact findings without flooding the main thread. |
 | `security-auditor` | Defensive review of owned repos: gitleaks (redacted), risky patterns, advisory cross-checks via gh; ranked findings only. |
+| `charter-architect` | Designs new agents: scorecard verdict (declining is valid), live-probed charter draft, and the full release kit as text; composes, never applies. |
 
 ## Install
 
@@ -36,11 +37,11 @@ In ZCode: Settings → Plugin Management → Discover tab → `+` → add this d
 
 ## Model guidance
 
-Any text model works; the agents were written for text-only subagents (no vision). Flash-tier models are the sensible default; on analysis-heavy dispatches (cascade-checker, spec-compliance-reviewer, stock-broker, ledger-analyst, security-auditor) a stronger model is worth it. Per-agent model picks live in Settings → Subagents.
+Any text model works; the agents were written for text-only subagents (no vision). Flash-tier models are the sensible default; on analysis-heavy dispatches (cascade-checker, spec-compliance-reviewer, stock-broker, ledger-analyst, security-auditor, charter-architect) a stronger model is worth it. Per-agent model picks live in Settings → Subagents.
 
 ## Development
 
-`python3 scripts/validate.py` checks both manifests and every agent charter (frontmatter fields, `tools: [Read, Bash]` only, the read-only and no-subagent charter lines, and the twenty-one-agent roster). CI runs the same script on every push. `AGENTS.md` documents the plugin's rules and the marketplace/runtime gotchas; read it before changing how the plugin is packaged.
+`python3 scripts/validate.py` checks both manifests and every agent charter (frontmatter fields, `tools: [Read, Bash]` only, the read-only and no-subagent charter lines, and the twenty-two-agent roster). CI runs the same script on every push. `AGENTS.md` documents the plugin's rules and the marketplace/runtime gotchas; read it before changing how the plugin is packaged.
 
 ## License
 

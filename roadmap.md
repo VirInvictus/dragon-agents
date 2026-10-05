@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v0.4.0.
+future session re-litigates it. Updated as of v0.5.0.
 
 ## Standing rules (how this roster grows)
 
@@ -27,6 +27,10 @@ future session re-litigates it. Updated as of v0.4.0.
   Uninstall → Install, cache-slot verify, app relaunch, canary dispatch,
   and the full model re-pin (a reinstall wipes every pin). The pass is
   Brandon's; the release is not done until it has happened.
+- **Roster candidates go through charter-architect.** When a candidate's
+  entry condition fires, dispatch the architect to scorecard it and
+  draft the kit; no charter gets hand-written in the main thread
+  anymore.
 
 ## Completed
 
@@ -42,6 +46,10 @@ future session re-litigates it. Updated as of v0.4.0.
       security-auditor from the researched scorecard (roster 21); the
       duckdb sqlite extension pre-installed so read-only attaches work
       offline; slop-reader precision fixes folded in before tagging.
+- [x] v0.5.0 (2026-10-05): charter-architect, the meta lane (roster
+      22). It drafts new agents and their release kits; from here,
+      roster candidates dispatch through it before any charter is
+      hand-written.
 
 ## Dependencies that unlock existing agents (Brandon's moves, not waves)
 
@@ -49,9 +57,10 @@ future session re-litigates it. Updated as of v0.4.0.
       ledger-analyst goes from "no readable journal" to live briefs.
 - [ ] `~/.config/refs/portfolio.md` carries real positions: stock-broker
       gains portfolio-relative guidance.
-- [ ] The v0.3.0 + v0.4.0 activation pass (one reinstall covers both).
+- [ ] The v0.3.0 + v0.4.0 + v0.5.0 activation pass (one reinstall
+      covers all three).
 
-## v0.5 candidates (each fires on its own green light)
+## v0.5+ candidates (each fires on its own green light)
 
 - [ ] **syshealth-auditor**: backup and system-health census. Surfaces:
       borgmatic config plus archive freshness (`borg info`/`list` where
@@ -106,8 +115,10 @@ future session re-litigates it. Updated as of v0.4.0.
   shared context, "e.g. most coding"); Microsoft's guidance (go
   multi-agent only once single-agent limits are demonstrated); the
   practitioner who built 100 subagents and kept 12 (keepers are context
-  wins; "defined by a job title, not a context win" never triggers; he
-  runs 3 daily); the VoltAgent awesome-list and the hesreallyhim
+  wins; "defined by a job title, not a context win" never triggers;
+  fuzzy overlapping descriptions made the orchestrator pick the wrong
+  agent or none, so his filter cut them; he runs 3 daily); the VoltAgent
+  awesome-list and the hesreallyhim
   directory (their additive roles over this roster are execution-shaped).
   Conclusion: the role axis is saturated at twenty-one; growth is
   domain-axis and scorecard-gated.

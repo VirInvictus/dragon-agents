@@ -2,6 +2,35 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v0.5.0 (2026-10-05)
+
+Twenty-second agent: **charter-architect**, the roster's meta lane. It
+designs new agents: scorecard verdict (declining is a valid outcome),
+a charter draft in the house anatomy with every tool surface probed
+live, and the complete release kit (validator diff, doc syncs,
+patchnotes entry, roadmap tick, commit message, activation checklist
+with canary dispatch prompts) returned as text for the main thread to
+apply. Draft-only by the repo's read-only non-negotiable: the architect
+composes, the main thread edits, gates, and releases. It is growth
+tooling, not roster growth; the roadmap's domain-axis conclusion
+stands, and this agent is the lane that enforces it.
+
+- Method grounded in three research veins: the four keys from Claude's
+  subagent design guidance (descriptions as the routing signal, defined
+  output contracts, obstacle reporting, minimal tool access); the
+  draft-test-refine loop and lean-prompt discipline of ZCode's own
+  skill-creator, the house precedent for a tool that authors its own
+  artifact type; and the ADAS meta-agent line, where new agent designs
+  are generated against an archive of prior ones (this charter corpus
+  and its git history are that archive).
+- Future roster candidates dispatch through charter-architect first;
+  the roadmap's v0.5+ lanes (syshealth-auditor, ctf-recon, log-miner)
+  are its first customers when their entry conditions fire.
+- Packaging: roster check extends to twenty-two; README, AGENTS.md,
+  both manifests, and the roadmap synced. The roadmap itself was
+  introduced this cycle (b04177e, docs-only), and this release is its
+  first stamp-and-tick carrier sync.
+
 ## v0.4.0 (2026-10-05)
 
 Four domain-research agents; the roster grows from seventeen to twenty-one.
