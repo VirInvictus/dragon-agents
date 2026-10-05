@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "dragon-agents",
-      "description": "Read-only research subagents for repo and markets work.",
+      "description": "Read-only research subagents for repo, markets, and personal-data research.",
       "source": ".",
       "category": "developer-tools"
     }

@@ -2,6 +2,39 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v0.4.0 (2026-10-05)
+
+Four domain-research agents; the roster grows from seventeen to twenty-one.
+Selection was evidence-driven: a sweep of the multi-agent literature and
+community rosters (Anthropic's orchestrator-worker write-up, Microsoft's
+single-vs-multi-agent guidance, the VoltAgent awesome-list, and a
+practitioner's 100-built-12-kept cut list) kept pointing at read-only
+research as where subagents pay off, and at personal-data surfaces nothing
+in the roster wrapped. Tool surfaces were probed live during chartering;
+the corrections that probing forced (a nonexistent hledger flag, duckdb's
+extension story, the exact lockfiles this fleet pins with) were folded in
+before release.
+
+- **ledger-analyst**: hledger finance briefs (cashflow, budget vs actual,
+  net worth, cost-basis extracts that can feed stock-broker guidance).
+  Verification found no journal on this machine; the live finance data is
+  GPG-encrypted org files under `~/org/finance/`. The charter is therefore
+  hledger-ready with an absolute fence: it reports "no readable journal"
+  until a readable journal exists outside the fence, and never decrypts or
+  reads the encrypted files.
+- **librarian**: Calibre library research through cquarry's read surface
+  (analytics, audit, health, series, FTS) plus read-only duckdb joins; it
+  obeys the library's own CLAUDE.md and never uses cquarry's write flags.
+- **data-analyst**: read-only duckdb profiling of datasets named in the
+  dispatch (schema, nulls, top-N, joins, anomaly counts); the duckdb binary
+  installed 2026-09-20 for agent-side SQL gets its consumer.
+- **security-auditor**: defensive review of owned repos only: gitleaks with
+  `--redact`, risky-pattern review, dependency advisory cross-checks via
+  `gh api` GETs; exposure-ranked findings, remediation as direction only,
+  and the CTF toolkit explicitly outside the charter.
+- Packaging: the roster check in `scripts/validate.py` extends to
+  twenty-one; README, AGENTS.md, and both manifests updated to match.
+
 ## v0.3.0 (2026-10-05)
 
 Seventeenth agent: **stock-broker**, the roster's first non-repo researcher.
