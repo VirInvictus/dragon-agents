@@ -4,7 +4,7 @@
 [![Release](https://img.shields.io/github/v/tag/VirInvictus/dragon-agents)](https://github.com/VirInvictus/dragon-agents/tags)
 [![ci](https://github.com/VirInvictus/dragon-agents/actions/workflows/ci.yml/badge.svg)](https://github.com/VirInvictus/dragon-agents/actions/workflows/ci.yml)
 
-A local ZCode plugin of read-only research subagents for repo work. Sixteen agents, each restricted to Read + Bash, each forbidden from writing, committing, or spawning subagents of its own. They gather and report; the main thread decides and edits.
+A local ZCode plugin of read-only research subagents for repo and markets work. Seventeen agents, each restricted to Read + Bash, each forbidden from writing, committing, or spawning subagents of its own. They gather and report; the main thread decides and edits.
 
 | Agent | Job |
 |---|---|
@@ -24,6 +24,7 @@ A local ZCode plugin of read-only research subagents for repo work. Sixteen agen
 | `dependency-auditor` | Declared vs imported, floors vs used APIs, stdlib purity, Flatpak vendor staleness, toolchain drift. |
 | `test-gap-analyst` | Static coverage map: untested behaviors, suite-discovery failures, duplicated test files; never executes tests. |
 | `duplication-scout` | Cross-repo similar-module detection feeding the library-graduation rule; evidence, never the recommendation. |
+| `stock-broker` | Markets research briefs: companies, ETFs, peers, and the surrounding markets (rates, FX, commodities) from keyless public sources; portfolio-relative guidance, never execution. |
 
 ## Install
 
@@ -31,11 +32,11 @@ In ZCode: Settings → Plugin Management → Discover tab → `+` → add this d
 
 ## Model guidance
 
-Any text model works; the agents were written for text-only subagents (no vision). Flash-tier models are the sensible default; on analysis-heavy dispatches (cascade-checker, spec-compliance-reviewer) a stronger model is worth it. Per-agent model picks live in Settings → Subagents.
+Any text model works; the agents were written for text-only subagents (no vision). Flash-tier models are the sensible default; on analysis-heavy dispatches (cascade-checker, spec-compliance-reviewer, stock-broker) a stronger model is worth it. Per-agent model picks live in Settings → Subagents.
 
 ## Development
 
-`python3 scripts/validate.py` checks both manifests and every agent charter (frontmatter fields, `tools: [Read, Bash]` only, the read-only and no-subagent charter lines, and the sixteen-agent roster). CI runs the same script on every push. `AGENTS.md` documents the plugin's rules and the marketplace/runtime gotchas; read it before changing how the plugin is packaged.
+`python3 scripts/validate.py` checks both manifests and every agent charter (frontmatter fields, `tools: [Read, Bash]` only, the read-only and no-subagent charter lines, and the seventeen-agent roster). CI runs the same script on every push. `AGENTS.md` documents the plugin's rules and the marketplace/runtime gotchas; read it before changing how the plugin is packaged.
 
 ## License
 

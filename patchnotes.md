@@ -2,6 +2,30 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v0.3.0 (2026-10-05)
+
+Seventeenth agent: **stock-broker**, the roster's first non-repo researcher.
+It briefs companies, ETFs, their sectors and peers, and the surrounding
+markets (rates, indices, inflation, FX, commodities) from keyless public
+sources only, gives portfolio-relative guidance when
+`~/.config/refs/portfolio.md` supplies context, and leaves the decision
+explicitly with the dispatcher.
+
+- **stock-broker**: SEC EDGAR filings and XBRL fundamentals via
+  `data.sec.gov`, with CIK resolution through the efts full-text search API
+  (the `www.sec.gov` mapping file is blocked from this network); quotes and
+  history across asset classes via Yahoo's public chart endpoint, Nasdaq's
+  quote API as the equity backup, FRED CSVs for macro series, sponsor pages
+  and Wikipedia as the scrape fallback. Every rung was verified live before
+  the charter was written, which is also why Stooq is documented as dead:
+  its CSV endpoints now sit behind a JavaScript proof-of-work challenge
+  curl cannot solve.
+- Guidance voice per Brandon's call: cited analysis with explicit unknowns,
+  advice only relative to the portfolio context file, never authentication,
+  never trading, never portfolio details in outbound traffic.
+- Packaging: the roster check in `scripts/validate.py` extends to seventeen;
+  README, AGENTS.md, and both manifests updated to match.
+
 ## v0.2.1 (2026-09-20)
 
 Maintenance release from the 2026-09-20 setup audit (ci-posture-auditor,
