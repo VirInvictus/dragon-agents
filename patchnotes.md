@@ -2,6 +2,36 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v0.6.0 (2026-10-05)
+
+Twenty-third agent: **syshealth-auditor**, the machine lane from the
+roadmap's v0.5+ candidates, drafted by charter-architect on its first
+live dispatch. It censuses backup freshness and system health from
+state reads: sys_maintain's per-component success timestamps against
+their own cooldowns, failures from its rotated run log, borgmatic
+config and borg repo state, failed user units plus one boot-scoped
+journal pass for system failed units, disk space, and pending-reboot
+flags.
+
+- Both roadmap entry conditions were settled by live probing before
+  chartering. `borg info` does not run in an agent shell (no BORG_*
+  env; repokey repo; verified failure), so archive freshness comes
+  from state reads: the borgmatic timestamp, borg cache mtimes, and
+  repo segment listing. The borgmatic `encryption_passcommand`
+  (`rbw get`) is fenced: documented, never executed.
+- The mode-vs-agent call against workspace-sentinel resolved to a new
+  agent: sentinel's trigger is repo state across the workspace;
+  machine state shares no corpus and no allowlist with it, and folding
+  it in would blur two clean triggers.
+- Verified quirks the charter carries: system-mode `systemctl` times
+  out from agent shells (sandboxed and not; user mode works), so
+  system failed units ride one bounded journal query; `btrfs_health`
+  needs root and is reported as a direction with its exact command,
+  never run.
+- Packaging: roster check extends to twenty-three; README, AGENTS.md,
+  both manifests, and the roadmap synced, with the dead-surface
+  record extended (agent-shell systemctl and passphrase-gated borg).
+
 ## v0.5.0 (2026-10-05)
 
 Twenty-second agent: **charter-architect**, the roster's meta lane. It

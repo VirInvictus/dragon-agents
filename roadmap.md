@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v0.5.0.
+future session re-litigates it. Updated as of v0.6.0.
 
 ## Standing rules (how this roster grows)
 
@@ -50,6 +50,13 @@ future session re-litigates it. Updated as of v0.5.0.
       22). It drafts new agents and their release kits; from here,
       roster candidates dispatch through it before any charter is
       hand-written.
+- [x] v0.6.0 (2026-10-05): syshealth-auditor, the machine lane
+      (roster 23), drafted by charter-architect on its first live
+      dispatch. Both entry conditions settled by live probing:
+      `borg info` is passphrase-gated in agent shells (state reads
+      chartered instead, the rbw passcommand fenced), and the
+      sentinel mode-vs-agent call resolved to a new agent (repo-state
+      and machine-state triggers share no corpus or allowlist).
 
 ## Dependencies that unlock existing agents (Brandon's moves, not waves)
 
@@ -57,20 +64,15 @@ future session re-litigates it. Updated as of v0.5.0.
       ledger-analyst goes from "no readable journal" to live briefs.
 - [ ] `~/.config/refs/portfolio.md` carries real positions: stock-broker
       gains portfolio-relative guidance.
-- [ ] The v0.3.0 + v0.4.0 + v0.5.0 activation pass (one reinstall
-      covers all three).
+- [x] The v0.3.0 + v0.4.0 + v0.5.0 activation pass (one reinstall
+      covers all three). *(Completed 2026-10-05: install, relaunch,
+      canaries all passing; pins were retained that time, only the new
+      agents needed setting.)*
+- [ ] The v0.6.0 activation pass (same procedure, whenever convenient;
+      pins retained last time, so likely just the one new agent).
 
 ## v0.5+ candidates (each fires on its own green light)
 
-- [ ] **syshealth-auditor**: backup and system-health census. Surfaces:
-      borgmatic config plus archive freshness (`borg info`/`list` where
-      they run non-interactively), `btrfs_health` error counters, failed
-      user and system units, staleness across the `update_*` family.
-      Entry conditions: verify `borg info` works in a subagent shell
-      without a passphrase prompt (no `BORG_*` env exists there today;
-      otherwise scope to config and state reads), and settle the
-      mode-vs-agent call against workspace-sentinel first (this may
-      belong as a sentinel lane).
 - [ ] **ctf-recon**: research assistant over the local CTF stack
       (pwntools, checksec, radare2, Ghidra). Entry condition: a CTF
       season actually starts. The charter needs local-and-CTF-platform
@@ -125,7 +127,12 @@ future session re-litigates it. Updated as of v0.5.0.
 - **Dead or blocked surfaces, verified:** Stooq CSV endpoints
   (JavaScript proof-of-work wall), `www.sec.gov/files/*` (network block;
   use data.sec.gov plus efts), hledger `--lots` (does not exist in
-  1.52.4), OSV's query API (POST; use `gh api /advisories` GETs).
+  1.52.4), OSV's query API (POST; use `gh api /advisories` GETs),
+  agent-shell system-mode `systemctl` (D-Bus connect times out,
+  sandboxed and not; user mode works, system failed units ride one
+  boot-scoped `journalctl -b --grep` pass), `borg info`/`list` in agent
+  shells (passphrase-gated; use sys-maintain timestamps, cache mtimes,
+  and repo state reads).
 - **The usage-measurement gap:** ZCode session logs cannot measure
   dispatch counts (7-day retention, tool_use inputs not greppable), so
   roster-pruning calls ride judgment rather than telemetry. Revisit if

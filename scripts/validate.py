@@ -35,6 +35,7 @@ EXPECTED_AGENTS = {
     "slop-reader",
     "spec-compliance-reviewer",
     "stock-broker",
+    "syshealth-auditor",
     "test-gap-analyst",
     "workspace-sentinel",
 }
@@ -116,7 +117,7 @@ def check_agents() -> None:
     files = sorted(AGENTS_DIR.glob("*.md"))
     found = {f.stem for f in files}
     check(
-        "roster is exactly the expected twenty-two agents",
+        "roster is exactly the expected twenty-three agents",
         found == EXPECTED_AGENTS,
         f"found {sorted(found)}",
     )
