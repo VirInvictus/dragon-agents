@@ -33,3 +33,15 @@ Guidance for any agent (or human) working in this repo. It is the source of trut
 ## Validation
 
 Run `python3 scripts/validate.py` before committing. It checks that both JSON manifests parse and match the expected shape, that every agent file's frontmatter is well-formed (name matches filename, tools exactly `Read, Bash`, non-empty description), that each charter carries the read-only and no-subagent lines, and that the roster is exactly the expected twenty-three. CI runs the same script.
+
+## Release flow
+
+A release is a version bump plus the plugin refresh: bump `version` in
+`.zcode-plugin/plugin.json`, land the agent/docs changes, commit and push
+verified work (the standing push grant in the global file), wait for CI
+(validate.py) to go green, then tag: annotated `vX.Y.Z` at the release
+commit, message = the `patchnotes.md` entry verbatim (`--cleanup=verbatim`;
+the full tag procedure lives in `~/.zcode/AGENTS.md`) — the tag itself
+still waits for Brandon's go. Then run the refresh procedure in Runtime
+gotchas. Docs-only commits follow the no-bump precedent in "What lives
+here".
