@@ -41,7 +41,7 @@ A release is a version bump plus the plugin refresh: bump `version` in
 verified work (the standing push grant in the global file), wait for CI
 (validate.py) to go green, then tag: annotated `vX.Y.Z` at the release
 commit, message = the `patchnotes.md` entry verbatim (`--cleanup=verbatim`;
-the full tag procedure lives in `~/.zcode/AGENTS.md`) — the tag itself
+the full tag procedure lives in `~/.zcode/AGENTS.md`); the tag itself
 still waits for Brandon's go. Then run the refresh procedure in Runtime
 gotchas. Docs-only commits follow the no-bump precedent in "What lives
 here".
