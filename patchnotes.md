@@ -2,6 +2,50 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v0.7.1 (2026-10-30)
+
+Portability hardening of the two collection seats; roster unchanged at
+twenty-four. librarian and music-archivist were machine-bound: their
+ladders hardcoded Brandon's paths and assumed his toolchain. Both now
+open with a rung 0 environment probe and resolve their library through
+the tool's own discovery contract, so the same charters work on any
+machine that has the underlying packages (a calibrequarry, bindery-cli,
+or lattice-music user), while the v0.7.0 fences, verified quirks, and
+output contracts carry forward unchanged.
+
+- **librarian**: discovery rides cquarry's own chain, verified from
+  source: the --db flag (a metadata.db path or its library directory),
+  the saved ~/.config/cquarry/config.json, then the tool's defaults
+  (./metadata.db, ~/Calibre Library/metadata.db, ~/calibre/metadata.db);
+  a non-TTY miss raises FileNotFoundError rather than prompting, so the
+  absent behavior is documented from source, never manufactured. Two
+  probed tool-side effects are carried honestly: a defaults-chain hit
+  saves itself into the config, and bindery resolves its library only
+  from its own directory and the cwd, so it runs from the library root.
+  A new absolute fence bans hunting the filesystem for a metadata.db
+  outside the chain: a wrong library answered confidently is the worst
+  failure the seat knows.
+- **music-archivist**: the root comes from the dispatch (--root, or the
+  positional the export modes take) or lattice's saved config
+  (library_roots else library_root), nothing else. Probing exposed a
+  real landmine, now fenced absolutely: with no --root and no config, a
+  non-TTY lattice silently scans the current directory, and a
+  configured root that is unmounted is silently dropped before that
+  same fallback fires. The charter never rides that fallback; no
+  dispatch root and no config root is a stop-and-report.
+- The not-applicable verdict is a first-class output for both seats:
+  which surface is missing, the probes tried, and the providing package
+  (calibrequarry, bindery-cli, lattice-music on pip and uv), reporting
+  only; installing stays the dispatcher's move and outside the
+  read-only allowlist.
+- Descriptions generalized: the frontmatter no longer promises
+  ~/docs/Calibre Library or /mnt/SharedData/Music, keeping the
+  books/Calibre/cquarry versus music/albums/lattice trigger split.
+  This machine's paths stay in the charters as the documented,
+  verified-here anchors, and the README table rows never carried the
+  paths, so they are unchanged. No roster, validator, or AGENTS.md
+  change.
+
 ## v0.7.0 (2026-10-30)
 
 Twenty-fourth agent: **music-archivist**, the librarian pattern applied to

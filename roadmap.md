@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v0.7.0.
+future session re-litigates it. Updated as of v0.7.1.
 
 ## Standing rules (how this roster grows)
 
@@ -63,6 +63,16 @@ future session re-litigates it. Updated as of v0.7.0.
       librarian reworked in the same wave to sharpen the trigger split.
       Probing fenced two default-write landmines (--extractArt,
       --genreTidy-build) and fixed the charter on `--output -`.
+- [x] v0.7.1 (2026-10-30): portability hardening of the two collection
+      seats (roster unchanged). librarian and music-archivist open with
+      a rung 0 environment probe, resolve their library through the
+      tools' own source-verified contracts (cquarry's find_db chain;
+      lattice's config roots), return first-class not-applicable
+      verdicts naming the providing packages, and carry generalized
+      descriptions while this machine's paths stay the documented
+      anchors. Probing fenced a real landmine: a non-TTY lattice with
+      no root silently scans the current directory, and an unmounted
+      configured root falls to that same fallback.
 
 ## Dependencies that unlock existing agents (Brandon's moves, not waves)
 
@@ -74,9 +84,9 @@ future session re-litigates it. Updated as of v0.7.0.
       covers all three). *(Completed 2026-10-05: install, relaunch,
       canaries all passing; pins were retained that time, only the new
       agents needed setting.)*
-- [ ] The v0.6.0 + v0.7.0 activation pass (one reinstall covers both;
-      pins were retained across the last reinstall, so expect to set the
-      new agents and re-verify the rest).
+- [ ] The v0.6.0 + v0.7.0 + v0.7.1 activation pass (one reinstall
+      covers all three; pins were retained across the last reinstall,
+      so expect to set music-archivist and re-verify the rest).
 
 ## v0.5+ candidates (each fires on its own green light)
 
