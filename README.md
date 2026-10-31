@@ -4,7 +4,7 @@
 [![Release](https://img.shields.io/github/v/tag/VirInvictus/dragon-agents)](https://github.com/VirInvictus/dragon-agents/tags)
 [![ci](https://github.com/VirInvictus/dragon-agents/actions/workflows/ci.yml/badge.svg)](https://github.com/VirInvictus/dragon-agents/actions/workflows/ci.yml)
 
-A local ZCode plugin of read-only research subagents for repo and markets work. Twenty-three agents, each restricted to Read + Bash, each forbidden from writing, committing, or spawning subagents of its own. They gather and report; the main thread decides and edits.
+A local ZCode plugin of read-only research subagents for repo and markets work. Twenty-four agents, each restricted to Read + Bash, each forbidden from writing, committing, or spawning subagents of its own. They gather and report; the main thread decides and edits.
 
 | Agent | Job |
 |---|---|
@@ -26,11 +26,12 @@ A local ZCode plugin of read-only research subagents for repo and markets work. 
 | `duplication-scout` | Cross-repo similar-module detection feeding the library-graduation rule; evidence, never the recommendation. |
 | `stock-broker` | Markets research briefs: companies, ETFs, peers, and the surrounding markets (rates, FX, commodities) from keyless public sources; portfolio-relative guidance, never execution. |
 | `ledger-analyst` | Personal-finance briefs from hledger journals: cashflow, budget vs actual, net worth, cost basis; encrypted org files fenced off by charter. |
-| `librarian` | Calibre library research via read-only cquarry: duplicates, series gaps, tag hygiene, reading queues; book IDs, never writes the DB. |
+| `librarian` | Books-collection research over the Calibre library: catalog health, wings and tag tree, series gaps, ownership duplicates, EPUB audits, taxonomy drift; book IDs and dated counts, never writes. |
 | `data-analyst` | Read-only duckdb profiling of named local datasets: schema, nulls, top-N, joins; compact findings without flooding the main thread. |
 | `security-auditor` | Defensive review of owned repos: gitleaks (redacted), risky patterns, advisory cross-checks via gh; ranked findings only. |
 | `charter-architect` | Designs new agents: scorecard verdict (declining is valid), live-probed charter draft, and the full release kit as text; composes, never applies. |
 | `syshealth-auditor` | Backup and system-health census: borg freshness from state reads, sys_maintain staleness and failures, failed units, disk space; root-gated checks reported as directions. |
+| `music-archivist` | Music-collection research over lattice's read-only audits: health digest, genre hygiene against taxonomy.md, duplicates, codec coverage, discography gaps, listening candidates; album paths, never a tag edit. |
 
 ## Install
 
@@ -42,7 +43,7 @@ Any text model works; the agents were written for text-only subagents (no vision
 
 ## Development
 
-`python3 scripts/validate.py` checks both manifests and every agent charter (frontmatter fields, `tools: [Read, Bash]` only, the read-only and no-subagent charter lines, and the twenty-three-agent roster). CI runs the same script on every push. `AGENTS.md` documents the plugin's rules and the marketplace/runtime gotchas; read it before changing how the plugin is packaged.
+`python3 scripts/validate.py` checks both manifests and every agent charter (frontmatter fields, `tools: [Read, Bash]` only, the read-only and no-subagent charter lines, and the twenty-four-agent roster). CI runs the same script on every push. `AGENTS.md` documents the plugin's rules and the marketplace/runtime gotchas; read it before changing how the plugin is packaged.
 
 ## License
 

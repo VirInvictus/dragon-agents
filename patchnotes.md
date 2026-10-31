@@ -2,6 +2,66 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v0.7.0 (2026-10-30)
+
+Twenty-fourth agent: **music-archivist**, the librarian pattern applied to
+the music collection: lattice's read-only audit surface over
+/mnt/SharedData/Music in place of cquarry over metadata.db. The same wave
+reworks **librarian** so the two collection seats stay crisply separable at
+dispatch time: books, Calibre, and cquarry on one side; music, albums, and
+lattice on the other.
+
+- Probing before chartering caught two default-write landmines and fenced
+  them absolutely: `--extractArt` writes cover images with no output flag
+  at all, and `--genreTidy-build` writes its map on every run with no
+  dry-run gate (the dropped genre_map.tsv was already sitting in the
+  library root). Every other write mode, the nine repo scripts/
+  companions, and the update_docs catalog refresh are fenced the same
+  way, and the charter standardizes on `--output -` because default
+  output paths are report files in the current directory.
+- Verified quirks the charter carries: `--where` scopes the read exports
+  and audits with exact case-sensitive genre and artist strings and no
+  format field; `--json` rides stats, health, and the six gateable audits;
+  only 4-star and 5-star ratings exist, so `rating >= 5` is the real
+  best-of filter; the collection holds zero FLAC, so taxonomy §7's FLAC
+  talk is historical; playlists, play counts, and listening history do
+  not exist, and the charter says the what-did-I-listen-to question is
+  unanswerable rather than approximating it.
+- Every count in the conventions layer is a dated snapshot (taxonomy §11
+  2026-08-06, catalogs 2026-10-17, live tree 2026-10-30); the charter
+  makes live lattice output win and every reported number carry its
+  as-of.
+- **librarian rechartered** (roster unchanged): the v0.4.0 charter
+  sketched five modes of what was already CalibreQuarry's CLI under the
+  name "cquarry"; v2 names the binary truthfully and rides a fully
+  verified surface ladder. Scope is books-core per Brandon's lock: the
+  Calibre library proper plus its taxonomy, catalog, and acquisition
+  cluster, with music handed to music-archivist and the
+  comics/audiobooks/games trees carried as mount-state pointers. Depth is
+  hybrid: the library's own law corpus (CLAUDE.md NON-NEGOTIABLES,
+  TAXONOMY.md and taxonomy.yaml, the catalogs runbook, refresh.md §8) is
+  read at dispatch time, while the load-bearing rules moved inline (one
+  hierarchical tag per book, generated exports never hand-edited, ID-set
+  reconciliation over counts, the ownership predicate, dated counts,
+  drift flagged instead of silently fixed).
+- The librarian rework's live probes forced real corrections: duckdb 1.5.5
+  attaches SQLite natively (the v0.4.0 "pre-installed extension" framing
+  retired; the never-INSTALL fence stands), bare `cquarry` launches the
+  TUI even in a non-TTY agent shell, the file-writing "read" modes
+  (`--audit`, `--catalog`, `--export`, `--all-wings`) are fenced in favor
+  of stdout counterparts, bindery's library mode requires the shell to
+  sit in the library root, ADVISORY findings do not trip bindery's exit-1
+  contract, and `validate_library.py` runs sub-second with allowlisted
+  findings suppressed on a clean pass. The dated-snapshot rule earned its
+  place live: the library header said 10,031 books (dated 2026-10-21)
+  against a live 10,189, and Unsorted went from 9 books to 0 between the
+  morning research sweep and the afternoon charter probes while both
+  spec docs said empty throughout.
+- Packaging: roster check extends to twenty-four; README, AGENTS.md, both
+  manifests, and the roadmap synced; the pending v0.6.0 activation pass
+  is subsumed into this wave's activation. First charter rework on the
+  roster: librarian's name, color, tools, and model pin are unchanged.
+
 ## v0.6.0 (2026-10-05)
 
 Twenty-third agent: **syshealth-auditor**, the machine lane from the
