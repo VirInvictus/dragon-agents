@@ -10,7 +10,10 @@ web write seats (v1.0.0) carry their own classes and fences: latro
 `[Read, Write, Bash, WebSearch, WebFetch]` with the new-file, never-commit,
 and never-authenticate fences; assay `[Read, Bash, WebSearch, WebFetch]` with
 the read-only-outside-the-lane, append-only, clean-tree, never-commit, and
-never-authenticate fences. Every agent keeps the no-subagent line. CI runs
+never-authenticate fences. imprint (v1.1.0) carries [Read, Bash] like a
+reader but is the metadata mutator: its writes ride the two gh verbs,
+fenced by the metadata-lane, two-mutations-allowlist, never-commit, and
+forbidden-mutations lines. Every agent keeps the no-subagent line. CI runs
 this on every push.
 """
 
@@ -36,6 +39,7 @@ WRITE_AGENTS = {
 }
 WEB_WRITE_AGENTS = {"latro"}
 WEB_APPEND_AGENTS = {"assay"}
+GH_META_AGENTS = {"imprint"}
 EXPECTED_AGENTS = {
     "assay",
     "cascade-checker",
@@ -50,6 +54,7 @@ EXPECTED_AGENTS = {
     "doc-drift-auditor",
     "duplication-scout",
     "git-archaeologist",
+    "imprint",
     "claw",
     "latro",
     "shadow",
@@ -144,7 +149,7 @@ def check_agents() -> None:
     files = sorted(AGENTS_DIR.glob("*.md"))
     found = {f.stem for f in files}
     check(
-        "roster is exactly the expected twenty-eight agents",
+        "roster is exactly the expected twenty-nine agents",
         found == EXPECTED_AGENTS,
         f"found {sorted(found)}",
     )
@@ -170,6 +175,8 @@ def check_agents() -> None:
             expected_tools = WEB_WRITE_TOOLS
         elif stem in WEB_APPEND_AGENTS:
             expected_tools = WEB_READ_TOOLS
+        elif stem in GH_META_AGENTS:
+            expected_tools = READ_ONLY_TOOLS
         else:
             expected_tools = READ_ONLY_TOOLS
         check(
@@ -210,6 +217,20 @@ def check_agents() -> None:
             check(
                 f"{stem}: charter forbids authenticating",
                 "never authenticate" in lowered,
+            )
+        elif stem in GH_META_AGENTS:
+            check(
+                f"{stem}: charter is read-only outside the metadata lane",
+                "outside the metadata lane" in lowered,
+            )
+            check(
+                f"{stem}: charter carries the metadata-mutation allowlist",
+                "the two metadata mutations" in lowered,
+            )
+            check(f"{stem}: charter forbids committing", "never commit" in lowered)
+            check(
+                f"{stem}: charter carries the forbidden-mutations list",
+                "forbidden mutations" in lowered,
             )
         else:
             check(f"{stem}: charter declares read-only", "Read-only" in text)

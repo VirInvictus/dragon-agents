@@ -2,6 +2,57 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v1.1.0 (2026-11-11)
+
+Twenty-ninth agent: **imprint**, the GitHub-metadata seat (Brandon's
+request). It tends a repository's public identity, the description and
+GitHub Topics, through the gh CLI: a new validator class for Bash-verb
+metadata mutators whose tools stay [Read, Bash] (no Write, no Edit).
+
+- "GitHub tags" in the request's phrasing is read and stated in the
+  charter as GitHub Topics, the repository's discovery labels, never git
+  tags; tags, releases, and the release flow are forbidden surfaces.
+- The write lane is exactly two mutations, `gh repo edit --description`
+  and `--add-topic`/`--remove-topic` (plus `--homepage` only when a
+  dispatch names it; a topics PUT only for wholesale replacement, which
+  `gh repo edit` cannot express). Forbidden absolutely: visibility,
+  archive, rename, default branch, collaborators, branch protection,
+  repository creation or deletion, feature toggles, gists, issues and
+  PRs, discussions, webhooks, secrets, actions runs; and never commit,
+  stage, push, or tag (release-auditor and workspace-sentinel own tag
+  and release health; doc fixes route to doc-drift-auditor).
+- These are the roster's first writes that are external: they publish to
+  github.com instantly with no local diff to review. The fence answer
+  transposes the v0.9.0 default: propose mode is the charter's default,
+  apply dispatches name their repos explicitly (a fleet apply must
+  enumerate; "all repos" is a REFUSED), every mutation is followed by a
+  read-back, and the itemized before/after report is the only audit
+  trail, its before-state doubling as the rollback record. Fleet propose
+  sweeps are chartered from the start; the fences are per-repo
+  identical, and deferring would only re-charter the same lines later.
+- Grounding is mandated before a word is proposed: README, spec,
+  patchnotes, roadmap, git log and tag census. A description that
+  outpaces the repo is metadata drift, the named failure class.
+- Probed live before chartering (gh 2.97.0): the read side exercised
+  (`gh repo view --json` fields, the topics endpoint, cwd repo
+  resolution); the write side verified from the tool's help and
+  GitHub's own docs, never exercised during design. Topic rules verified
+  from the docs: lowercase letters, numbers, hyphens; 50 characters or
+  fewer; at most 20 topics; names saved as lowercase; always public even
+  from private repos; 422 means stop, not retry. The description field's
+  platform cap is not published anywhere reachable read-only; the
+  charter sets house discipline at one line, 200 characters or fewer.
+- The docs-prose-writer decline stands: this seat writes two bounded
+  metadata fields grounded in the repo's own documents, not commissioned
+  prose. Where the judgment is wanted harder, an apply dispatch can
+  carry Brandon's approved text and the charter writes it verbatim or
+  refuses.
+- Model pin per the anything-that-writes rule: GLM-5.3.
+- Packaging: validate.py learns the GH_META_AGENTS class (metadata-lane,
+  two-mutations, never-commit, forbidden-mutations fences) and moves the
+  roster check to twenty-nine; README, AGENTS.md, both manifests, and
+  the roadmap synced.
+
 ## v1.0.0 (2026-11-11)
 
 The first drop of purpose-built write agents (Brandon's request; the

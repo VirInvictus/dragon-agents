@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v1.0.0.
+future session re-litigates it. Updated as of v1.1.0.
 
 ## Standing rules (how this roster grows)
 
@@ -35,6 +35,13 @@ future session re-litigates it. Updated as of v1.0.0.
   block to a repo's roadmap.md (quoted-heredoc append, clean-tree
   precondition, numstat re-verify with zero deletions and
   byte-identical originals).
+  A third purpose-built seat followed at v1.1.0 (Brandon's request):
+  imprint carries [Read, Bash] with its writes confined to the two gh
+  metadata verbs (repo description and topics), propose-by-default,
+  apply only against dispatch-enumerated repos, read-back verified;
+  the writes are external and publish instantly, so the itemized
+  before/after report is the audit trail and its before-state the
+  rollback record.
   The six judges and gates (claim-verifier, shadow, code-reviewer,
   spec-compliance-reviewer, security-auditor, slop-reader) stay
   read-only; builders, executors, and orchestrators without fences
@@ -130,6 +137,18 @@ future session re-litigates it. Updated as of v1.0.0.
       GLM-5.3 per the anything-that-writes rule. slop-reader gains
       second-order sign families in the same release (compensation and
       evasion patterns, plus house-style calibration).
+- [x] v1.1.0 (2026-11-11): imprint, the GitHub-metadata seat (roster 29),
+      drafted by charter-architect from Brandon's request. First agent
+      whose writes are external: they publish to github.com instantly
+      with no local diff, so the fence is propose-default,
+      dispatch-enumerated apply, per-mutation read-back, and the
+      itemized before/after as the only audit trail. validate.py learns
+      the metadata-mutator class (tools stay [Read, Bash]; fence
+      literals: metadata lane, two-mutations allowlist, never-commit,
+      forbidden-mutations). "GitHub tags" read as GitHub Topics; the
+      docs-prose decline stands (bounded grounded metadata fields, not
+      commissioned prose). Fleet propose chartered from the start; fleet
+      apply must enumerate.
 - [x] v0.8.1 (2026-11-10): charter hardening before activation - claw's
       rung 0 becomes an explicit three-tool toolchain gate (REFUSED +
       install command on any miss), shadow carries the matching BLOCKED
