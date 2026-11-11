@@ -2,6 +2,27 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v0.8.1 (2026-11-10)
+
+Charter hardening before activation (Brandon's pre-install check), both
+acquisition-pipeline agents.
+
+- claw's rung 0 is now an explicit toolchain gate: it names all three
+  required tools (`cquarry` from calibrequarry, `bindery` from
+  bindery-cli, and the companion-script venv python), probes
+  `command -v` + `--version` on each, and on any miss reports
+  `REFUSED: toolchain missing (<what failed>) - install with uv tool
+  install <pkg>@latest --force` and stops. No improvising around a
+  half-installed lane.
+- shadow carries the matching gate: `BLOCKED: toolchain missing` and
+  stop, for its own cquarry-read and library-validator needs.
+- Library-side wiring shipped the same day (not repo code): the two
+  import skills now name the delegation lane (claw for phases 1-2,
+  shadow for phase audits) and keep their full bodies as the canonical
+  main-thread fallback; the library's AGENTS.md pathway section names
+  both agents and its header's stale Claude Code references were
+  updated to the AGENTS.md-era paths.
+
 ## v0.8.0 (2026-11-10)
 
 Twenty-fifth and twenty-sixth agents: **claw**, the roster's first
@@ -49,6 +70,12 @@ Wolfe's Shadow & Claw.
   script set; the manifest schema read from that day's live batch; the
   Calibre-closed guard; and the external CLI set. Nothing probed
   turned up dead.
+- Toolchain gate hardened in both charters (Brandon's pre-activation
+  check): claw's rung 0 names all three tools (cquarry/calibrequarry,
+  bindery-cli, and the companion-script venv python) and on any miss
+  reports `REFUSED: toolchain missing` with the exact install command
+  and stops; shadow carries the matching BLOCKED gate for its own
+  reads.
 - librarian's run-verb fence reworded to route the acquisition verbs
   to claw's lane; every librarian fence of its own is unchanged.
 

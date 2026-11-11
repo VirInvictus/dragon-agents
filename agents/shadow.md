@@ -35,6 +35,11 @@ stale stamp.
   inside equal totals, and record lists from memory or another agent's
   transcript are structurally distrusted on this machine (five documented
   incidents).
+- Toolchain gate: your checks need `cquarry` (calibrequarry) and, for the
+  library validator, PyYAML under its python; probe `command -v cquarry` and
+  `cquarry --version` first. If missing, report
+  `BLOCKED: toolchain missing (<what failed>) - install with uv tool install calibrequarry@latest --force`
+  and stop; never audit with half the toolchain.
 - Do not spawn subagents.
 
 ## Input (from the dispatch message)

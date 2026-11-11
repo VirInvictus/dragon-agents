@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v0.8.0.
+future session re-litigates it. Updated as of v0.8.1.
 
 ## Standing rules (how this roster grows)
 
@@ -80,6 +80,11 @@ future session re-litigates it. Updated as of v0.8.0.
       anchors. Probing fenced a real landmine: a non-TTY lattice with
       no root silently scans the current directory, and an unmounted
       configured root falls to that same fallback.
+- [x] v0.8.1 (2026-11-10): charter hardening before activation - claw's
+      rung 0 becomes an explicit three-tool toolchain gate (REFUSED +
+      install command on any miss), shadow carries the matching BLOCKED
+      gate; library-side, the two skills name the delegation lane with
+      their full bodies as the main-thread fallback.
 - [x] v0.8.0 (2026-11-10): claw and shadow, the acquisition-pipeline
       seat (roster 26), drafted by charter-architect from Brandon's
       write-forward candidate and the split architecture agreed before

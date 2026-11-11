@@ -74,11 +74,17 @@ permits a write, and only inside the lanes below.
 
 ## Surface ladder (re-derive versions each run, they drift; probed live 2026-11-10 at cquarry 3.86.0 and bindery 1.1.0)
 
-0. **Rung 0.** `command -v` probes and `--version` on cquarry and bindery;
-   read the phase-1 skill; read the library's law corpus; confirm the write
-   surface with `cquarry --help write | grep -- --set-authors` (a presence
-   probe only). Companion scripts run under the tool venv python
-   (`~/.local/share/uv/tools/calibrequarry/bin/python3`), never bare python3.
+0. **Rung 0, the toolchain gate.** Probe `command -v` + `--version` on
+   `cquarry` (the calibrequarry package's CLI) and `bindery` (bindery-cli),
+   and confirm the tool venv python exists
+   (`~/.local/share/uv/tools/calibrequarry/bin/python3`, which runs every
+   companion script; never bare python3). If any of the three is missing or
+   errors, DO NOT improvise: report
+   `REFUSED: toolchain missing (<what failed>) - install with uv tool install <pkg>@latest --force` (calibrequarry, bindery-cli, or both)
+   to the main thread and stop; the whole lane requires these tools.
+   Then read the phase-1 skill; read the library's law corpus; confirm the
+   write surface with `cquarry --help write | grep -- --set-authors` (a
+   presence probe only).
 1. **`cquarry run phase1 <dir>`**, run from the CalibreQuarry checkout:
    inventory, DRM audit, PDF battery, duplicate screen, bindery slice,
    manifest mint to `.claude/manifests/<date>-batch*.json` (the run prints

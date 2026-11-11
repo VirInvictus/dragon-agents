@@ -1,6 +1,6 @@
 {
   "name": "dragon-agents",
-  "version": "0.8.0",
+  "version": "0.8.1",
   "description": "Research subagents for repo, markets, and machine work: repo maps, doc-drift and release audits, cascade and spec checks, CI triage and posture, workspace sweeps, code review, git archaeology, claim verification, dependency and test-gap audits, debt census, duplication scouting, slop reads, equity and ETF research briefs from keyless public market data, personal finance, book-library, and music-collection briefs, dataset profiling, security review, machine and backup health census, charter design for new agents, and the Calibre acquisition pipeline's gated execution seat (import phases 1 and 2) with its read-only phase auditor.",
   "author": {
     "name": "Brandon (bdkl)"
