@@ -2,6 +2,48 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v0.9.0 (2026-11-11)
+
+The second founding-rule amendment (Brandon's write-forward pass): five
+audit-and-fix seats gain chartered write lanes under the fence model.
+The line the amendment draws is the phase-3 evidence's own: a write seat
+is chartered where the fix is fully determined by what the audit found
+and re-running the same audit verifies it. Roster unchanged at
+twenty-six; twenty agents stay read-only.
+
+- The fence model, enforced by validate.py: report-only by default (a
+  write dispatch names the mode and the scope), a clean-tree
+  precondition (REFUSED: dirty tree), writes confined to the charter's
+  named scope, never a commit or any git state change, re-verification
+  after applying, and an itemized before/after report for main-thread
+  review. The five carry tools: [Read, Edit, Write, Bash]; every other
+  agent keeps [Read, Bash].
+- charter-architect gains an apply mode: it lands its own approved
+  release kit in the plugin repo and runs validate.py; commit, push,
+  tag, and release stay with the main thread.
+- ci-posture-auditor applies the hardened CI shape to a named repo,
+  tightening only: it never removes or weakens a pin, permission,
+  timeout, or gate.
+- doc-drift-auditor fixes the mechanical drift it found (version
+  carriers, roadmap ticks, patchnotes hygiene, proved README facts);
+  judgment findings stay findings, and release-notes prose is never
+  its pen.
+- debt-census removes only census items the dispatch names; no
+  refactors, no reformatting drive-bys; build-class verification only
+  on dispatch consent.
+- test-gap-analyst flips from static-only to write-and-run on a write
+  dispatch: it writes the named missing tests in the repo's own
+  conventions, runs exactly what it wrote (never the full suite), and
+  never edits production code; a failing test that exposes a product
+  bug is a finding, not a patch.
+- Model pins move with the writes per the anything-that-writes rule:
+  ci-posture-auditor, debt-census, and test-gap-analyst flip
+  GLM-5.3-Flash to GLM-5.3.
+- The six judges and gates (claim-verifier, shadow, code-reviewer,
+  spec-compliance-reviewer, security-auditor, slop-reader) stay
+  read-only: a verifier that can edit is not a verifier. librarian and
+  music-archivist stay fenced, and the phase-3 decline stands.
+
 ## v0.8.2 (2026-11-11)
 
 workspace-sentinel learns the release-census check: pushed tags with no

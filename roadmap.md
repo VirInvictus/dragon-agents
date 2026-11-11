@@ -2,27 +2,36 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v0.8.2.
+future session re-litigates it. Updated as of v0.9.0.
 
 ## Standing rules (how this roster grows)
 
 - **Research-first waves.** Every candidate faces the five-criterion
   scorecard before chartering: context win (keeps big output out of the
   main thread), trigger precision (sharp, non-overlapping description),
-  frequency (roughly weekly real use), charter fit (read-only, Read+Bash,
-  research-only, no builds), and source stability (the surface will not
-  rot next quarter). Evidence base recorded under "Records kept here".
-- **The non-negotiables hold at every version, with one chartered
-  exception:** agents stay read-only with `tools: [Read, Bash]`, no
-  nesting, and this repo stays stdlib-only markdown and JSON. The
-  exception is claw (v0.8.0, Brandon's amendment of 2026-11-10): a
-  write lane is chartered only where the writes ride tool-side
-  structural gates (backup-dir outside the tree, an HMAC-sealed manifest
-  the agent itself may never seal, refuse-beyond-the-approved-list, one
-  rolled-back transaction) and the blast radius is loose files. The seal
-  and every ungated library write stay with the main thread. Builders,
-  executors, and orchestrators without those gates remain excluded by
-  charter, not by oversight.
+  frequency (roughly weekly real use), charter fit (read-only default;
+  for a write seat, fence-fit: report-only default, a named scope, never
+  a commit, no builds beyond dispatch consent), and source stability
+  (the surface will not rot next quarter). Evidence base recorded under
+  "Records kept here".
+- **The non-negotiables hold at every version, as amended twice:**
+  agents stay read-only by default, no nesting, and this repo stays
+  stdlib-only markdown and JSON. Write capability is chartered only.
+  claw (v0.8.0, Brandon's amendment of 2026-11-10) writes through
+  tool-side structural gates (backup-dir outside the tree, an
+  HMAC-sealed manifest the agent itself may never seal,
+  refuse-beyond-the-approved-list, one rolled-back transaction) on
+  loose-file blast radius, and the seal plus every ungated library write
+  stay with the main thread. The five charter-fence seats (v0.9.0,
+  Brandon's amendment of 2026-11-11: charter-architect,
+  ci-posture-auditor, doc-drift-auditor, debt-census, test-gap-analyst)
+  carry `tools: [Read, Edit, Write, Bash]` under the fence model:
+  report-only default, a clean-tree precondition, a named write scope,
+  never a commit, re-verification after applying, an itemized report.
+  The six judges and gates (claim-verifier, shadow, code-reviewer,
+  spec-compliance-reviewer, security-auditor, slop-reader) stay
+  read-only; builders, executors, and orchestrators without fences
+  remain excluded by charter, not by oversight.
 - **Modes before agents.** A candidate expressible as a mode of an
   existing agent prefers the mode unless trigger precision genuinely
   suffers.
@@ -86,6 +95,22 @@ future session re-litigates it. Updated as of v0.8.2.
       same-day 184-release backfill. The forward fix lives in the
       release skill's step 9 and the workspace tag procedure; the
       sentinel is the recurring guard.
+- [x] v0.9.0 (2026-11-11): the second founding-rule amendment, Brandon's
+      write-forward pass. Five audit-and-fix seats gain chartered write
+      lanes under the fence model (report-only default, clean-tree
+      precondition, named scope, never a commit, re-verify after
+      applying, itemized report): charter-architect lands its own
+      approved release kits, ci-posture-auditor writes the CI hardening
+      (tightening only), doc-drift-auditor fixes mechanical drift,
+      debt-census removes named census items, test-gap-analyst writes
+      and runs the named missing tests (production code never touched).
+      Roster unchanged at 26; the six judges and gates stay read-only;
+      librarian and music-archivist stay fenced and the phase-3 decline
+      stands. Model pins move with the writes: ci-posture-auditor,
+      debt-census, and test-gap-analyst flip Flash to GLM-5.3 (the
+      anything-that-writes rule). charter-architect's own upgrade was
+      the one main-thread hand edit, applied first so the lane could
+      exist.
 - [x] v0.8.1 (2026-11-10): charter hardening before activation - claw's
       rung 0 becomes an explicit three-tool toolchain gate (REFUSED +
       install command on any miss), shadow carries the matching BLOCKED
@@ -151,12 +176,15 @@ future session re-litigates it. Updated as of v0.8.2.
   49 on one wing), and five incidents of dropped or invented ids in
   agent record lists. The mechanical half ships as shadow's pre-flight
   and post-transaction modes; the judgment stays main-thread, and the
-  phase-3 skill remains the judgment ledger.
+  phase-3 skill remains the judgment ledger. Unchanged by the v0.9.0
+  amendment: it ruled judgment-heavy curation, not mechanically
+  verifiable fixes, and librarian stays fenced.
 - **Builders, language specialists, infra executors** (the bulk of
   community rosters): excluded by the read-only research charter, and the
   practitioner evidence says they duplicate what the main model already
-  does well. (The one chartered exception, claw, arrived v0.8.0 under
-  tool-side structural gates; it does not generalize the category.)
+  does well. (claw arrived v0.8.0 under tool-side structural gates, and
+  v0.9.0 chartered five fence-gated audit-and-fix seats alongside it, a
+  narrow deliberate slice. The bulk exclusion stands.)
 - **Orchestrators and context-managers**: the no-nesting charter excludes
   them, and the one meta-agent kept by the practitioner filter carried
   the worst token-budget risk of his dozen.

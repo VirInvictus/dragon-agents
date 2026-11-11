@@ -1,6 +1,6 @@
 # AGENTS.md
 
-Guidance for any agent (or human) working in this repo. It is the source of truth for the **dragon-agents** ZCode plugin: twenty-six research subagents installed through a local directory marketplace (twenty-five read-only, plus the one gated execution seat, claw).
+Guidance for any agent (or human) working in this repo. It is the source of truth for the **dragon-agents** ZCode plugin: twenty-six subagents installed through a local directory marketplace (twenty read-only by charter, plus six chartered write seats: claw's gated pipeline lanes and the five fence-gated audit-and-fix seats added at v0.9.0).
 
 ## What lives here
 
@@ -13,7 +13,7 @@ Guidance for any agent (or human) working in this repo. It is the source of trut
 
 ## Non-negotiables
 
-- **Agents stay read-only, with one chartered exception.** Every agent keeps `tools: [Read, Bash]`, and its charter keeps the read-only and "Do not spawn subagents" lines. They gather and report; the main thread decides and edits. The single exception is `claw` (v0.8.0, Brandon's recorded amendment of 2026-11-10): a gated execution seat whose writes ride tool-side structural gates only (loose files under the dispatched batch directory with backups outside the tree, plus `cquarry run phase1/phase2`), with the manifest seal and every library write beyond the phase-2 verb fenced off. Never add another write path, a build step, or nested-subagent capability to any agent.
+- **Read-only by default; write seats are chartered, never casual.** Agents gather and report; the main thread decides, reviews diffs, and commits. Write capability exists only under a chartered fence. `claw` (v0.8.0, Brandon's recorded amendment of 2026-11-10) writes through tool-side structural gates only (loose files under the dispatched batch directory with backups outside the tree, plus `cquarry run phase1/phase2`), with the manifest seal and every library write beyond the phase-2 verb fenced off. The five charter-fence seats (v0.9.0, Brandon's amendment of 2026-11-11: charter-architect, ci-posture-auditor, doc-drift-auditor, debt-census, test-gap-analyst) carry `tools: [Read, Edit, Write, Bash]` with a charter that names the mode discipline (report-only default), the Clean tree precondition, the never-commit rule, the exact write scope, the re-verification step, and the itemized report. Every other agent keeps `tools: [Read, Bash]` and the read-only line, and every agent keeps the "Do not spawn subagents" line; validate.py enforces the per-class shape. Never add a write seat without its fences, and never add a build step or nested-subagent capability to any agent.
 - **Stdlib only.** This repo is markdown, JSON, and one stdlib-Python validator. No dependencies, no lockfile, no runtime of any kind.
 - **Dispatch names are `dragon-agents:<name>`**, and the `name` in frontmatter must match the filename exactly.
 
@@ -33,7 +33,7 @@ Guidance for any agent (or human) working in this repo. It is the source of trut
 
 ## Validation
 
-Run `python3 scripts/validate.py` before committing. It checks that both JSON manifests parse and match the expected shape, that every agent file's frontmatter is well-formed (name matches filename, tools exactly `Read, Bash`, non-empty description), that each charter carries the read-only and no-subagent lines, and that the roster is exactly the expected twenty-six. CI runs the same script.
+Run `python3 scripts/validate.py` before committing. It checks that both JSON manifests parse and match the expected shape, that every agent file's frontmatter is well-formed (name matches filename, non-empty description, tools matching the agent's class), that read-only charters carry the read-only line and write-seat charters carry the Clean tree and never-commit fences, that every charter carries the no-subagent line, and that the roster is exactly the expected twenty-six. CI runs the same script.
 
 ## Release flow
 

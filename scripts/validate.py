@@ -1,10 +1,12 @@
 """Structural checks for the dragon-agents plugin.
 
 Validates both JSON manifests and every agent charter: frontmatter fields,
-the Read+Bash tool restriction, the read-only and no-subagent charter lines,
-and the agent roster (claw is the one chartered write exception; its
-charter still carries both required lines and its writes stay inside the
-gated lanes its text defines). CI runs this on every push.
+per-class tool restrictions, and the charter lines each class must carry.
+Read-only agents keep `tools: [Read, Bash]` and the Read-only line; claw is
+among them because its writes ride the pipeline's own gated verbs. The five
+charter-fence write seats (v0.9.0) carry `tools: [Read, Edit, Write, Bash]`
+plus the Clean tree fence and the never-commit line. Every agent keeps the
+no-subagent line. CI runs this on every push.
 """
 
 from __future__ import annotations
@@ -16,6 +18,15 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
 AGENTS_DIR = ROOT / "agents"
+READ_ONLY_TOOLS = ["Read", "Bash"]
+WRITE_TOOLS = ["Read", "Edit", "Write", "Bash"]
+WRITE_AGENTS = {
+    "charter-architect",
+    "ci-posture-auditor",
+    "debt-census",
+    "doc-drift-auditor",
+    "test-gap-analyst",
+}
 EXPECTED_AGENTS = {
     "cascade-checker",
     "charter-architect",
@@ -142,16 +153,25 @@ def check_agents() -> None:
             f"{stem}: description is non-empty",
             bool(fields.get("description", "").strip()),
         )
+        is_writer = stem in WRITE_AGENTS
+        expected_tools = WRITE_TOOLS if is_writer else READ_ONLY_TOOLS
         check(
-            f"{stem}: tools are exactly Read and Bash",
-            parse_tools(fields.get("tools", "")) == ["Read", "Bash"],
+            f"{stem}: tools match its class",
+            parse_tools(fields.get("tools", "")) == expected_tools,
             fields.get("tools", ""),
         )
         check(
             f"{stem}: charter forbids spawning subagents",
             "Do not spawn subagents" in text,
         )
-        check(f"{stem}: charter declares read-only", "Read-only" in text)
+        lowered = text.lower()
+        if is_writer:
+            check(
+                f"{stem}: charter carries the clean-tree fence", "clean tree" in lowered
+            )
+            check(f"{stem}: charter forbids committing", "never commit" in lowered)
+        else:
+            check(f"{stem}: charter declares read-only", "Read-only" in text)
 
 
 def main() -> int:

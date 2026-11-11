@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "dragon-agents",
-      "description": "Research subagents for repo, markets, personal-data, music-collection, and machine-health work, charter design, and the Calibre import pipeline's gated execution seat plus its read-only phase auditor.",
+      "description": "Research subagents for repo, markets, personal-data, music-collection, and machine-health work, charter design, the Calibre import pipeline's gated execution seat plus its read-only phase auditor, and five fence-gated audit-and-fix seats.",
       "source": ".",
       "category": "developer-tools"
     }
