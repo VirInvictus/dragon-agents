@@ -13,8 +13,10 @@ the read-only-outside-the-lane, append-only, clean-tree, never-commit, and
 never-authenticate fences. imprint (v1.1.0) carries [Read, Bash] like a
 reader but is the metadata mutator: its writes ride the two gh verbs,
 fenced by the metadata-lane, two-mutations-allowlist, never-commit, and
-forbidden-mutations lines. Every agent keeps the no-subagent line. CI runs
-this on every push.
+forbidden-mutations lines. Every agent keeps the no-subagent line and the
+standing debug-reporting duty (v1.3.0): a `## Debug reporting` section the
+agent satisfies in its final message, with filing left to the dispatcher.
+CI runs this on every push.
 """
 
 from __future__ import annotations
@@ -188,6 +190,10 @@ def check_agents() -> None:
         check(
             f"{stem}: charter forbids spawning subagents",
             "Do not spawn subagents" in text,
+        )
+        check(
+            f"{stem}: charter carries the debug-report duty",
+            "## Debug reporting" in text,
         )
         lowered = text.lower()
         if stem in WRITE_AGENTS:

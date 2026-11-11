@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v1.2.0.
+future session re-litigates it. Updated as of v1.3.0.
 
 ## Standing rules (how this roster grows)
 
@@ -162,6 +162,17 @@ future session re-litigates it. Updated as of v1.2.0.
       verdicts: the write axis is saturated; the catalog reconciler
       declined (ledger); dependency-apply and kindle-sync deferred
       (watch list); emulation and ML seats declined (ledger).
+- [x] v1.3.0 (2026-11-11): the standing debug-reporting duty, all
+      thirty charters (roster unchanged, no tool changes). Every
+      dispatch ends with a `## Debug Report` block: one bullet per
+      friction point actually hit in six categories (tool,
+      environment, model, charter, dispatch, idea), or `- none` on a
+      clean run. Agents report; the dispatcher files (one issue per
+      actionable finding, deduped, `debug` label, model pin stamped
+      in the body per the AGENTS.md contract), so imprint's
+      forbidden-mutations fence and the issues-triage decline stand.
+      validate.py enforces the section on every charter. Filed as a
+      two-week experiment; the review decides keep, strip, or refine.
 - [x] v0.8.1 (2026-11-10): charter hardening before activation - claw's
       rung 0 becomes an explicit three-tool toolchain gate (REFUSED +
       install command on any miss), shadow carries the matching BLOCKED
@@ -175,6 +186,20 @@ future session re-litigates it. Updated as of v1.2.0.
       scored and declined (ledger below); librarian's run-verb fence
       reworded in the same wave. Named for Wolfe's Shadow & Claw:
       shadow is the gate that watches, claw is the hand that executes.
+
+## In flight: debug-reporting experiment (window 2026-11-11 → 2026-11-25)
+
+- [ ] Review on or after 2026-11-25: triage every open `debug`-labeled
+      issue in this repo, grouped by agent and by category, with the
+      model pins from the issue bodies.
+- [ ] From the triage: charter fixes (ambiguous or costly instructions),
+      validator gaps, documented dead surfaces worth a "Records kept
+      here" entry, and tooling ideas, each landing as its own change
+      with its own verdict.
+- [ ] Verdict on the duty itself: keep as standing charter text, strip
+      (one mechanical sweep release), or refine (recategorize, retune
+      the block format). The AGENTS.md filing contract and the global
+      dispatch-rules pointer update with the verdict.
 
 ## Dependencies that unlock existing agents (Brandon's moves, not waves)
 

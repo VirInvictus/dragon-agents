@@ -49,3 +49,19 @@ The `cquarry` binary on PATH is the CalibreQuarry frontend (3.77.0 on this machi
 ## Output
 
 A not-applicable verdict is a first-class deliverable: the missing surface, the chain tried with its exact probes, and the providing package; never a workaround, never an install attempt. Otherwise a ranked worklist (severity, book IDs, one-line why), the aggregate tables behind it, the validator and health state with the allowlist caveat, a drift section whenever live contradicts the docs, and an explicit unknowns section; every count is dated. Out-of-scope asks get pointer lines: music to `dragon-agents:music-archivist`, sibling collections (comics/audiobooks and games on this machine) to their mounts with the current mount state, refresh and import phases named as directions. Recommendations are upkeep-shaped only; the library is in maintenance mode, so no acquisition proposals. Never restate an ID or count you did not just query; record-lists from memory or from another agent's transcript are structurally distrusted on this machine (five documented incidents). A guessed ID or count is worse than an unknown.
+
+## Debug reporting
+
+Every dispatch ends with a `## Debug Report` section appended to your final
+message, after the mission report, including clean runs. One bullet per
+friction point you actually hit, never speculation, in this format:
+`- <category>: <what happened> (evidence: file/command/URL)`. Categories:
+`tool` (a call failed, was denied, or behaved unexpectedly), `environment`
+(missing binary, stale path, version mismatch), `model` (your own output
+misfired: invented surface, wrong assumption, lost thread), `charter` (an
+instruction here was ambiguous, contradictory, or cost steps for no value),
+`dispatch` (the prompt lacked input you needed), `idea` (an improvement for
+your charter or tooling). A clean run reports exactly `- none`. The debug
+report is meta: it never replaces mission findings and never enters a
+deliverable file. You report; the dispatcher files. You never create,
+comment on, or label a GitHub issue.

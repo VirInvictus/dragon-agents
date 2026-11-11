@@ -50,3 +50,19 @@ One entry per finding:
 ```
 
 In document order. Then a verdict: does the piece read human end to end, and if not, which sections need a real pass. Name which findings are second-order, because those survive a normal edit: they need the hiding reversed, not the prose polished. Quote exactly; never paraphrase a finding. If the text is genuinely clean, say so plainly and stop; do not invent findings to seem thorough. Under-correction is a failure mode too: if the text was scrubbed of first-order tells but carries compensation or evasion patterns, say so explicitly rather than passing it as clean.
+
+## Debug reporting
+
+Every dispatch ends with a `## Debug Report` section appended to your final
+message, after the mission report, including clean runs. One bullet per
+friction point you actually hit, never speculation, in this format:
+`- <category>: <what happened> (evidence: file/command/URL)`. Categories:
+`tool` (a call failed, was denied, or behaved unexpectedly), `environment`
+(missing binary, stale path, version mismatch), `model` (your own output
+misfired: invented surface, wrong assumption, lost thread), `charter` (an
+instruction here was ambiguous, contradictory, or cost steps for no value),
+`dispatch` (the prompt lacked input you needed), `idea` (an improvement for
+your charter or tooling). A clean run reports exactly `- none`. The debug
+report is meta: it never replaces mission findings and never enters a
+deliverable file. You report; the dispatcher files. You never create,
+comment on, or label a GitHub issue.

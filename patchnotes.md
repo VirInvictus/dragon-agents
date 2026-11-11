@@ -2,6 +2,35 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v1.3.0 (2026-11-11)
+
+Every agent now closes every dispatch with a structured debug report,
+and the dispatcher files actionable findings as GitHub issues in this
+repo. Brandon's request: a two-week capture window (2026-11-11 to
+2026-11-25) whose triage decides charter, validator, and tooling
+improvements per agent and per model.
+
+- The duty is always-on and baked into all thirty charters as a
+  `## Debug reporting` section: the final message ends with a
+  `## Debug Report` block, one bullet per friction point actually hit,
+  never speculation, in six categories (tool, environment, model,
+  charter, dispatch, idea), or exactly `- none` on a clean run. The
+  block is meta: it never replaces mission findings and never enters a
+  deliverable file.
+- The separation is explicit: agents report, the dispatcher files. No
+  agent creates, comments on, or labels a GitHub issue in any form, so
+  imprint's forbidden-mutations fence and the declined issues-triage
+  ledger entry stand unchanged.
+- The dispatcher's filing contract lives in this repo's AGENTS.md: one
+  issue per actionable finding, deduped against open `debug`-labeled
+  issues, titled `[<agent>] <summary>`, the body carrying the dispatch
+  date, the category, the evidence, and the model pin the agent ran
+  under, so the triage can group improvements per agent and per model.
+  A one-line pointer joined the global dispatch rules so dispatches
+  made from other workspaces still file.
+- validate.py enforces the section on every charter (thirty new
+  checks); the roster stays thirty and no tool set changed.
+
 ## v1.2.0 (2026-11-11)
 
 Thirtieth agent: **schedule-analyst**, the school-and-schedule lane,
