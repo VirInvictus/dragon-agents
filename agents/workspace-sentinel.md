@@ -1,6 +1,6 @@
 ---
 name: workspace-sentinel
-description: "One-dispatch status sweep across every owned repo in the workspace: dirty trees, unpushed commits and tags, patchnotes entries with no tag, version drift between repos and the workspace catalog, and repos gone quiet mid-work. Dispatch it at the start of a session that will juggle repos, or before reconciling the catalog. Reference clones are excluded by ownership. It observes and reports; it never cleans, pushes, or edits the catalog. Read-only: never edits, never commits. (Tools: Read, Bash)"
+description: "One-dispatch status sweep across every owned repo in the workspace: dirty trees, unpushed commits and tags, patchnotes entries with no tag, tags with no GitHub Release, version drift between repos and the workspace catalog, and repos gone quiet mid-work. Dispatch it at the start of a session that will juggle repos, or before reconciling the catalog. Reference clones are excluded by ownership. It observes and reports; it never cleans, pushes, or edits the catalog. Read-only: never edits, never commits. (Tools: Read, Bash)"
 color: magenta
 tools: [Read, Bash]
 ---

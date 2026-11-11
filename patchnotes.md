@@ -2,6 +2,16 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v0.8.2 (2026-11-11)
+
+workspace-sentinel learns the release-census check: pushed tags with no
+GitHub Release now rank as findings, alongside entry-without-tag. The
+2026-11-11 backfill (184 missing releases across 20 repos; Hearth was
+0/47, dragon-agents 1/12) is the cited incident; the release skill and
+the workspace tag procedure carry the forward fix, and the sentinel is
+the recurring guard. Archived repos are reported as
+release-blocked-archived, not as clean.
+
 ## v0.8.1 (2026-11-10)
 
 Charter hardening before activation (Brandon's pre-install check), both

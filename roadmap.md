@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v0.8.1.
+future session re-litigates it. Updated as of v0.8.2.
 
 ## Standing rules (how this roster grows)
 
@@ -80,6 +80,12 @@ future session re-litigates it. Updated as of v0.8.1.
       anchors. Probing fenced a real landmine: a non-TTY lattice with
       no root silently scans the current directory, and an unmounted
       configured root falls to that same fallback.
+- [x] v0.8.2 (2026-11-11): workspace-sentinel learns the
+      release-census check (pushed tags with no GitHub Release rank as
+      findings; archived repos reported release-blocked), cited to the
+      same-day 184-release backfill. The forward fix lives in the
+      release skill's step 9 and the workspace tag procedure; the
+      sentinel is the recurring guard.
 - [x] v0.8.1 (2026-11-10): charter hardening before activation - claw's
       rung 0 becomes an explicit three-tool toolchain gate (REFUSED +
       install command on any miss), shadow carries the matching BLOCKED
