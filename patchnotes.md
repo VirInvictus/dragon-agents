@@ -2,6 +2,50 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v1.2.0 (2026-11-11)
+
+Thirtieth agent: **schedule-analyst**, the school-and-schedule lane,
+promoted from the watch list by the suite-completion gap survey. The
+survey's baseline named weekly school work (td as the task system,
+gcalcli the calendar, the Sunday D2L sweep) as the one recurring domain
+with no seat; the same survey found the write axis saturated, and its
+other verdicts are recorded in the roadmap ledger and watch list.
+
+- td 5.10.0 is the verified backbone (every rung probed live
+  2026-11-11): today/upcoming/inbox, stats (live but absent from the
+  top-level help listing), task list's filter surface with the
+  results/nextCursor JSON pagination, the project/section/label
+  structure rungs, and completed list. Two quirks carried in the
+  charter: the JSON priority field is the API scale, inverted against
+  the UI (4 is p1), and today and upcoming open with the same overdue
+  block.
+- gcalcli 4.5.1 is chartered in its verified state: `list` answers from
+  local cache, but event queries currently fail with
+  `RefreshError: invalid_grant` (the stored OAuth session cannot
+  refresh; verified live). Until Brandon re-auths, the digest runs
+  td-only and carries a calendar-unavailable line with the re-auth
+  direction, the ledger-analyst precedent (chartered ready, the dormant
+  dependency stated plainly). Re-authentication is never the agent's
+  act.
+- Read-only by charter: td's and gcalcli's read verbs only,
+  recommendations never executed, recurrences kept visible in any
+  suggestion because they are load-bearing. The modes-before-agents
+  call is recorded: not data-analyst's named-endpoint lane (local
+  datasets, not CLI state reads) and not syshealth-auditor's (machine
+  state shares no corpus or allowlist with task and calendar APIs).
+- Model pin: GLM-5.3-Flash, the rubric-driven evidence-gathering tier
+  (syshealth-auditor precedent); the dispatcher can raise it if
+  digests run thin.
+- Packaging: roster check extends to thirty; README, AGENTS.md (whose
+  agent list carried a stale twenty-eight count over twenty-nine
+  names; fixed here), both manifests, and the roadmap synced. The
+  roadmap records the survey's verdicts: catalog reconciler declined
+  (no git baseline under the write target for the fence model's
+  re-verify leg, verified live), dependency apply mode and kindle-sync
+  deferred with entry conditions, emulation and ML seats declined as
+  job-title candidates, and ctf-recon and log-miner keep their unfired
+  conditions.
+
 ## v1.1.0 (2026-11-11)
 
 Twenty-ninth agent: **imprint**, the GitHub-metadata seat (Brandon's

@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v1.1.0.
+future session re-litigates it. Updated as of v1.2.0.
 
 ## Standing rules (how this roster grows)
 
@@ -149,6 +149,19 @@ future session re-litigates it. Updated as of v1.1.0.
       docs-prose decline stands (bounded grounded metadata fields, not
       commissioned prose). Fleet propose chartered from the start; fleet
       apply must enumerate.
+- [x] v1.2.0 (2026-11-11): schedule-analyst, the school-and-schedule
+      lane (roster 30), drafted by charter-architect from the
+      suite-completion gap survey. The survey's baseline named weekly
+      school work (td, gcalcli, the Sunday D2L sweep) as the one
+      recurring domain with no seat, firing the watch-list condition.
+      td 5.10.0 verified rung by rung (stats hidden from help but
+      live; JSON priority inverted against the UI); gcalcli 4.5.1
+      chartered in its verified-degraded state (event queries fail
+      invalid_grant until the stored session is refreshed; td-only
+      meanwhile, the ledger-analyst precedent). The survey's other
+      verdicts: the write axis is saturated; the catalog reconciler
+      declined (ledger); dependency-apply and kindle-sync deferred
+      (watch list); emulation and ML seats declined (ledger).
 - [x] v0.8.1 (2026-11-10): charter hardening before activation - claw's
       rung 0 becomes an explicit three-tool toolchain gate (REFUSED +
       install command on any miss), shadow carries the matching BLOCKED
@@ -169,6 +182,8 @@ future session re-litigates it. Updated as of v1.1.0.
       ledger-analyst goes from "no readable journal" to live briefs.
 - [ ] `~/.config/refs/portfolio.md` carries real positions: stock-broker
       gains portfolio-relative guidance.
+- [ ] The gcalcli OAuth session is refreshed (`gcalcli init`,
+      Brandon's act): schedule-analyst gains the calendar join.
 - [x] The v0.3.0 + v0.4.0 + v0.5.0 activation pass (one reinstall
       covers all three). *(Completed 2026-10-05: install, relaunch,
       canaries all passing; pins were retained that time, only the new
@@ -191,10 +206,17 @@ future session re-litigates it. Updated as of v1.1.0.
 
 ## Watch list (recorded, not committed)
 
-- [ ] **schedule-analyst**: a td + gcalcli weekly digest. Cheap but low
-      volume; ActivityWatch exports are already data-analyst surface via
-      named endpoints. Fires only if weekly planning becomes a recurring
-      ask.
+- [ ] **dependency-auditor apply mode**: the v0.9.0 shape applied to
+      manifest fixes (remove declared-but-unused, raise floors to the
+      APIs actually used, sync toolchain pins; `cargo update -p` and
+      `uv lock` are resolver runs, not builds). Fires on the next
+      platform-bump wave (gtk4, rusqlite, Godot) whose fix list lands
+      across three or more repos, or the first fumbled hand-apply.
+- [ ] **kindle-sync**: EPUB export and rsync to the KOReader device
+      over its KOReader-coupled sshfs mount. Fires when device syncs
+      become a demonstrated routine (two import-to-device cycles
+      inside one month); the mount's die-with-KOReader behavior makes
+      an idle-watchdog agent the wrong tool for occasional syncs.
 
 ## Declined (with reasons, so it stays decided)
 
@@ -244,6 +266,25 @@ future session re-litigates it. Updated as of v1.1.0.
   existing lane covers it end to end: cascade-checker inventories, the main
   thread applies in worktrees, code-reviewer gates, CI verifies. Revisit
   only if mechanically pure cascade waves (pure renames) recur at scale.
+- **workspace-sentinel apply mode (catalog reconciler)** (2026-11-11):
+  the v0.9.0 fence model is inexpressible on the write target:
+  `~/.gitrepos` is not a git repo and the dotfiles bare repo does not
+  track the catalog (both verified live), so the clean-tree
+  precondition and the diff/numstat re-verify legs have nothing to
+  ride, and an unverifiable write to the workspace's ownership source
+  of truth is what the fences exist to prevent. The rows are also
+  judgment-shaped (descriptions, ownership marks). Reconciliation
+  stays sentinel-finds, main-thread-edits.
+- **Emulation and ML/AI experimentation seats** (2026-11-11): the gap
+  survey's job-title failure mode: active interests with no named
+  recurring job, no surface, and no recorded dispatch; a trigger would
+  have nothing to fire on. Revisit when a concrete recurring job
+  exists (a ROM-library hygiene pass, an experiment-tracking review),
+  not before.
+- **GitHub issues/notifications triage** (2026-11-11): solo
+  push-based workflow with no issue volume to triage; imprint's lane
+  deliberately excludes the surface. Revisit if the workflow ever
+  moves to issue-driven.
 
 ## Records kept here
 
@@ -268,7 +309,9 @@ future session re-litigates it. Updated as of v1.1.0.
   sandboxed and not; user mode works, system failed units ride one
   boot-scoped `journalctl -b --grep` pass), `borg info`/`list` in agent
   shells (passphrase-gated; use sys-maintain timestamps, cache mtimes,
-  and repo state reads).
+  and repo state reads), gcalcli event queries (RefreshError
+  invalid_grant on the stored session, 2026-11-11; `list` still
+  answers from local cache).
 - **The usage-measurement gap:** ZCode session logs cannot measure
   dispatch counts (7-day retention, tool_use inputs not greppable), so
   roster-pruning calls ride judgment rather than telemetry. Revisit if
