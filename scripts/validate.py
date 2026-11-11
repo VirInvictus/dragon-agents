@@ -2,7 +2,9 @@
 
 Validates both JSON manifests and every agent charter: frontmatter fields,
 the Read+Bash tool restriction, the read-only and no-subagent charter lines,
-and the agent roster. CI runs this on every push.
+and the agent roster (claw is the one chartered write exception; its
+charter still carries both required lines and its writes stay inside the
+gated lanes its text defines). CI runs this on every push.
 """
 
 from __future__ import annotations
@@ -27,6 +29,8 @@ EXPECTED_AGENTS = {
     "doc-drift-auditor",
     "duplication-scout",
     "git-archaeologist",
+    "claw",
+    "shadow",
     "ledger-analyst",
     "librarian",
     "music-archivist",
@@ -118,7 +122,7 @@ def check_agents() -> None:
     files = sorted(AGENTS_DIR.glob("*.md"))
     found = {f.stem for f in files}
     check(
-        "roster is exactly the expected twenty-four agents",
+        "roster is exactly the expected twenty-six agents",
         found == EXPECTED_AGENTS,
         f"found {sorted(found)}",
     )

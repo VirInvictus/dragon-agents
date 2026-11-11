@@ -1,10 +1,10 @@
 # AGENTS.md
 
-Guidance for any agent (or human) working in this repo. It is the source of truth for the **dragon-agents** ZCode plugin: twenty-four read-only research subagents installed through a local directory marketplace.
+Guidance for any agent (or human) working in this repo. It is the source of truth for the **dragon-agents** ZCode plugin: twenty-six research subagents installed through a local directory marketplace (twenty-five read-only, plus the one gated execution seat, claw).
 
 ## What lives here
 
-- `agents/*.md`: the twenty-four agents (repo-cartographer, doc-drift-auditor, cascade-checker, spec-compliance-reviewer, ci-triage, slop-reader, release-auditor, workspace-sentinel, ci-posture-auditor, debt-census, code-reviewer, git-archaeologist, claim-verifier, dependency-auditor, test-gap-analyst, duplication-scout, stock-broker, ledger-analyst, librarian, data-analyst, security-auditor, charter-architect, syshealth-auditor, music-archivist). Each file is frontmatter (`name`, `description`, `color`, `tools`) plus the agent's system prompt.
+- `agents/*.md`: the twenty-six agents (repo-cartographer, doc-drift-auditor, cascade-checker, spec-compliance-reviewer, ci-triage, slop-reader, release-auditor, workspace-sentinel, ci-posture-auditor, debt-census, code-reviewer, git-archaeologist, claim-verifier, dependency-auditor, test-gap-analyst, duplication-scout, stock-broker, ledger-analyst, librarian, data-analyst, security-auditor, charter-architect, syshealth-auditor, music-archivist, claw, shadow). Each file is frontmatter (`name`, `description`, `color`, `tools`) plus the agent's system prompt.
 - `patchnotes.md`: release notes, newest at top (introduced at v0.2.0); release tags carry the entry verbatim per the workspace tag procedure.
 - `roadmap.md`: the forward plan; completed waves ticked, v0.5 candidates with entry conditions, the watch list, and the declined-with-reasons ledger so skips stay decided. Docs-only commits to it follow the refresh-procedure precedent (no version bump, no tag).
 - `marketplace.json`: the marketplace manifest (at the repo root; see Manifest mechanics).
@@ -13,7 +13,7 @@ Guidance for any agent (or human) working in this repo. It is the source of trut
 
 ## Non-negotiables
 
-- **Agents stay read-only.** Every agent keeps `tools: [Read, Bash]`, and its charter keeps the read-only and "Do not spawn subagents" lines. They gather and report; the main thread decides and edits. Never add a write path, a build step, or nested-subagent capability to any agent.
+- **Agents stay read-only, with one chartered exception.** Every agent keeps `tools: [Read, Bash]`, and its charter keeps the read-only and "Do not spawn subagents" lines. They gather and report; the main thread decides and edits. The single exception is `claw` (v0.8.0, Brandon's recorded amendment of 2026-11-10): a gated execution seat whose writes ride tool-side structural gates only (loose files under the dispatched batch directory with backups outside the tree, plus `cquarry run phase1/phase2`), with the manifest seal and every library write beyond the phase-2 verb fenced off. Never add another write path, a build step, or nested-subagent capability to any agent.
 - **Stdlib only.** This repo is markdown, JSON, and one stdlib-Python validator. No dependencies, no lockfile, no runtime of any kind.
 - **Dispatch names are `dragon-agents:<name>`**, and the `name` in frontmatter must match the filename exactly.
 
@@ -33,7 +33,7 @@ Guidance for any agent (or human) working in this repo. It is the source of trut
 
 ## Validation
 
-Run `python3 scripts/validate.py` before committing. It checks that both JSON manifests parse and match the expected shape, that every agent file's frontmatter is well-formed (name matches filename, tools exactly `Read, Bash`, non-empty description), that each charter carries the read-only and no-subagent lines, and that the roster is exactly the expected twenty-four. CI runs the same script.
+Run `python3 scripts/validate.py` before committing. It checks that both JSON manifests parse and match the expected shape, that every agent file's frontmatter is well-formed (name matches filename, tools exactly `Read, Bash`, non-empty description), that each charter carries the read-only and no-subagent lines, and that the roster is exactly the expected twenty-six. CI runs the same script.
 
 ## Release flow
 

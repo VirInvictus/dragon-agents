@@ -4,7 +4,7 @@
 [![Release](https://img.shields.io/github/v/tag/VirInvictus/dragon-agents)](https://github.com/VirInvictus/dragon-agents/tags)
 [![ci](https://github.com/VirInvictus/dragon-agents/actions/workflows/ci.yml/badge.svg)](https://github.com/VirInvictus/dragon-agents/actions/workflows/ci.yml)
 
-A local ZCode plugin of read-only research subagents for repo and markets work. Twenty-four agents, each restricted to Read + Bash, each forbidden from writing, committing, or spawning subagents of its own. They gather and report; the main thread decides and edits.
+A local ZCode plugin of research subagents for repo, markets, and collection-pipeline work. Twenty-six agents, each restricted to Read + Bash. Twenty-five are read-only: they gather and report, and the main thread decides and edits. The twenty-sixth, `claw`, is the one gated execution seat (v0.8.0): its writes ride the Calibre acquisition pipeline's own structural gates (backups outside the tree, the HMAC-sealed manifest it may never seal itself, refuse-beyond-the-approved-list, one rolled-back transaction), and it never opens the library database directly. No agent commits or spawns subagents of its own.
 
 | Agent | Job |
 |---|---|
@@ -32,6 +32,8 @@ A local ZCode plugin of read-only research subagents for repo and markets work. 
 | `charter-architect` | Designs new agents: scorecard verdict (declining is valid), live-probed charter draft, and the full release kit as text; composes, never applies. |
 | `syshealth-auditor` | Backup and system-health census: borg freshness from state reads, sys_maintain staleness and failures, failed units, disk space; root-gated checks reported as directions. |
 | `music-archivist` | Music-collection research over lattice's read-only audits: health digest, genre hygiene against taxonomy.md, duplicates, codec coverage, discography gaps, listening candidates; album paths, never a tag edit. |
+| `claw` | Executes Calibre import phases 1 and 2: vets a downloads batch (battery, dup screen, gated repairs, stamps, staging, manifest) and imports the signed manifest; decision points return as prompts, the seal stays with the main thread. |
+| `shadow` | Read-only compliance pass over one import phase: manifest versus disk, verdicts versus decisions, imported ID sets, stamp read-backs, bak diffs; blocking findings before sign or commit. |
 
 ## Install
 
@@ -39,11 +41,11 @@ In ZCode: Settings → Plugin Management → Discover tab → `+` → add this d
 
 ## Model guidance
 
-Any text model works; the agents were written for text-only subagents (no vision). Flash-tier models are the sensible default; on analysis-heavy dispatches (cascade-checker, spec-compliance-reviewer, stock-broker, ledger-analyst, security-auditor, charter-architect) a stronger model is worth it. Per-agent model picks live in Settings → Subagents.
+Any text model works; the agents were written for text-only subagents (no vision). Flash-tier models are the sensible default; on analysis-heavy dispatches (cascade-checker, spec-compliance-reviewer, stock-broker, ledger-analyst, security-auditor, charter-architect, claw, shadow) a stronger model is worth it. Per-agent model picks live in Settings → Subagents.
 
 ## Development
 
-`python3 scripts/validate.py` checks both manifests and every agent charter (frontmatter fields, `tools: [Read, Bash]` only, the read-only and no-subagent charter lines, and the twenty-four-agent roster). CI runs the same script on every push. `AGENTS.md` documents the plugin's rules and the marketplace/runtime gotchas; read it before changing how the plugin is packaged.
+`python3 scripts/validate.py` checks both manifests and every agent charter (frontmatter fields, `tools: [Read, Bash]` only, the read-only and no-subagent charter lines, and the twenty-six-agent roster). CI runs the same script on every push. `AGENTS.md` documents the plugin's rules and the marketplace/runtime gotchas; read it before changing how the plugin is packaged.
 
 ## License
 

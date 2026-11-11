@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v0.7.1.
+future session re-litigates it. Updated as of v0.8.0.
 
 ## Standing rules (how this roster grows)
 
@@ -12,10 +12,17 @@ future session re-litigates it. Updated as of v0.7.1.
   frequency (roughly weekly real use), charter fit (read-only, Read+Bash,
   research-only, no builds), and source stability (the surface will not
   rot next quarter). Evidence base recorded under "Records kept here".
-- **The non-negotiables hold at every version:** agents stay read-only
-  with `tools: [Read, Bash]`, no nesting, and this repo stays stdlib-only
-  markdown and JSON. Builders, executors, and orchestrators are excluded
-  by charter, not by oversight.
+- **The non-negotiables hold at every version, with one chartered
+  exception:** agents stay read-only with `tools: [Read, Bash]`, no
+  nesting, and this repo stays stdlib-only markdown and JSON. The
+  exception is claw (v0.8.0, Brandon's amendment of 2026-11-10): a
+  write lane is chartered only where the writes ride tool-side
+  structural gates (backup-dir outside the tree, an HMAC-sealed manifest
+  the agent itself may never seal, refuse-beyond-the-approved-list, one
+  rolled-back transaction) and the blast radius is loose files. The seal
+  and every ungated library write stay with the main thread. Builders,
+  executors, and orchestrators without those gates remain excluded by
+  charter, not by oversight.
 - **Modes before agents.** A candidate expressible as a mode of an
   existing agent prefers the mode unless trigger precision genuinely
   suffers.
@@ -73,6 +80,14 @@ future session re-litigates it. Updated as of v0.7.1.
       anchors. Probing fenced a real landmine: a non-TTY lattice with
       no root silently scans the current directory, and an unmounted
       configured root falls to that same fallback.
+- [x] v0.8.0 (2026-11-10): claw and shadow, the acquisition-pipeline
+      seat (roster 26), drafted by charter-architect from Brandon's
+      write-forward candidate and the split architecture agreed before
+      dispatch. The founding read-only rule took its first recorded
+      amendment, gated per the standing rules; a phase-3 write agent was
+      scored and declined (ledger below); librarian's run-verb fence
+      reworded in the same wave. Named for Wolfe's Shadow & Claw:
+      shadow is the gate that watches, claw is the hand that executes.
 
 ## Dependencies that unlock existing agents (Brandon's moves, not waves)
 
@@ -84,9 +99,9 @@ future session re-litigates it. Updated as of v0.7.1.
       covers all three). *(Completed 2026-10-05: install, relaunch,
       canaries all passing; pins were retained that time, only the new
       agents needed setting.)*
-- [ ] The v0.6.0 + v0.7.0 + v0.7.1 activation pass (one reinstall
-      covers all three; pins were retained across the last reinstall,
-      so expect to set music-archivist and re-verify the rest).
+- [ ] The v0.6.0 through v0.8.0 activation pass (one reinstall covers
+      all; pins were retained across the last reinstall, so expect to
+      set claw and shadow and re-verify the rest).
 
 ## v0.5+ candidates (each fires on its own green light)
 
@@ -114,10 +129,23 @@ future session re-litigates it. Updated as of v0.7.1.
 
 ## Declined (with reasons, so it stays decided)
 
+- **A phase-3 write agent (raw WritableCalibreDB curation)**
+  (2026-11-10): the write shape's human gate (audit, findings,
+  Brandon's sign-off, bak, one transaction) sits between evidence and
+  execution, so an agent either stops at findings (no win over
+  shadow's pre-flight mode) or holds the pen unsupervised on the
+  workspace's highest-blast-radius surface, with no seal or approved
+  list to gate it. The library's own record decides it: agents are
+  reliable on "contaminated" and unreliable on "fine" (21 overrides in
+  49 on one wing), and five incidents of dropped or invented ids in
+  agent record lists. The mechanical half ships as shadow's pre-flight
+  and post-transaction modes; the judgment stays main-thread, and the
+  phase-3 skill remains the judgment ledger.
 - **Builders, language specialists, infra executors** (the bulk of
   community rosters): excluded by the read-only research charter, and the
   practitioner evidence says they duplicate what the main model already
-  does well.
+  does well. (The one chartered exception, claw, arrived v0.8.0 under
+  tool-side structural gates; it does not generalize the category.)
 - **Orchestrators and context-managers**: the no-nesting charter excludes
   them, and the one meta-agent kept by the practitioner filter carried
   the worst token-budget risk of his dozen.

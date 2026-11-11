@@ -2,6 +2,56 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v0.8.0 (2026-11-10)
+
+Twenty-fifth and twenty-sixth agents: **claw**, the roster's first
+gated execution seat (import runner), and **shadow**, its read-only
+phase gate (import auditor). The Calibre acquisition pipeline's
+file-side halves (phases 1 and 2) move out of the main thread; phase 3
+stays there, declined with reasons recorded in the roadmap. Named for
+Wolfe's Shadow & Claw.
+
+- Founding-rule amendment, recorded: every prior agent is read-only by
+  charter; Brandon amended that on 2026-11-10 for one narrow lane.
+  What makes the lane chartered rather than a broken seal: every
+  phase-1 write is to loose files under the dispatched batch directory
+  through tools that demand backups outside the tree; phase 2 is one
+  verb whose own gates do the work (refuses an unsigned manifest,
+  refuses a missing --backup-dir outside the library, refuses files
+  beyond the approved list, one all-or-nothing transaction with
+  rollback); the agent never runs `cquarry run sign` or `approve`,
+  never resolves a decision on its own, and never opens metadata.db
+  directly. The seal moved one step closer to Brandon: the main thread
+  signs.
+- claw is trained to find the procedure, not to remember it: the
+  charter mandates a runtime read of the phase-1 skill every run (the
+  skills accrete traps weekly) and carries only the stable fence and
+  decision-point core (duplicate and related overrides, lossy consent
+  with the image-carrier check, edition and binding calls, stub and
+  monolithic triage, provenance verify). Stamp research returns as
+  evidence slices for the main thread's fleet; the runner spawns
+  nothing.
+- shadow audits one phase cold against the manifest and the two skills
+  before sign or commit: approved-versus-staged path sets, verdicts
+  versus decisions, stamp read-backs, imported ID sets, bak diffs, and
+  the validator line, reporting CLEAR TO SIGN / CLEAR TO COMMIT /
+  CLEAR TO CLOSE or BLOCKED with evidence.
+- Phase 3 was scored and declined an agent (see the roadmap ledger):
+  its write shape has a human gate between findings and execution, its
+  judgment is house-voice prose and precedent tagging against a
+  467-tag taxonomy, and this library carries five documented incidents
+  of agent-produced record lists dropping or inventing ids plus a
+  21-of-49 override rate on agent pass-verdicts. shadow's pre-flight
+  and post-transaction modes carry the mechanical half instead.
+- Probed live before chartering (2026-11-10, cquarry 3.86.0, bindery
+  1.1.0; versions deliberately unpinned in the charters): the run-verb
+  help pages for phase1, sign, approve, and phase2; the companion
+  script set; the manifest schema read from that day's live batch; the
+  Calibre-closed guard; and the external CLI set. Nothing probed
+  turned up dead.
+- librarian's run-verb fence reworded to route the acquisition verbs
+  to claw's lane; every librarian fence of its own is unchanged.
+
 ## v0.7.1 (2026-10-30)
 
 Portability hardening of the two collection seats; roster unchanged at
