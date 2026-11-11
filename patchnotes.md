@@ -2,6 +2,52 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v1.0.0 (2026-11-11)
+
+The first drop of purpose-built write agents (Brandon's request; the
+web-researcher watch-list condition fired): two new write seats under
+purpose-built fences, roster twenty-eight. Two further candidates from the
+same brief were scored and declined; reasons recorded in the roadmap ledger.
+
+- **latro**, the research-report writer: deep multi-source web research on a
+  dispatch-named topic (project technologies, book acquisition, papers,
+  languages, web design), written as a cited markdown report at a
+  dispatch-named path. Tools [Read, Write, Bash, WebSearch, WebFetch]: the
+  harness's web tools are named in frontmatter (the app bundle's agent loader
+  consumes frontmatter tools as the subagent allowlist; the runtime grant is
+  proven by the activation canary), with a keyless curl ladder as the
+  structured rungs (arXiv, Crossref, OpenLibrary, all verified live) and a
+  DEGRADED fallback if the web tools are absent. The fence is structural: no
+  Edit tool, exactly one Write per dispatch, and it must be a new file
+  (occupied path is a REFUSED), so existing prose and the Obsidian vault are
+  unreachable by construction; never a commit; never an authentication.
+  Evidence discipline follows stock-broker (dated sources, dead-end log,
+  unknowns stated as unknowns) and the output contract is written to pass the
+  slop-reader gate, which gains compensation-pattern awareness in this same
+  release.
+- **assay**, the grader, two modes. Repo mode grades a repo on the five named
+  metrics (code quality, code cleanliness, repo cleanliness, documentation,
+  overall project cohesion) with anchored X/10 scores and derived goals; on an
+  append dispatch it appends the dated goals block to roadmap.md through the
+  safest append the shell offers (quoted heredoc via cat >>, O_APPEND), after a
+  clean-tree check and a whole-file read, re-verified by `git diff --numstat`
+  (additions only, zero deletions) plus a byte-identity hash of the original
+  lines: the file only grows. Idea mode is read-only: an idea graded on the
+  four criteria (prior art via web search, concept completeness, complexity
+  done right, maintenance load) to a worth-it / not-worth-it /
+  worth-it-with-changes verdict. The overwrite-destroys-roadmaps incident
+  class is the fence this lane exists to make impossible.
+- validate.py learns the two web-carrying classes with their own fence
+  predicates (latro: new-file, never-commit, never-authenticate; assay:
+  read-only-lane, append-only, clean-tree, never-commit,
+  never-authenticate); every agent keeps the no-subagent line; the roster
+  check moves to twenty-eight.
+- Model pins per the anything-that-writes rule: both new seats on GLM-5.3.
+- Declined from the same brief, reasons in the roadmap ledger: a docs-prose
+  writer (judgment-shaped authorship outside the v0.9.0 fence line; release
+  prose keeps its single owner) and a cascade-applier (production code with
+  behavior risk; the builders bulk exclusion stands).
+
 ## v0.9.0 (2026-11-11)
 
 The second founding-rule amendment (Brandon's write-forward pass): five

@@ -5,8 +5,13 @@ per-class tool restrictions, and the charter lines each class must carry.
 Read-only agents keep `tools: [Read, Bash]` and the Read-only line; claw is
 among them because its writes ride the pipeline's own gated verbs. The five
 charter-fence write seats (v0.9.0) carry `tools: [Read, Edit, Write, Bash]`
-plus the Clean tree fence and the never-commit line. Every agent keeps the
-no-subagent line. CI runs this on every push.
+plus the Clean tree fence and the never-commit line. The two purpose-built
+web write seats (v1.0.0) carry their own classes and fences: latro
+`[Read, Write, Bash, WebSearch, WebFetch]` with the new-file, never-commit,
+and never-authenticate fences; assay `[Read, Bash, WebSearch, WebFetch]` with
+the read-only-outside-the-lane, append-only, clean-tree, never-commit, and
+never-authenticate fences. Every agent keeps the no-subagent line. CI runs
+this on every push.
 """
 
 from __future__ import annotations
@@ -19,7 +24,9 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parent.parent
 AGENTS_DIR = ROOT / "agents"
 READ_ONLY_TOOLS = ["Read", "Bash"]
+WEB_READ_TOOLS = ["Read", "Bash", "WebSearch", "WebFetch"]
 WRITE_TOOLS = ["Read", "Edit", "Write", "Bash"]
+WEB_WRITE_TOOLS = ["Read", "Write", "Bash", "WebSearch", "WebFetch"]
 WRITE_AGENTS = {
     "charter-architect",
     "ci-posture-auditor",
@@ -27,7 +34,10 @@ WRITE_AGENTS = {
     "doc-drift-auditor",
     "test-gap-analyst",
 }
+WEB_WRITE_AGENTS = {"latro"}
+WEB_APPEND_AGENTS = {"assay"}
 EXPECTED_AGENTS = {
+    "assay",
     "cascade-checker",
     "charter-architect",
     "ci-posture-auditor",
@@ -41,6 +51,7 @@ EXPECTED_AGENTS = {
     "duplication-scout",
     "git-archaeologist",
     "claw",
+    "latro",
     "shadow",
     "ledger-analyst",
     "librarian",
@@ -133,7 +144,7 @@ def check_agents() -> None:
     files = sorted(AGENTS_DIR.glob("*.md"))
     found = {f.stem for f in files}
     check(
-        "roster is exactly the expected twenty-six agents",
+        "roster is exactly the expected twenty-eight agents",
         found == EXPECTED_AGENTS,
         f"found {sorted(found)}",
     )
@@ -153,8 +164,14 @@ def check_agents() -> None:
             f"{stem}: description is non-empty",
             bool(fields.get("description", "").strip()),
         )
-        is_writer = stem in WRITE_AGENTS
-        expected_tools = WRITE_TOOLS if is_writer else READ_ONLY_TOOLS
+        if stem in WRITE_AGENTS:
+            expected_tools = WRITE_TOOLS
+        elif stem in WEB_WRITE_AGENTS:
+            expected_tools = WEB_WRITE_TOOLS
+        elif stem in WEB_APPEND_AGENTS:
+            expected_tools = WEB_READ_TOOLS
+        else:
+            expected_tools = READ_ONLY_TOOLS
         check(
             f"{stem}: tools match its class",
             parse_tools(fields.get("tools", "")) == expected_tools,
@@ -165,11 +182,35 @@ def check_agents() -> None:
             "Do not spawn subagents" in text,
         )
         lowered = text.lower()
-        if is_writer:
+        if stem in WRITE_AGENTS:
             check(
                 f"{stem}: charter carries the clean-tree fence", "clean tree" in lowered
             )
             check(f"{stem}: charter forbids committing", "never commit" in lowered)
+        elif stem in WEB_WRITE_AGENTS:
+            check(f"{stem}: charter carries the new-file fence", "new file" in lowered)
+            check(f"{stem}: charter forbids committing", "never commit" in lowered)
+            check(
+                f"{stem}: charter forbids authenticating",
+                "never authenticate" in lowered,
+            )
+        elif stem in WEB_APPEND_AGENTS:
+            check(
+                f"{stem}: charter is read-only outside its lane",
+                "read-only" in lowered,
+            )
+            check(
+                f"{stem}: charter carries the append-only fence",
+                "append-only" in lowered,
+            )
+            check(
+                f"{stem}: charter carries the clean-tree fence", "clean tree" in lowered
+            )
+            check(f"{stem}: charter forbids committing", "never commit" in lowered)
+            check(
+                f"{stem}: charter forbids authenticating",
+                "never authenticate" in lowered,
+            )
         else:
             check(f"{stem}: charter declares read-only", "Read-only" in text)
 

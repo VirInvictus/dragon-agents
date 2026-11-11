@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v0.9.0.
+future session re-litigates it. Updated as of v1.0.0.
 
 ## Standing rules (how this roster grows)
 
@@ -28,6 +28,13 @@ future session re-litigates it. Updated as of v0.9.0.
   carry `tools: [Read, Edit, Write, Bash]` under the fence model:
   report-only default, a clean-tree precondition, a named write scope,
   never a commit, re-verification after applying, an itemized report.
+  Two purpose-built write seats followed at v1.0.0 (Brandon's request,
+  2026-11-11): latro writes one new cited report file per dispatch (no
+  Edit tool, occupied path refused: existing prose is structurally
+  unreachable, keyless web only), and assay appends one dated goals
+  block to a repo's roadmap.md (quoted-heredoc append, clean-tree
+  precondition, numstat re-verify with zero deletions and
+  byte-identical originals).
   The six judges and gates (claim-verifier, shadow, code-reviewer,
   spec-compliance-reviewer, security-auditor, slop-reader) stay
   read-only; builders, executors, and orchestrators without fences
@@ -111,6 +118,18 @@ future session re-litigates it. Updated as of v0.9.0.
       anything-that-writes rule). charter-architect's own upgrade was
       the one main-thread hand edit, applied first so the lane could
       exist.
+- [x] v1.0.0 (2026-11-11): the first purpose-built write agents (roster 28),
+      drafted by charter-architect from Brandon's write-forward brief: latro,
+      the research-report writer (web tools in frontmatter, one new cited
+      file per dispatch, keyless ladder over arXiv, Crossref, and OpenLibrary,
+      DEGRADED fallback), and assay, the grader (five-metric repo report
+      cards with an append-only, numstat-verified roadmap goals block;
+      read-only idea grading on the four criteria with web prior art). The
+      watch-list web-researcher entry fired and shipped as latro. Two
+      brief-mates scored and declined (ledger below). Both new seats pinned
+      GLM-5.3 per the anything-that-writes rule. slop-reader gains
+      second-order sign families in the same release (compensation and
+      evasion patterns, plus house-style calibration).
 - [x] v0.8.1 (2026-11-10): charter hardening before activation - claw's
       rung 0 becomes an explicit three-tool toolchain gate (REFUSED +
       install command on any miss), shadow carries the matching BLOCKED
@@ -153,11 +172,6 @@ future session re-litigates it. Updated as of v0.9.0.
 
 ## Watch list (recorded, not committed)
 
-- [ ] **web-researcher**: the stock-broker cited-web pattern generalized,
-      with monolith for page archiving. Fires only if a second recurring
-      web-research need appears; until then the main thread's WebSearch
-      owns the space and a general charter invites description
-      collisions.
 - [ ] **schedule-analyst**: a td + gcalcli weekly digest. Cheap but low
       volume; ActivityWatch exports are already data-analyst surface via
       named endpoints. Fires only if weekly planning becomes a recurring
@@ -192,6 +206,25 @@ future session re-litigates it. Updated as of v0.9.0.
   charters forbid.
 - **activity-analyst as its own agent**: folded into data-analyst's
   named-endpoint allowance rather than doubled.
+- **docs-prose writer** (2026-11-11): judgment-shaped authorship, not an
+  audit-determined fix. The v0.9.0 fence line chartered writes only where
+  the audit determines the fix and its re-run verifies it, and drafted prose
+  passes neither test (the phase-3 evidence class). The practitioner record
+  already holds writer agents duplicating the main model, and release-notes
+  prose has a single owner by design: the release skill writes it,
+  doc-drift-auditor is fenced from it, release-auditor gates it. The lane
+  that exists (main thread drafts, slop-reader grades) covers the need.
+  Revisit only if commissioned drafting becomes a demonstrated recurring
+  bottleneck.
+- **cascade-applier** (2026-11-11): declined under the standing bulk
+  exclusion (builders/infra executors; v0.9.0 did not repeal it for code
+  with behavior risk). Downstream call-site adaptation edits production
+  code whose only real verification is a build, and builds are
+  consent-gated for exactly their cost; the phase-3 reliability evidence
+  (agents unreliable on judgment-heavy edits) is the same class. The
+  existing lane covers it end to end: cascade-checker inventories, the main
+  thread applies in worktrees, code-reviewer gates, CI verifies. Revisit
+  only if mechanically pure cascade waves (pure renames) recur at scale.
 
 ## Records kept here
 

@@ -4,7 +4,7 @@
 [![Release](https://img.shields.io/github/v/tag/VirInvictus/dragon-agents)](https://github.com/VirInvictus/dragon-agents/tags)
 [![ci](https://github.com/VirInvictus/dragon-agents/actions/workflows/ci.yml/badge.svg)](https://github.com/VirInvictus/dragon-agents/actions/workflows/ci.yml)
 
-A local ZCode plugin of research subagents for repo, markets, and collection-pipeline work. Twenty-six agents. Twenty are read-only: they gather and report, and the main thread decides and edits. Six carry chartered write lanes. `claw` (v0.8.0) executes the Calibre acquisition pipeline's file-side halves through the pipeline's own structural gates. Five audit-and-fix seats (v0.9.0: `charter-architect`, `ci-posture-auditor`, `doc-drift-auditor`, `debt-census`, `test-gap-analyst`) may apply the fixes their own audits find under the charter-fence model: report-only by default, a clean-tree precondition, writes confined to a charter-named scope, re-verification after applying, an itemized report, and never a commit; the main thread reviews the diff and owns the release. No agent spawns subagents of its own.
+A local ZCode plugin of research subagents for repo, markets, and collection-pipeline work. Twenty-eight agents. Twenty are read-only: they gather and report, and the main thread decides and edits. Eight carry chartered write lanes. `claw` (v0.8.0) executes the Calibre acquisition pipeline's file-side halves through the pipeline's own structural gates. Five audit-and-fix seats (v0.9.0: `charter-architect`, `ci-posture-auditor`, `doc-drift-auditor`, `debt-census`, `test-gap-analyst`) may apply the fixes their own audits find under the charter-fence model: report-only by default, a clean-tree precondition, writes confined to a charter-named scope, re-verification after applying, an itemized report, and never a commit. Two purpose-built write seats (v1.0.0): `latro` writes deep web research up as one new cited markdown report per dispatch (no Edit tool, overwrite refused, keyless sources only), and `assay` grades a whole repo on five metrics and appends a dated goals block to its roadmap.md (append-only, re-verified zero-deletion) or grades an idea read-only on four criteria. The main thread reviews every diff and owns the release. No agent spawns subagents of its own.
 
 | Agent | Job |
 |---|---|
@@ -34,6 +34,8 @@ A local ZCode plugin of research subagents for repo, markets, and collection-pip
 | `music-archivist` | Music-collection research over lattice's read-only audits: health digest, genre hygiene against taxonomy.md, duplicates, codec coverage, discography gaps, listening candidates; album paths, never a tag edit. |
 | `claw` | Executes Calibre import phases 1 and 2: vets a downloads batch (battery, dup screen, gated repairs, stamps, staging, manifest) and imports the signed manifest; decision points return as prompts, the seal stays with the main thread. |
 | `shadow` | Read-only compliance pass over one import phase: manifest versus disk, verdicts versus decisions, imported ID sets, stamp read-backs, bak diffs; blocking findings before sign or commit. |
+| `latro` | Deep web research written up as one new cited markdown report per dispatch: project technologies, book acquisition, papers, languages, web design; WebSearch/WebFetch plus a keyless endpoint ladder (arXiv, Crossref, OpenLibrary); overwrite refused, never authenticates. |
+| `assay` | Whole-repo report card on five metrics (code quality, code cleanliness, repo cleanliness, documentation, cohesion) with an append-only, zero-deletion goals block for roadmap.md; read-only idea grading on four criteria with web prior art and a worth-it verdict. |
 
 ## Install
 
@@ -41,11 +43,11 @@ In ZCode: Settings → Plugin Management → Discover tab → `+` → add this d
 
 ## Model guidance
 
-Any text model works; the agents were written for text-only subagents (no vision). Flash-tier models are the sensible default for read-only sweeps; on analysis-heavy dispatches (cascade-checker, spec-compliance-reviewer, stock-broker, ledger-analyst, security-auditor, charter-architect, claw, shadow) a stronger model is worth it, and the six write-capable agents (claw, charter-architect, ci-posture-auditor, doc-drift-auditor, debt-census, test-gap-analyst) belong on the strong tier: writes are judgment. Per-agent model picks live in Settings → Subagents.
+Any text model works; the agents were written for text-only subagents (no vision). Flash-tier models are the sensible default for read-only sweeps; on analysis-heavy dispatches (cascade-checker, spec-compliance-reviewer, stock-broker, ledger-analyst, security-auditor, charter-architect, claw, shadow, latro, assay) a stronger model is worth it, and the eight write-capable agents (claw, charter-architect, ci-posture-auditor, doc-drift-auditor, debt-census, test-gap-analyst, latro, assay) belong on the strong tier: writes and verdicts that gate work are judgment. Per-agent model picks live in Settings → Subagents.
 
 ## Development
 
-`python3 scripts/validate.py` checks both manifests and every agent charter (frontmatter fields, per-class tools: `[Read, Bash]` for read-only agents, `[Read, Edit, Write, Bash]` for the five write seats, the read-only line for readers, the Clean tree and never-commit fences for writers, the no-subagent line everywhere, and the twenty-six-agent roster). CI runs the same script on every push. `AGENTS.md` documents the plugin's rules and the marketplace/runtime gotchas; read it before changing how the plugin is packaged.
+`python3 scripts/validate.py` checks both manifests and every agent charter: frontmatter fields, per-class tools (`[Read, Bash]` for read-only agents, `[Read, Bash, WebSearch, WebFetch]` for assay, `[Read, Write, Bash, WebSearch, WebFetch]` for latro, `[Read, Edit, Write, Bash]` for the five write seats), the read-only line for readers, the Clean tree and never-commit fences for writers, the new-file and never-authenticate fences for latro, the append-only fence for assay, the no-subagent line everywhere, and the twenty-eight-agent roster. CI runs the same script on every push. `AGENTS.md` documents the plugin's rules and the marketplace/runtime gotchas; read it before changing how the plugin is packaged.
 
 ## License
 
