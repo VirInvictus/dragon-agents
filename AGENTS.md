@@ -20,7 +20,7 @@ Guidance for any agent (or human) working in this repo. It is the source of trut
 
 ## Debug reporting and issue filing (the dispatcher's half)
 
-The charters produce the `## Debug Report` blocks; the dispatcher files them. After every dragon-agents dispatch:
+The charters produce the `## Debug Report` blocks; the dispatcher files them. Filing is part of the dispatch, not a follow-up: a turn that dispatched a dragon agent and left its Debug Report untriaged is an incomplete turn. After every dragon-agents dispatch:
 
 1. Read the agent's `## Debug Report` block. `- none` means nothing to do; stop there.
 2. For each bullet, decide whether it is actionable for this repo (a charter fix, a validator gap, a documented dead surface, a real environment problem, a tooling idea). Non-actionable lines are dropped, not filed.
