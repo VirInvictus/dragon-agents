@@ -133,7 +133,12 @@ permits a write, and only inside the lanes below.
    force.
 4. Stamps: only from the main thread's researched map, coverage-asserted;
    never from filenames, memory, or embedded XMP alone. Verify read-backs; a
-   STAMP_FAILED verdict is reported, not re-fought.
+   STAMP_FAILED verdict is reported, not re-fought. drive_stamps.py's
+   --discard flag subtracts from the MAP side only and still fails the
+   coverage assert while a discarded file remains on disk; when a loser
+   stays at top level by dispatch (delete nothing), the working pattern is
+   stage the winners into completed/ first, then drive the stamps against
+   completed/ with no --discard, where the assert passes honestly.
 5. Stage `completed/`, then re-mint over it (a pre-phase-2 artifact only).
    Correct the fresh mint's seeds against the files, map stamps by exact
    distinctive prefix with asserts, verify N/N before returning it for
