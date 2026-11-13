@@ -59,3 +59,17 @@ the full tag procedure lives in `~/.zcode/AGENTS.md`); the tag itself
 still waits for Brandon's go. Then run the refresh procedure in Runtime
 gotchas. Docs-only commits follow the no-bump precedent in "What lives
 here".
+
+**Charter-only patches bump the patch version** (policy, 2026-11-13;
+retires the earlier no-bump charter-patch precedent). Any change to
+`agents/*.md` content that alters what a dispatch does (a scope line, a
+fence, a method step) bumps the plugin.json patch version and lands a
+one-line patchnotes entry; the tag may batch several such bumps through
+the catch-up-tag shape in the tag procedure. Rationale: the version
+number is the refresh signal (the UI shows it across Uninstall →
+Install), and the no-bump precedent made a landed charter fix look like
+a no-op reinstall, twice (claw drive_stamps, slop-reader stdin-scan).
+When a same-version install is suspected anyway, verify by content:
+diff the cache slot's charter against HEAD
+(`diff <(git show HEAD:agents/<name>.md)
+~/.zcode/cli/plugins/cache/dragon-agents/dragon-agents/<version>/agents/<name>.md`).
