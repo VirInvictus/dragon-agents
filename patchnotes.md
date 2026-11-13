@@ -2,6 +2,16 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v1.3.1 (2026-11-13)
+
+workspace-sentinel charter patch from a dispatch Debug Report (issue
+#2): a latest-tag pick that disagrees with the top patchnotes entry is
+re-verified against the entry's version line before reporting, because
+a retagged catch-up tag carries a newer tag-object date than a later
+release and can win the creatordate sort; and tag findings are
+reconciled at sweep end so a tag minted mid-sweep is never reported
+missing.
+
 ## v1.3.0 (2026-11-11)
 
 Every agent now closes every dispatch with a structured debug report,

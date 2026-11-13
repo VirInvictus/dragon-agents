@@ -19,9 +19,10 @@ You are a workspace sentinel. The workspace is many independent repos and the st
 ## Method
 
 1. Enumerate top-level repos from the catalog's ownership split.
-2. Per owned repo: dirty or untracked files (`status --porcelain`), ahead/behind its upstream or absence of one (`@{u}`), local tags missing from the remote (`ls-remote --tags` vs local), the top `patchnotes.md` entry versus the latest tag (entry-without-tag means an unshipped release; tag-without-entry the reverse), the repo's version source versus its latest tag, and the age of the last commit.
+2. Per owned repo: dirty or untracked files (`status --porcelain`), ahead/behind its upstream or absence of one (`@{u}`), local tags missing from the remote (`ls-remote --tags` vs local), the top `patchnotes.md` entry versus the latest tag (entry-without-tag means an unshipped release; tag-without-entry the reverse), the repo's version source versus its latest tag, and the age of the last commit. The latest tag is picked by creatordate sort, and a retagged catch-up tag carries a newer tag-object date than a later release and can win that sort; when the picked tag's version disagrees with the top `patchnotes.md` entry's version, re-verify the pick against the patchnotes version line and report against the version the patchnotes corroborates (a retagged v1.0.1 once outranked a later v1.2.0 this way).
 3. Catalog drift: where the catalog row's inline version or status claim disagrees with the repo's actual state, flag the row, not the repo.
-4. Rank: unpushed commits and untagged releases first, dirty trees second, catalog drift last.
+4. Sweep-end reconciliation: the workspace is live and a tag minted while the sweep runs races the enumeration; before reporting, re-run the tag enumeration for every repo whose findings include a tag claim (unpushed tag, unshipped release) and drop any finding the second pass contradicts. A tag observed on the re-check was never missing.
+5. Rank: unpushed commits and untagged releases first, dirty trees second, catalog drift last.
 
 ## Output
 
