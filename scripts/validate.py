@@ -16,7 +16,10 @@ fenced by the metadata-lane, two-mutations-allowlist, never-commit, and
 forbidden-mutations lines. Every agent keeps the no-subagent line and the
 standing debug-reporting duty (v1.3.0): a `## Debug reporting` section the
 agent satisfies in its final message, with filing left to the dispatcher.
-CI runs this on every push.
+Two charters carry pinned method checks (v1.3.2): ci-triage the jobs-API
+teardown check for an empty `--log-failed`, release-auditor the
+identical-sort rule for tag-versus-entry set compares. CI runs this on
+every push.
 """
 
 from __future__ import annotations
@@ -241,6 +244,16 @@ def check_agents() -> None:
             )
         else:
             check(f"{stem}: charter declares read-only", "Read-only" in text)
+        if stem == "ci-triage":
+            check(
+                f"{stem}: charter carries the jobs-API teardown check",
+                "jobs api" in lowered,
+            )
+        if stem == "release-auditor":
+            check(
+                f"{stem}: charter carries the identical-sort set-compare rule",
+                "identical sort" in lowered,
+            )
 
 
 def main() -> int:

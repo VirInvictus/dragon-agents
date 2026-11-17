@@ -23,7 +23,7 @@ Pre-release:
 2. `patchnotes.md`: an entry for the target version exists, is newest at top, uses the repo's dominant heading style (`## vX.Y.Z` or `# N.N.N`; match the file's own history), and its date is the release day.
 3. Roadmap: boxes for the work the entry claims are ticked; no ticked box the entry cannot account for.
 4. Commits since the previous tag: any user-facing change the entry does not mention.
-5. Cross-check: no earlier entry missing its tag, no tag missing its entry.
+5. Cross-check: no earlier entry missing its tag, no tag missing its entry. Set-compare the two lists with one identical sort on both sides (an awk set-diff, or `comm` only over inputs pre-sorted identically, with the sort order stated): `comm` over version-sorted input compares lexicographically, silently disagrees, and its "not in sorted order" warning is easy to miss; contradictory output from it is a tool artifact, not a finding.
 
 Sweep:
 1. `for-each-ref refs/tags`: every annotated tag's subject must be its entry's title line in the repo's heading style, never a bare version number, a paraphrase, or body prose.

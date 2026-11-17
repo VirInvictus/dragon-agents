@@ -19,7 +19,7 @@ Repo path, plus one of: a branch name, a run ID, or "latest on <branch>". If the
 ## Method
 
 1. Identify the failed run and its triggering commit (`gh run view`, `git log`). Note the workflow file and job that failed.
-2. Pull the failed job's log (`--log-failed`). Find the decisive lines: the first error, not the last cascade frame. Quote them exactly, with timestamps trimmed.
+2. Pull the failed job's log (`--log-failed`). Find the decisive lines: the first error, not the last cascade frame. Quote them exactly, with timestamps trimmed. An empty `--log-failed` with exit 0 on a failed run is not "log unavailable": check the jobs API before concluding that (`gh api repos/<owner>/<repo>/actions/runs/<id>/jobs`); zero steps, no runner, and a BlobNotFound on the log endpoint are the signature of a run that never executed (a queue teardown), and the teardown, not code, is the root cause.
 3. Trace the cause to code: map the error onto the triggering commit's diff (or the repo source if the failure is environmental). Distinguish: code regression, tooling/version drift, secrets/environment missing, flaky test, infrastructure. Check whether the same job passed on the previous commit to separate regression from pre-existing.
 
 ## Output

@@ -2,6 +2,22 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v1.3.2 (2026-11-16)
+
+Two charter patches from dispatch Debug Reports, batched under the
+charter-patch policy. ci-triage (issue #3): an empty `--log-failed` with
+exit 0 on a failed run is not "log unavailable"; the method now checks
+the jobs API first, where zero steps, no runner, and a BlobNotFound log
+endpoint are the signature of a run that never executed (a queue
+teardown), and the teardown, not code, is the root cause.
+release-auditor (issue #4): the tag-versus-entry cross-check now
+set-compares with one identical sort on both sides, an awk set-diff or
+`comm` only over inputs pre-sorted identically, because `comm` over
+version-sorted lists compares lexicographically, silently disagrees,
+and buries its warning; its contradictory output is a tool artifact,
+not a finding. validate.py pins both lines so a future charter edit
+cannot silently drop them.
+
 ## v1.3.1 (2026-11-13)
 
 workspace-sentinel charter patch from a dispatch Debug Report (issue
