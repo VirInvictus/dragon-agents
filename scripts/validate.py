@@ -16,10 +16,11 @@ fenced by the metadata-lane, two-mutations-allowlist, never-commit, and
 forbidden-mutations lines. Every agent keeps the no-subagent line and the
 standing debug-reporting duty (v1.3.0): a `## Debug reporting` section the
 agent satisfies in its final message, with filing left to the dispatcher.
-Two charters carry pinned method checks (v1.3.2): ci-triage the jobs-API
-teardown check for an empty `--log-failed`, release-auditor the
-identical-sort rule for tag-versus-entry set compares. CI runs this on
-every push.
+Three charters carry pinned checks: ci-triage the jobs-API teardown
+check for an empty `--log-failed` and release-auditor the identical-sort
+rule for tag-versus-entry set compares (v1.3.2), and latro the
+any-Bash-mutation report fence, the one corrective Write pass, and the
+named-tool DEGRADED line (v1.3.3). CI runs this on every push.
 """
 
 from __future__ import annotations
@@ -253,6 +254,19 @@ def check_agents() -> None:
             check(
                 f"{stem}: charter carries the identical-sort set-compare rule",
                 "identical sort" in lowered,
+            )
+        if stem == "latro":
+            check(
+                f"{stem}: charter fences every Bash mutation of the report",
+                "any bash mutation of the report file" in lowered,
+            )
+            check(
+                f"{stem}: charter allows one corrective write pass",
+                "one corrective write pass" in lowered,
+            )
+            check(
+                f"{stem}: charter names the missing tool in its degraded line",
+                "degraded: websearch absent" in lowered,
             )
 
 

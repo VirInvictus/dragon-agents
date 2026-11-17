@@ -2,6 +2,30 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v1.3.3 (2026-11-17)
+
+Two latro charter patches from the standing debug-report duty, batched
+under the charter-patch policy. The write fence (#5): "Bash never
+writes the report" now states the exhaustive rule, any Bash mutation of
+the report file in place or redirected, with the in-place editors named
+(`sd`, `sed -i`, `perl -i`, `awk` redirects, `sponge`, heredocs,
+`mv`/`cp` onto the file) so the old verb enumeration cannot read as the
+complete list; and a self-caught draft defect now has a sanctioned fix
+path, one corrective Write pass of the full file before the first
+return, never Edit, never Bash, because Method step 6 said "fix what
+you find" while the fence left no legal tool to fix with, which is the
+gap an `sd` call slipped through. The degraded line (#6): an absent web
+tool is now named in the marker (`DEGRADED: WebSearch absent`,
+`DEGRADED: WebFetch absent`, or both gone), the toolset is documented
+as fixed at dispatch so the agent plans around the absence instead of
+re-probing, and the absence is carried into the Debug Report, making
+future partial-drop observations precise enough to answer the open
+platform question of whether background launches shed WebSearch.
+validate.py pins all three lines (pins written first: all three failed
+against the old charter, all pass after), and the AGENTS.md Validation
+and Non-negotiables sentences and the README Development check
+inventory name them.
+
 ## v1.3.2 (2026-11-16)
 
 Two charter patches from dispatch Debug Reports, batched under the
