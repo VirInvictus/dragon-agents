@@ -10,6 +10,7 @@ Guidance for any agent (or human) working in this repo. It is the source of trut
 - `marketplace.json`: the marketplace manifest (at the repo root; see Manifest mechanics).
 - `.zcode-plugin/plugin.json`: the plugin manifest (name, version, description, author, license) and nothing else.
 - `scripts/validate.py`: structural checks; CI runs it on every push.
+- `docs/guide/`: the published optimization-guide arsenal (model routing, platform settings, subagent design, fleet operations, merged references, and the two verbatim research reports under `research/`). Docs-only commits to it follow the no-bump precedent; it is prose the roster ships, not charter surface, so validate.py does not check it, and the slop-reader gate applies to changes the way it does to any commissioned text.
 
 ## Non-negotiables
 
