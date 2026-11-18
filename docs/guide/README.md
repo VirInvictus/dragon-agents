@@ -14,11 +14,14 @@ privacy-respecting terms:
 
 - A Claude-Code-class CLI agent harness running Z.ai's GLM-5.3 and
   GLM-5.3-Flash, the main thread on the Flash tier.
-- A personal subagent roster of thirty-five seats: twenty-four
+- A personal subagent roster of thirty-eight seats: twenty-seven
   read-only researchers, one multimodal judge, and ten chartered write
   lanes behind structural fences (propose-by-default, allowlisted
   mutations, read-back verification, never a commit). Every seat is a
-  markdown charter validated by a structural checker in CI.
+  markdown charter validated by a structural checker in CI. Roster
+  counts in this guide are stated as of 2026-11-18; the authoritative
+  live count is the repo README's fleet-at-a-glance table and the
+  validator's roster check, and they move on every roster release.
 - A long-standing personal workspace of dozens of repositories,
   local-first: no Docker, no cloud services in the product path, and
   nothing load-bearing that stops working offline.
