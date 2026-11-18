@@ -20,7 +20,9 @@ Three charters carry pinned checks: ci-triage the jobs-API teardown
 check for an empty `--log-failed` and release-auditor the identical-sort
 rule for tag-versus-entry set compares (v1.3.2), and latro the
 any-Bash-mutation report fence, the one corrective Write pass, and the
-named-tool DEGRADED line (v1.3.3). CI runs this on every push.
+named-tool DEGRADED line (v1.3.3). Every charter also carries the
+shared zsh shell-discipline rule against unquoted leading-`=` tokens
+(v1.3.4). CI runs this on every push.
 """
 
 from __future__ import annotations
@@ -200,6 +202,10 @@ def check_agents() -> None:
             "## Debug reporting" in text,
         )
         lowered = text.lower()
+        check(
+            f"{stem}: charter carries the zsh shell-discipline rule",
+            "=word" in lowered,
+        )
         if stem in WRITE_AGENTS:
             check(
                 f"{stem}: charter carries the clean-tree fence", "clean tree" in lowered

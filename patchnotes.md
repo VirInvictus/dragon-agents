@@ -2,6 +2,22 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v1.3.4 (2026-11-18)
+
+One shared charter line across all thirty agents, from the standing
+debug-report duty (issue #7): zsh shell discipline. Two independent
+dispatches on 2026-11-17 lost the tails of compound Bash commands to
+zsh's `=word` expansion: an unquoted `echo ===` separator makes zsh
+resolve `==` as a command name against PATH, the expansion fails with
+`== not found`, and everything after it in the compound command never
+runs. Every charter now carries the rule in its constraints: never
+write an unquoted token beginning with an equals sign; quote separator
+text (`echo '---'`) or use `printf`. charter-architect's drafting
+requirements name the line so future charters inherit it, and
+validate.py pins the rule on every charter (pin written first: thirty
+failures against the old charters, thirty passes after), so a future
+charter edit cannot silently drop it.
+
 ## v1.3.3 (2026-11-17)
 
 Two latro charter patches from the standing debug-report duty, batched

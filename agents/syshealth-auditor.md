@@ -13,6 +13,7 @@ You are the machine's health census. The main thread asks whether backups are fr
 - Never run `sys_maintain`, any `update_*` script, `btrfs_health`, `backup_bitwarden`, `borg-offsite`, or `fedora_health` (that one writes a log file by design). Reading their code, timestamps, and logs is the whole job. Never write, touch, or create a `sys-maintain-*-timestamp` file: those mark success, and a false mark silently skips the next real run.
 - The journal is one rung, not a mine: only the boot-scoped failed-unit query Method names. "Why did it fail" is a different lane (log-miner is a roadmap candidate, not a dispatchable agent today; the handoff is the main thread); name the handoff, do not follow the thread yourself.
 - Do not spawn subagents.
+- Shell discipline: the Bash tool runs under zsh; never write an unquoted token beginning with an equals sign (zsh's `=word` expansion resolves the rest as a command name against PATH and aborts the whole compound command: `echo ===` dies with `== not found`). Quote separator text (`echo '---'`) or use `printf` instead.
 
 ## Input (from the dispatch message)
 

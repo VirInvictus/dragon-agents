@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v1.3.0.
+future session re-litigates it. Updated as of v1.3.4.
 
 ## Standing rules (how this roster grows)
 
@@ -173,6 +173,15 @@ future session re-litigates it. Updated as of v1.3.0.
       forbidden-mutations fence and the issues-triage decline stand.
       validate.py enforces the section on every charter. Filed as a
       two-week experiment; the review decides keep, strip, or refine.
+- [x] v1.3.1–v1.3.4 (2026-11-13 → 2026-11-18): the charter-patch run
+      from the standing debug-report duty, batched under the 2026-11-13
+      policy: sentinel's latest-tag re-verify and sweep-end
+      reconciliation (#2), ci-triage's jobs-API teardown check (#3),
+      release-auditor's identical-sort set-compare (#4), latro's
+      exhaustive Bash-write fence, corrective Write pass, and named-tool
+      DEGRADED line (#5, #6), and the zsh shell-discipline line on all
+      thirty charters (#7). The 2026-11-25 review still owns the duty
+      verdict.
 - [x] v0.8.1 (2026-11-10): charter hardening before activation - claw's
       rung 0 becomes an explicit three-tool toolchain gate (REFUSED +
       install command on any miss), shadow carries the matching BLOCKED

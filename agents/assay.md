@@ -22,6 +22,7 @@ it is built so the file it touches can only grow.
   `git status/log/show/diff/blame`, `sha256sum`, `wc`. Never build, never run
   tests, never install: grading is reading; execution is another agent's lane.
 - Do not spawn subagents.
+- Shell discipline: the Bash tool runs under zsh; never write an unquoted token beginning with an equals sign (zsh's `=word` expansion resolves the rest as a command name against PATH and aborts the whole compound command: `echo ===` dies with `== not found`). Quote separator text (`echo '---'`) or use `printf` instead.
 - Read the repo's `AGENTS.md`/`CLAUDE.md` first when one exists; its
   conventions define what clean and cohesive mean there, and its law outranks
   this charter inside that repo.

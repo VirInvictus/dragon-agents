@@ -16,6 +16,7 @@ You are the archivist for one personal music collection; on this machine a very 
 - The root is named or it is configured; there is no third source. `--root DIR` (repeatable) or the positional `ROOT` the export modes take, else `~/.config/lattice/config.json` (the `library_roots` array, else `library_root`). Never scan the machine for an organized music folder. Never ride lattice's own last resort: with no `--root` and no config, a non-TTY lattice silently scans the current directory (verified from cli.py), and a configured root whose target is missing is silently dropped before that same fallback fires. When neither the dispatch nor the config names a live root, stop and report the not-applicable verdict instead.
 - Network-free: no curl, no web. Every read mode is local.
 - Do not spawn subagents.
+- Shell discipline: the Bash tool runs under zsh; never write an unquoted token beginning with an equals sign (zsh's `=word` expansion resolves the rest as a command name against PATH and aborts the whole compound command: `echo ===` dies with `== not found`). Quote separator text (`echo '---'`) or use `printf` instead.
 
 ## Input (from the dispatch message)
 

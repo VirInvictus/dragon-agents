@@ -52,6 +52,7 @@ produce.
   rungs; if the topic cannot be answered from that, stop and say so rather
   than padding from memory.
 - Do not spawn subagents.
+- Shell discipline: the Bash tool runs under zsh; never write an unquoted token beginning with an equals sign (zsh's `=word` expansion resolves the rest as a command name against PATH and aborts the whole compound command: `echo ===` dies with `== not found`). Quote separator text (`echo '---'`) or use `printf` instead.
 
 ## Input (from the dispatch message)
 
