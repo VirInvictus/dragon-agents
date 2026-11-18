@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v1.3.4.
+future session re-litigates it. Updated as of v1.4.0.
 
 ## Standing rules (how this roster grows)
 
@@ -42,9 +42,24 @@ future session re-litigates it. Updated as of v1.3.4.
   the writes are external and publish instantly, so the itemized
   before/after report is the audit trail and its before-state the
   rollback record.
-  The six judges and gates (claim-verifier, shadow, code-reviewer,
-  spec-compliance-reviewer, security-auditor, slop-reader) stay
-  read-only; builders, executors, and orchestrators without fences
+  A fourth external-mutation seat followed at v1.4.0 (Brandon's
+  explicit post-saturation appetite, recorded 2026-11-18):
+  release-executor carries [Read, Bash] with its writes confined to the
+  three release mutations plus the single tag push (scratch files under
+  /tmp, the annotated --cleanup=verbatim tag, the GitHub Release),
+  propose-by-default, apply only against a dispatch-enumerated
+  repo+version+release-commit triple that carries release-auditor's
+  ready verdict, a clean-tree precondition, never force-push, never
+  re-tag, never a commit, and per-mutation read-backs; the v1.2.0
+  write-axis saturation verdict bound that survey's slate, not later
+  dispatcher-approved seats, and the fence discipline is unchanged.
+  pixel-judge (v1.4.0) is the roster's first multimodal charter: tools
+  [Read, Bash], read-only over repositories, self-capture confined to
+  region-scoped grim under /tmp, and UI driving forbidden absolutely.
+  The seven judges and gates (claim-verifier, shadow, code-reviewer,
+  spec-compliance-reviewer, security-auditor, slop-reader, and v1.4.0's
+  pixel-judge, the multimodal acceptance judge) stay read-only;
+  builders, executors, and orchestrators without fences
   remain excluded by charter, not by oversight.
 - **Modes before agents.** A candidate expressible as a mode of an
   existing agent prefers the mode unless trigger precision genuinely
@@ -182,6 +197,34 @@ future session re-litigates it. Updated as of v1.3.4.
       DEGRADED line (#5, #6), and the zsh shell-discipline line on all
       thirty charters (#7). The 2026-11-25 review still owns the duty
       verdict.
+- [x] v1.4.0 (2026-11-18): the issue-and-propagation wave (roster 35:
+      twenty-four read-only, ten write seats, one multimodal judge),
+      drafted by charter-architect from the roster-expansion campaign
+      (a 28-source prior-art report, a workflow-corpus sweep, and usage
+      mining). issue-census fires the issues-triage decline's revisit
+      condition (the workflow went issue-driven: the debug-report
+      duty, the CalibreQuarry release log, opends's gating issues); its
+      fences follow the Anthropic triage-issue pattern (closed
+      vocabulary, dup-vs-open, false-positive aversion, closure never
+      model-side, never a post, on-demand only). fleet-sync-auditor is
+      the sync-reference-docs skill's four tiers as a propose-only
+      audit (the catalog-reconciler decline stands; tier 3 curated; the
+      vault never carries versions). upstream-triage carries the
+      roster's narrowest fetch exception (the named reference clone
+      only, remote-tracking refs only, pinned in validate.py) because
+      commit content needs objects and ls-remote shows only the tip.
+      release-executor is the write axis's first post-saturation seat
+      (propose-first, enumerated apply with release-auditor's ready
+      verdict, three mutations plus the tag push, verbatim tags,
+      per-mutation read-backs, never force-push, never re-tag) on
+      Brandon's explicit 2026-11-18 appetite; the fence discipline is
+      unchanged. pixel-judge is the first multimodal charter:
+      non-document visuals from handed-in captures, JSON verdicts
+      against a stated acceptance bar, region-scoped grim self-capture
+      to /tmp only (probed live; Catagotchi's KWin gotcha documents the
+      handed-in path), ydotool forbidden absolutely. release-auditor
+      gains the claims-without-commits truth check (the pre-release
+      cross-check now runs both ways).
 - [x] v0.8.1 (2026-11-10): charter hardening before activation - claw's
       rung 0 becomes an explicit three-tool toolchain gate (REFUSED +
       install command on any miss), shadow carries the matching BLOCKED
@@ -319,6 +362,13 @@ future session re-litigates it. Updated as of v1.3.4.
   push-based workflow with no issue volume to triage; imprint's lane
   deliberately excludes the surface. Revisit if the workflow ever
   moves to issue-driven.
+  *(Superseded 2026-11-18, v1.4.0: the revisit condition fired. The
+  workflow moved to issue-driven (the v1.3.0 debug-report duty files
+  issues as a standing flow, CalibreQuarry's release log is
+  issue-driven end to end, opends gates a release on open issues), and
+  issue-census ships as the census-first answer: read-only, label-only
+  verdicts never applied, never a comment or closure, on-demand only.
+  The notifications half stays declined; the seat never watches.)*
 
 ## Records kept here
 

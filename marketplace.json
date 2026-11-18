@@ -6,7 +6,7 @@
   "plugins": [
     {
       "name": "dragon-agents",
-      "description": "Research subagents for repo, markets, personal-data, music-collection, machine-health, and school-schedule work, charter design, the Calibre import pipeline's gated execution seat plus its read-only phase auditor, five fence-gated audit-and-fix seats, a purpose-built web-research report writer, a two-mode repo and idea grader, and a GitHub-metadata tender (repo descriptions and topics via gh, propose-first, read-back verified).",
+      "description": "Research subagents for repo, markets, personal-data, music-collection, machine-health, and school-schedule work, charter design, the Calibre import pipeline's gated execution seat plus its read-only phase auditor, five fence-gated audit-and-fix seats, a purpose-built web-research report writer, a two-mode repo and idea grader, a GitHub-metadata tender (repo descriptions and topics via gh, propose-first, read-back verified), a propose-first release executor (verbatim tags and GitHub Releases after a ready verdict, every mutation read back), a multimodal pixel judge for app, game, and desktop captures (JSON verdicts, never drives the UI), an open-issue census seat, a reference-docs propagation auditor, and an upstream-sync window triager for reference clones.",
       "source": ".",
       "category": "developer-tools"
     }

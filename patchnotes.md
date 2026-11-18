@@ -2,6 +2,119 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v1.4.0 (2026-11-18)
+
+The issue-and-propagation wave: five new seats drafted by
+charter-architect from the roster-expansion campaign (a 28-source
+prior-art report, a full sweep of the workspace's workflow corpus, and
+usage mining), riding one release with a release-auditor method patch.
+Roster thirty-five: twenty-four read-only, ten write seats, one
+multimodal judge.
+
+- **issue-census** (GLM-5.3-Flash): the retrospective census of OPEN
+  GitHub issues, one repo or the whole owned fleet, which nothing ships
+  (first-party Copilot automations label new issues one at a time; the
+  fleet view is unbuilt). Aging profile, open-vs-open duplicate
+  clusters, fix-already-landed cross-checks against git log, tags, and
+  patchnotes, label hygiene, needs-info zombies, then label-only triage
+  verdicts taken from Anthropic's own triage-issue command design: a
+  closed vocabulary fetched live from the repo's own labels, duplicates
+  marked against open issues only, and the false-positive aversion rule
+  ("false positives are worse than missing labels"). It ends with
+  rule-based SemVer hints (never model-judged: rules already do it
+  exactly) and a proposed release batch. Absolute fences: never
+  comments, never closes, never writes a label, never posts anything;
+  on-demand dispatch only, never a resident watcher. The 2026-11-11
+  issues-triage decline carried its own revisit condition ("if the
+  workflow ever moves to issue-driven"); it has fired (the v1.3.0
+  debug-report duty files issues as a standing flow, CalibreQuarry's
+  release log is issue-driven end to end, opends gates a release on two
+  open issues), and the ledger entry records the supersession. Two gh
+  quirks carried in the charter: `--json comments` embeds every full
+  comment body (verified on opends #13), so comment fields are only
+  read through a `--jq` projection, and the REST `open_issues_count`
+  counter includes pull requests while `gh issue list` does not.
+- **fleet-sync-auditor** (GLM-5.3-Flash): the four-tier propagation
+  audit the sync-reference-docs skill has hand-walked after every
+  release: the repo's own docs (VERSION carriers, patchnotes placement,
+  roadmap ticks, shields.io badge URLs where the version hides inside
+  the URL, AGENTS.md status headers, Flatpak runtime pins), the
+  workspace catalog row, the public surfaces (the profile README's
+  shipping tags, the site codex status spans), and the Obsidian vault's
+  identity stubs, where versions are forbidden by design. Propose-only
+  by charter: the catalog-reconciler decline stands, the public
+  surfaces are push-gated, and the vault is Brandon's prose. The tree
+  is the truth (a reference document is never evidence about another
+  reference document); tier 3 is curated, so absence from the profile
+  README is not drift while a stale listed version is. Trigger lines
+  drawn against both neighbors: doc-drift-auditor keeps one repo's docs
+  versus code, workspace-sentinel the git-state sweep.
+- **upstream-triage** (GLM-5.3: its port/skip verdicts gate porting
+  work): the weekly NetNewsWire window behind Viaduct, generalized to
+  any dispatch-named reference clone. Reads the last recorded sync
+  point from the parent repo's dated sync notes, enumerates the
+  upstream window, clusters it into arcs (windows reach +352 commits),
+  and returns port / skip / roadmap-candidate verdicts with reasons,
+  conflict flags against the parent's local ports, an ordered port
+  worklist, and a draft sync note in the parent's own format. Its one
+  chartered mutation, pinned in validate.py, is the roster's narrowest
+  fetch exception: fetch only the dispatch-named reference clone,
+  because triage needs commit content and `git ls-remote` returns only
+  the tip (verified live: the clone's origin/main last saw f3a0102c3 on
+  2026-11-08 while the tip had already moved, and the window's size was
+  unanswerable without the objects). The sentinel's never-fetch rule
+  stands everywhere else; the fast-forward, the sync note, and the
+  ports stay with the main thread. A clone not declared reference
+  material in the parent's AGENTS.md or the catalog is a REFUSED.
+- **release-executor** (GLM-5.3, the write axis's first
+  post-saturation seat, chartered on Brandon's explicit 2026-11-18
+  appetite): the mechanical half of cutting a release, taken out of the
+  main thread after a failure history measured in the hundreds (91
+  broken tags across 20 repos, 184 missing GitHub Releases backfilled
+  in one day, whisker-street's empty-notes-file release, deadbeef-cui's
+  four release-workflow fix cycles). Propose mode (the default) drafts
+  the exact command plan; apply mode, enumerating repo, version, and
+  release commit and carrying release-auditor's ready verdict, verifies
+  CI green on the release commit, extracts the patchnotes entry
+  verbatim into a scratch file, proofreads it (version, date, heading
+  style, no em-dashes, no neighboring tails, never the whole file, body
+  non-empty), cuts the annotated tag with --cleanup=verbatim, verifies
+  the message with cat-file against the previous tag's detail, pushes
+  only that tag, creates the GitHub Release from the same file with
+  --verify-tag, reads back every mutation, and closes with the
+  for-each-ref subject sweep. Its writes are the roster's second
+  instantly-public class (after imprint's metadata): three mutations
+  plus the tag push, never force-push, never re-tag, never a branch,
+  issue, or file. release-auditor's description now draws its side of
+  the line: it gates and sweeps; the executor runs.
+- **pixel-judge** (GLM-5.3-Flash, the roster's first multimodal seat
+  and first vision-dependent charter): non-document visuals (GTK/Qt
+  windows, Godot game screens, the bar, Hyprland, terminals, theming
+  changes) judged from handed-in PNG captures plus state text against
+  the dispatch's acceptance bar, one JSON verdict line per capture with
+  evidence-backed issues and recapture guidance; self-capture is
+  chartered only as region-scoped grim to /tmp (verified live on this
+  Hyprland session; Catagotchi's own gotcha table documents grim dead
+  under KWin, where the repo's capture script is the dispatcher's
+  path), and UI driving via ydotool is forbidden absolutely. Document
+  deliverables stay with the four plugin visual-judge seats.
+- **release-auditor truth patch** (v1.4.0): the pre-release commit
+  cross-check now runs both ways. Step 4 caught commits the entry fails
+  to mention; it now also catches any claim in the entry that no commit
+  since the previous tag backs (an invented or aspirational entry is a
+  finding), the notes-versus-diff truth audit prior art found shipped
+  nowhere, folded in as a method extension rather than a seat
+  (modes-before-agents).
+
+validate.py grows the roster to thirty-five and pins the wave's
+dangerous lines: issue-census's false-positive aversion, closed
+vocabulary, and never-post fences; fleet-sync-auditor's propose-only
+and vault no-versions fences; upstream-triage's named-clone fetch fence
+and fast-forward rule; release-executor's clean-tree,
+three-mutations-allowlist, verbatim-tag, and force-push/re-tag fences;
+pixel-judge's multimodal-description, UI-driving, and code-edit
+requirements; and release-auditor's claims-without-commits truth check.
+
 ## v1.3.4 (2026-11-18)
 
 One shared charter line across all thirty agents, from the standing

@@ -17,12 +17,19 @@ forbidden-mutations lines. Every agent keeps the no-subagent line and the
 standing debug-reporting duty (v1.3.0): a `## Debug reporting` section the
 agent satisfies in its final message, with filing left to the dispatcher.
 Three charters carry pinned checks: ci-triage the jobs-API teardown
-check for an empty `--log-failed` and release-auditor the identical-sort
-rule for tag-versus-entry set compares (v1.3.2), and latro the
-any-Bash-mutation report fence, the one corrective Write pass, and the
-named-tool DEGRADED line (v1.3.3). Every charter also carries the
-shared zsh shell-discipline rule against unquoted leading-`=` tokens
-(v1.3.4). CI runs this on every push.
+check for an empty `--log-failed`, release-auditor the identical-sort
+rule for tag-versus-entry set compares and the claims-without-commits
+truth check (v1.3.2, v1.4.0), and latro the any-Bash-mutation report
+fence, the one corrective Write pass, and the named-tool DEGRADED line
+(v1.3.3). The v1.4.0 seats add their own pinned fences: issue-census
+(never-post, closed vocabulary, false-positive aversion),
+fleet-sync-auditor (propose-only, vault no-versions), upstream-triage
+(the named-clone fetch fence and the fast-forward rule),
+release-executor (clean tree, the three-mutations allowlist, the
+verbatim tag flag, force-push and re-tag bans), and pixel-judge (the
+multimodal description requirement and the UI-driving and code-edit
+bans). Every charter also carries the shared zsh shell-discipline rule
+against unquoted leading-`=` tokens (v1.3.4). CI runs this on every push.
 """
 
 from __future__ import annotations
@@ -48,6 +55,8 @@ WRITE_AGENTS = {
 WEB_WRITE_AGENTS = {"latro"}
 WEB_APPEND_AGENTS = {"assay"}
 GH_META_AGENTS = {"imprint"}
+RELEASE_EXEC_AGENTS = {"release-executor"}
+VISUAL_JUDGE_AGENTS = {"pixel-judge"}
 EXPECTED_AGENTS = {
     "assay",
     "cascade-checker",
@@ -61,15 +70,19 @@ EXPECTED_AGENTS = {
     "dependency-auditor",
     "doc-drift-auditor",
     "duplication-scout",
+    "fleet-sync-auditor",
     "git-archaeologist",
     "imprint",
+    "issue-census",
     "claw",
     "latro",
     "shadow",
     "ledger-analyst",
     "librarian",
     "music-archivist",
+    "pixel-judge",
     "release-auditor",
+    "release-executor",
     "repo-cartographer",
     "schedule-analyst",
     "security-auditor",
@@ -78,6 +91,7 @@ EXPECTED_AGENTS = {
     "stock-broker",
     "syshealth-auditor",
     "test-gap-analyst",
+    "upstream-triage",
     "workspace-sentinel",
 }
 SEMVER = re.compile(r"^\d+\.\d+\.\d+$")
@@ -158,7 +172,7 @@ def check_agents() -> None:
     files = sorted(AGENTS_DIR.glob("*.md"))
     found = {f.stem for f in files}
     check(
-        "roster is exactly the expected thirty agents",
+        "roster is exactly the expected thirty-five agents",
         found == EXPECTED_AGENTS,
         f"found {sorted(found)}",
     )
@@ -184,7 +198,11 @@ def check_agents() -> None:
             expected_tools = WEB_WRITE_TOOLS
         elif stem in WEB_APPEND_AGENTS:
             expected_tools = WEB_READ_TOOLS
-        elif stem in GH_META_AGENTS:
+        elif (
+            stem in GH_META_AGENTS
+            or stem in RELEASE_EXEC_AGENTS
+            or stem in VISUAL_JUDGE_AGENTS
+        ):
             expected_tools = READ_ONLY_TOOLS
         else:
             expected_tools = READ_ONLY_TOOLS
@@ -249,6 +267,35 @@ def check_agents() -> None:
                 f"{stem}: charter carries the forbidden-mutations list",
                 "forbidden mutations" in lowered,
             )
+        elif stem in RELEASE_EXEC_AGENTS:
+            check(
+                f"{stem}: charter carries the clean-tree precondition",
+                "clean tree" in lowered,
+            )
+            check(f"{stem}: charter forbids committing", "never commit" in lowered)
+            check(
+                f"{stem}: charter carries the three-mutations allowlist",
+                "the three mutations" in lowered,
+            )
+            check(
+                f"{stem}: charter mandates the verbatim tag flag",
+                "--cleanup=verbatim" in lowered,
+            )
+            check(
+                f"{stem}: charter forbids force-push and re-tagging",
+                "never force-push" in lowered and "never re-tag" in lowered,
+            )
+        elif stem in VISUAL_JUDGE_AGENTS:
+            check(f"{stem}: charter declares repo read-only", "Read-only" in text)
+            check(
+                f"{stem}: charter forbids UI driving",
+                "ydotool" in lowered and "never drive" in lowered,
+            )
+            check(f"{stem}: charter forbids code edits", "never edit" in lowered)
+            check(
+                f"{stem}: description states the multimodal requirement",
+                "multimodal" in fields.get("description", "").lower(),
+            )
         else:
             check(f"{stem}: charter declares read-only", "Read-only" in text)
         if stem == "ci-triage":
@@ -260,6 +307,10 @@ def check_agents() -> None:
             check(
                 f"{stem}: charter carries the identical-sort set-compare rule",
                 "identical sort" in lowered,
+            )
+            check(
+                f"{stem}: charter carries the claims-without-commits truth check",
+                "no commit since the previous tag backs" in lowered,
             )
         if stem == "latro":
             check(
@@ -273,6 +324,38 @@ def check_agents() -> None:
             check(
                 f"{stem}: charter names the missing tool in its degraded line",
                 "degraded: websearch absent" in lowered,
+            )
+        if stem == "issue-census":
+            check(
+                f"{stem}: charter carries the false-positive aversion rule",
+                "false positives are worse than missing labels" in lowered,
+            )
+            check(
+                f"{stem}: charter carries the closed-vocabulary rule",
+                "closed vocabulary fetched live" in lowered,
+            )
+            check(
+                f"{stem}: charter carries the never-post fence",
+                "never comments on, closes, edits, creates, or relabels an issue"
+                in lowered,
+            )
+        if stem == "fleet-sync-auditor":
+            check(
+                f"{stem}: charter declares propose-only",
+                "propose-only" in lowered,
+            )
+            check(
+                f"{stem}: charter carries the vault no-versions rule",
+                "never puts a version or phase number in the vault" in lowered,
+            )
+        if stem == "upstream-triage":
+            check(
+                f"{stem}: charter fences the fetch to the named clone",
+                "fetch only the dispatch-named reference clone" in lowered,
+            )
+            check(
+                f"{stem}: charter keeps the fast-forward with the main thread",
+                "the fast-forward stays with the main thread" in lowered,
             )
 
 
