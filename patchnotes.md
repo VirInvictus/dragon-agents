@@ -104,7 +104,13 @@ multimodal judge.
   since the previous tag backs (an invented or aspirational entry is a
   finding), the notes-versus-diff truth audit prior art found shipped
   nowhere, folded in as a method extension rather than a seat
-  (modes-before-agents).
+  (modes-before-agents). The patch grew one more leg during this very
+  release's gate: the auditor's Bash allowlist never had gh, so it
+  could not verify CI itself and reported it dispatcher-asserted; the
+  allowlist now carries `gh run list`/`gh run view` as read-only CI
+  queries, and a new pre-release step makes green CI its own check
+  (red, pending, or absent is `not ready`; unverifiable is reported,
+  never assumed).
 
 validate.py grows the roster to thirty-five and pins the wave's
 dangerous lines: issue-census's false-positive aversion, closed
