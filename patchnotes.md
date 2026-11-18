@@ -2,6 +2,83 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v1.6.0 (2026-11-18)
+
+The comparative-design and marketing wave: one new read-only seat, the
+fleet's first in-repo authored skill, four charter patches from the
+comparative seat-design report, the evals convention, and a README
+rebuilt for readability. Drafted by charter-architect from the
+campaign's second research leg (the 37-source repo-marketing report;
+the first leg's 69-source pair fed v1.5.0, and a 32-source comparative
+seat-design report drove the patches). Roster thirty-eight:
+twenty-seven read-only, ten write seats, one multimodal judge.
+
+- **repo-marketer** (GLM-5.3-Flash): the launch desk, read-only with
+  web tools (the assay tool class). Given a repository it returns a
+  placement analysis across the earned channels (Show HN, language
+  subreddits, Lobsters, curated newsletters, Discord and Matrix,
+  dev.to cross-posts, awesome lists) judged against each channel's
+  live rules, the repo's actual maturity, and the operator's stated
+  standing; an explicit where-not-to-post list; channel-native drafts
+  built from the repo's own artifacts on the demonstrate-don't-claim
+  skeleton (the trurl shape: analogy, problem, copy-pasteable
+  examples, honest-maturity section, roughly 400 words);
+  similar-projects research on the live web; a paid-advertising
+  worth-it verdict with the arithmetic shown (the honest baseline is
+  that most pure OSS gains nothing; three defensible conditions and
+  four burn patterns carry their numbers); and a measurability plan
+  (HN's spike shape, the roughly 20:1 HN-to-Reddit volume ratio,
+  GitHub's 14-day referrer panel, UTM conventions with the lossiness
+  caveat). The fences are absolute and first: it never posts, never
+  comments, never votes, never opens a browser session to any
+  platform, never authenticates, never touches a social account;
+  drafts land in the final message only and the human posts. The
+  enforcement reason is documented, not theorized: the February 2026
+  matplotlib incident, where an autonomous agent retaliated against a
+  maintainer over a rejected PR with a fabricated-quote hit piece,
+  makes drafts-only a structural requirement. Anti-hype guardrails are
+  charter law (the Stenberg standard): every claim traces to a repo
+  artifact, no invented traction, no star-count flexing, every launch
+  draft carries an honest-maturity section, every draft carries its
+  channel's compliance note. Live probing shaped four rungs: HN's
+  rules pages and lobste.rs fetch clean keyless while Reddit's rules
+  routes 302 to a login wall under curl (the charter pins the WebFetch
+  route and the "rules unverified" marking instead of promising
+  fetches); hn.algolia.com's search API verified keyless and instantly
+  returned a direct comparable for the dry-run repo; the CalibreQuarry
+  dry run surfaced the maturity gate's exact finding class, the
+  README's own TODO admitting the missing TUI screenshot.
+- **skills/herald**: the Reddit presence buffer, authored by the main
+  thread in this same campaign and landing under skills/ beside the
+  seven vendored Obsidian skills (validate.py grows the expected set
+  to eight). Drafts posts and replies in the operator's voice, triages
+  reply threads, and keeps hostile replies at a sanitized distance;
+  like repo-marketer it drafts only and the human posts. repo-marketer
+  is its research engine: placement and first drafts from the agent,
+  ongoing presence from the skill.
+- **Comparative charter patches**: code-reviewer's fix-sketch and
+  linter-folding rungs, latro's pinpoint-citation rule, and the
+  untrusted-corpus lines on latro and issue-census; four of the
+  comparative-design report's five STEALs, landed in-tree before this
+  release (the report: 32 sources, 25 delta rows, 9 CONSIDERs and 11
+  SKIPs also recorded). The fifth STEAL is the evals convention below.
+- **evals/ convention**: evals/<seat>/prompt.md holds a realistic
+  dispatch prompt and evals/<seat>/graders.md asserts the Output
+  contract's shapes; seeding is incremental and an empty evals/
+  passes while the convention fills. validate.py carries the light
+  parse check.
+- **README rebuilt for readability**: the single-mega-paragraph intro
+  and one thirty-eight-row table became grouped seat tables by lane, a
+  fleet-at-a-glance block, a skills table, and a condensed model
+  guidance section pointing at the design guide. Same facts, parseable
+  layout.
+
+validate.py grows the roster to thirty-eight, adds the web-research
+reader class with its four pins (never posts, never authenticate,
+final message only, compliance note), expects the eighth skill
+(herald), and carries the v1.6.0 comparative pins and the evals check
+landed earlier in the tree.
+
 ## v1.5.0 (2026-11-18)
 
 The life-domains wave plus the fleet's first vendored skills: two new

@@ -1,62 +1,154 @@
 # dragon-agents
 
 [![License: MIT](https://img.shields.io/github/license/VirInvictus/dragon-agents)](LICENSE)
-[![Release](https://img.shields.io/github/v/tag/VirInvictus/dragon-agents)](https://github.com/VirInvictus/dragon-agents/tags)
+[![Release](https://img.shields.io/github/v/tag/VirInvictus/dragon-agents)](https://github.com/VirInvictus/dragon-agents/releases)
 [![ci](https://github.com/VirInvictus/dragon-agents/actions/workflows/ci.yml/badge.svg)](https://github.com/VirInvictus/dragon-agents/actions/workflows/ci.yml)
 
-A local ZCode plugin of research subagents for repo, markets, collection-pipeline, and life-domain work. Thirty-seven agents. Twenty-six are read-only: they gather and report, and the main thread decides and edits. Ten carry chartered write lanes. One is the roster's first multimodal seat: `pixel-judge` (v1.4.0) judges non-document visuals (app windows, game screens, desktop theming) from handed-in PNG captures against a stated acceptance bar, one JSON verdict per capture, and requires an image-capable model pin. `claw` (v0.8.0) executes the Calibre acquisition pipeline's file-side halves through the pipeline's own structural gates. Five audit-and-fix seats (v0.9.0: `charter-architect`, `ci-posture-auditor`, `doc-drift-auditor`, `debt-census`, `test-gap-analyst`) may apply the fixes their own audits find under the charter-fence model: report-only by default, a clean-tree precondition, writes confined to a charter-named scope, re-verification after applying, an itemized report, and never a commit. Two purpose-built write seats (v1.0.0): `latro` writes deep web research up as one new cited markdown report per dispatch (no Edit tool, overwrite refused, keyless sources only), and `assay` grades a whole repo on five metrics and appends a dated goals block to its roadmap.md (append-only, re-verified zero-deletion) or grades an idea read-only on four criteria. A third purpose-built seat (v1.1.0): `imprint` tends a repository's GitHub identity, the description and topics, through gh verbs alone; propose mode is the default, apply dispatches name their repos, every mutation is read back and itemized, and its writes are the roster's first that publish to github.com instantly with no local diff to review. Three read-only seats ride the issue and propagation lanes (v1.4.0): `issue-census` takes the retrospective census of open GitHub issues (aging, open-vs-open duplicates, fix-already-landed cross-checks, label-only triage verdicts from a closed vocabulary; never a comment, closure, or label write), `fleet-sync-auditor` audits whether a release or identity change propagated through the four reference tiers (repo docs, catalog row, public surfaces, vault stubs; propose-only), and `upstream-triage` turns a reference clone's upstream window into port/skip/roadmap-candidate verdicts with a port worklist, its one chartered mutation a fetch on the named clone only. A fourth external-mutation seat (v1.4.0): `release-executor` runs the mechanical half of a release on a dispatcher order, after `release-auditor` called it ready: propose mode drafts the exact tag-and-release command plan, apply mode (enumerating repo, version, and release commit) cuts the verbatim tag, pushes only that tag, creates the GitHub Release, and reads back every mutation; never force-pushes, never re-tags. Two life-domain read-only seats (v1.5.0): `vault-archivist` audits an Obsidian vault's hygiene (unresolved wikilinks, orphans judged against the vault's own conventions, frontmatter and tag-taxonomy drift, duplicates, unreferenced attachments) and proposes connections as a list that is never applied; `subscription-watchdog` clusters manually exported bank and card statement CSVs into a subscription inventory with price-change, missed-billing, and trial-to-paid flags, returning a not-applicable verdict until statement exports exist. The plugin also vendors seven Obsidian skills from the official obsidianmd/obsidian-skills repository under `skills/` (MIT; provenance, commit pin, and vet record in `skills/ATTRIBUTION.md`). The main thread reviews every diff and owns the release. No agent spawns subagents of its own. Every agent closes each dispatch with a `## Debug Report` block of the friction it actually hit (tool, environment, model, charter, dispatch, idea categories, or `- none` on a clean run); the dispatcher files actionable findings as GitHub issues in this repo, so the roster keeps a dated record of what to improve.
+A local ZCode plugin of research subagents: **thirty-eight agents** (twenty-seven read-only, ten chartered write seats, one multimodal judge) and **eight skills**, installed through a directory marketplace. Read-only agents gather and report; the main thread decides and edits. Write seats exist only under chartered fences: propose-first, enumerated apply, read-back verification, never a commit. No agent spawns subagents. Every dispatch ends with a debug report of the friction it hit, filed by the dispatcher as issues so the roster keeps a dated improvement record.
+
+**Fleet at a glance**
+
+| | |
+|---|---|
+| Read-only seats | 27 |
+| Chartered write seats | 10 |
+| Multimodal judge | 1 (pixel-judge) |
+| Skills | 8 (7 vendored official Obsidian skills + herald) |
+| Design doc | [docs/guide/](docs/guide/README.md): model routing, platform settings, fleet operations |
+
+## The fleet
+
+### Repos, code, and releases
 
 | Agent | Job |
 |---|---|
-| `repo-cartographer` | Structured repo map (layout, stack, conventions, tests, risk areas) before planning sessions. |
-| `doc-drift-auditor` | Standard-layout docs vs code reality: VERSION sync, roadmap boxes, spec claims, patchnotes hygiene; apply mode fixes the mechanical drift it found. |
-| `cascade-checker` | Downstream call-site inventory for a changed shared-library API, with per-repo breakage risk. |
-| `spec-compliance-reviewer` | Diff vs `spec.md` contract; violations and unaddressed claims with `path:line` evidence. |
-| `ci-triage` | Failed CI run via `gh` to root cause, decisive log lines, and fix direction. |
-| `slop-reader` | Fresh-eyes AI-prose pass on commissioned docs; flags quotes, never rewrites. |
-| `release-auditor` | Pre-tag readiness and post-tag sweep: VERSION carriers, patchnotes entry style, tag message health. |
-| `release-executor` | Executes the mechanical half of a ready release: CI-green check, verbatim entry extraction and proofread, annotated `--cleanup=verbatim` tag, cat-file verify, tag-only push, GitHub Release with `--verify-tag`, read-backs, for-each-ref sweep; propose-first. |
+| `repo-cartographer` | Repo onboarding map before planning: layout, stack, conventions, tests, risks. |
+| `code-reviewer` | Bug-hunting diff review: `[bug]`/`[risk]`/`[nit]` findings with fix sketches; runs the repo's linter as hints. |
+| `spec-compliance-reviewer` | Diff versus `spec.md` contract; violations with evidence. |
+| `doc-drift-auditor` ✍ | Docs versus code reality; apply mode fixes mechanical drift. |
+| `release-auditor` | Pre-tag readiness gate and post-tag sweep; runs both ways on patchnotes claims. |
+| `release-executor` ✍ | Cuts a ready release: verbatim tag, GitHub Release, every step read back. Propose-first. |
+| `ci-triage` | Failed CI run to root cause; jobs-API teardown check for never-ran runs. |
+| `ci-posture-auditor` ✍ | Workflows versus the hardened CI shape; apply mode tightens only. |
+| `git-archaeologist` | Regression windows and provenance from history; bisect plans, never executed. |
+| `test-gap-analyst` ✍ | Coverage map; write mode adds the named missing tests, production code untouched. |
+| `dependency-auditor` | Declared versus imported, floors versus used APIs, toolchain drift. |
+| `debt-census` ✍ | TODO/FIXME census dated by blame; apply mode removes named items. |
+| `duplication-scout` | Cross-repo duplicate detection feeding the library-graduation rule. |
+| `cascade-checker` | Downstream call-site inventory for a changed shared-library API. |
 | `workspace-sentinel` | One sweep, every owned repo: dirty trees, unpushed commits and tags, untagged releases, stale catalog rows. |
-| `ci-posture-auditor` | Workflows vs the house-hardened CI shape (SHA pins, permissions, concurrency, timeouts); apply mode writes the hardening, tightening only. |
-| `debt-census` | TODO/FIXME/HACK and dead-reference census, dated by blame, as a cleanup worklist; apply mode removes named census items. |
-| `code-reviewer` | Bug-hunting review of a diff: correctness, edge cases, scope creep, userspace-break risk. |
-| `git-archaeologist` | When did this break and why: regression windows and provenance from log, blame, pickaxe; bisect plans, never executed. |
-| `claim-verifier` | Independent re-verification of a findings list: confirmed / refuted / unverifiable per claim. |
-| `dependency-auditor` | Declared vs imported, floors vs used APIs, stdlib purity, Flatpak vendor staleness, toolchain drift. |
-| `test-gap-analyst` | Coverage map: untested behaviors, suite-discovery failures, duplicated test files; write mode adds the named missing tests and runs exactly those. |
-| `duplication-scout` | Cross-repo similar-module detection feeding the library-graduation rule; evidence, never the recommendation. |
-| `stock-broker` | Markets research briefs: companies, ETFs, peers, and the surrounding markets (rates, FX, commodities) from keyless public sources; portfolio-relative guidance, never execution. |
-| `ledger-analyst` | Personal-finance briefs from hledger journals: cashflow, budget vs actual, net worth, cost basis; encrypted org files fenced off by charter. |
-| `librarian` | Books-collection research over the Calibre library: catalog health, wings and tag tree, series gaps, ownership duplicates, EPUB audits, taxonomy drift; book IDs and dated counts, never writes. |
-| `data-analyst` | Read-only duckdb profiling of named local datasets: schema, nulls, top-N, joins; compact findings without flooding the main thread. |
-| `security-auditor` | Defensive review of owned repos: gitleaks (redacted), risky patterns, advisory cross-checks via gh; ranked findings only. |
-| `charter-architect` | Designs new agents: scorecard verdict (declining is valid), live-probed charter draft, and the full release kit; apply mode lands the approved kit in the repo and validates it. |
-| `syshealth-auditor` | Backup and system-health census: borg freshness from state reads, sys_maintain staleness and failures, failed units, disk space; root-gated checks reported as directions. |
-| `schedule-analyst` | Weekly school-and-life planning digest: Todoist via td (overdue triage, per-course and per-project load, streaks) cross-referenced with gcalcli agendas; recommendations only, never task writes; reports calendar-unavailable honestly while the OAuth session is down. |
-| `music-archivist` | Music-collection research over lattice's read-only audits: health digest, genre hygiene against taxonomy.md, duplicates, codec coverage, discography gaps, listening candidates; album paths, never a tag edit. |
-| `claw` | Executes Calibre import phases 1 and 2: vets a downloads batch (battery, dup screen, gated repairs, stamps, staging, manifest) and imports the signed manifest; decision points return as prompts, the seal stays with the main thread. |
-| `shadow` | Read-only compliance pass over one import phase: manifest versus disk, verdicts versus decisions, imported ID sets, stamp read-backs, bak diffs; blocking findings before sign or commit. |
-| `latro` | Deep web research written up as one new cited markdown report per dispatch: project technologies, book acquisition, papers, languages, web design; WebSearch/WebFetch plus a keyless endpoint ladder (arXiv, Crossref, OpenLibrary); overwrite refused, never authenticates. |
-| `assay` | Whole-repo report card on five metrics (code quality, code cleanliness, repo cleanliness, documentation, cohesion) with an append-only, zero-deletion goals block for roadmap.md; read-only idea grading on four criteria with web prior art and a worth-it verdict. |
-| `imprint` | Tends a repo's GitHub identity: audits the description and topics against what the repo actually is (grounded in README, spec, history) and on apply dispatches updates exactly those two fields via gh, read back and itemized before/after; never files, tags, releases, or issues. |
-| `issue-census` | Retrospective census of OPEN GitHub issues per repo or fleet: aging, duplicate clusters (open vs open), fix-already-landed cross-checks against git and tags, label hygiene, zombies, label-only triage verdicts (closed vocabulary, false-positive averse); rule-based SemVer hints and a release-batch proposal; never a comment, closure, or label write. |
-| `fleet-sync-auditor` | Four-tier propagation audit after a release or identity change, per the sync-reference-docs skill: repo docs (carriers, badge URLs, runtime pins), the catalog row, the profile and codex public surfaces, the vault's identity stubs; drift table with path:line evidence, propose-only. |
-| `upstream-triage` | Upstream window triage for a dispatch-named reference clone (the weekly NetNewsWire sync behind Viaduct): commits since the last recorded sync, clustered into arcs, port/skip/roadmap-candidate verdicts with conflict flags, an ordered port worklist, a draft sync note; one chartered mutation, a fetch on the named clone only. |
-| `pixel-judge` | Multimodal acceptance pass on handed-in captures of non-document visuals (GTK/Qt, Godot, desktop theming): JSON verdicts against the dispatch's acceptance bar, recapture guidance, region-scoped grim self-capture to /tmp only; never edits, never drives the UI. |
-| `vault-archivist` | Read-only Obsidian vault hygiene audit: unresolved links, orphans judged against the vault's own conventions, frontmatter and tag-taxonomy drift, duplicates, unreferenced assets; proposed connections, never applied. |
-| `subscription-watchdog` | Renewal audit over exported bank/card statement CSVs: merchant-stem clustering, cadence inference, price-change, missed-billing, and trial-to-paid flags; not-applicable until statements exist. |
+
+### Issues, marketing, and the web
+
+| Agent | Job |
+|---|---|
+| `issue-census` | Open-issue census: aging, duplicates, fix-already-landed, label verdicts, release batch. Never comments or closes. |
+| `repo-marketer` | Launch desk: where a repo should be posted, channel-native drafts, where-not-to-post, paid-ad verdict. Never posts; you do. |
+| `fleet-sync-auditor` | Four-tier propagation audit after a release or rename (repo docs, catalog, public surfaces, vault); propose-only. |
+| `upstream-triage` | Reference-clone upstream windows into port/skip verdicts and a port worklist. |
+| `latro` ✍ | Deep web research as one new cited report per dispatch; keyless sources only. |
+| `stock-broker` | Markets briefs from keyless public data: equities, ETFs, rates, FX. |
+| `charter-architect` ✍ | Designs new agents: scorecard, live-probed charter, full release kit; apply mode lands it. |
+
+### Collections and life
+
+| Agent | Job |
+|---|---|
+| `librarian` | Calibre library research through read-only tooling; never writes the database. |
+| `music-archivist` | Music-collection audits through lattice's read-only surface. |
+| `vault-archivist` | Obsidian vault hygiene audit; connections proposed, never applied; prose never rewritten. |
+| `subscription-watchdog` | Renewal audit over exported statement CSVs; dormant until statements exist. |
+| `ledger-analyst` | hledger finance briefs; dormant until a journal exists; encrypted files fenced. |
+| `schedule-analyst` | Weekly planning digest from Todoist and calendar; recommendations only. |
+| `data-analyst` | Read-only duckdb profiling of named datasets. |
+
+### Machine, security, and the pipeline
+
+| Agent | Job |
+|---|---|
+| `syshealth-auditor` | Backup freshness, failed units, disk space from state reads; root-gated checks reported as directions. |
+| `security-auditor` | Defensive review of owned repos: gitleaks redacted, risky patterns, advisory checks. |
+| `claw` ✍ | Calibre import phases 1 and 2 through the pipeline's own structural gates; the seal stays with the main thread. |
+| `shadow` | Read-only phase gate over an import: verdicts versus manifest before sign or commit. |
+
+### Judges and gates
+
+| Agent | Job |
+|---|---|
+| `claim-verifier` | Independent re-verification of a findings list: confirmed, refuted, or unverifiable per claim. |
+| `slop-reader` | AI-prose pass on commissioned text; flags quotes, never rewrites. |
+| `pixel-judge` | Multimodal acceptance pass on app, game, and desktop captures; JSON verdicts against a stated bar. |
+| `assay` ✍ | Five-metric repo report card; goals append to roadmap.md with zero deletions. Idea mode is read-only. |
+| `imprint` ✍ | GitHub metadata tender: description and topics via two gh verbs, read back; never tags, releases, or issues. |
+
+✍ = chartered write seat (10 total; every write fenced, read back, and reported; never a commit).
+
+## Skills
+
+Eight skills ship beside the agents and surface as `dragon-agents:<skill>`:
+
+| Skill | Job |
+|---|---|
+| `herald` | Reddit presence drafts in the operator's voice: posts, replies, hostile-reply buffers. Drafts only; you post. |
+| `obsidian-cli` | Drive a running Obsidian app from the shell; includes the community gotcha audit. |
+| `obsidian-markdown` | Obsidian-flavored Markdown: wikilinks, embeds, callouts, properties. |
+| `obsidian-bases` | Bases database views: filters, formulas, table and kanban views. |
+| `json-canvas` | Canvas files: nodes, edges, groups, layout validation. |
+| `obsidian-headless` | Obsidian Sync and Publish from a terminal (subscription required). |
+| `defuddle` | Clean Markdown extraction from web pages. |
+| `knap` | Markdown rendering from templates plus JSON/CSV data. |
+
+The seven Obsidian skills are vendored verbatim from the official
+[obsidianmd/obsidian-skills](https://github.com/obsidianmd/obsidian-skills)
+repository (MIT); provenance, commit pins, and the vet record live in
+[skills/ATTRIBUTION.md](skills/ATTRIBUTION.md).
+
+## The design guide
+
+[docs/guide/](docs/guide/README.md) carries the fleet's optimization
+arsenal: model routing (which seat gets which model and why), GLM
+platform settings, subagent charter design, fleet operations, and the
+sourced research behind them (73 citations across two research passes,
+plus the marketing and comparative-design passes for v1.6.0).
 
 ## Install
 
-In ZCode: Settings → Plugin Management → Discover tab → `+` → add this directory as a local marketplace → install **dragon-agents**. Plugins from local (cache) marketplaces like this one install **disabled** until first enabled; only bundled official marketplace plugins are enabled by default. After enabling, trust the `enabledPlugins` key in `~/.zcode/cli/config.json` and a canary dispatch over the UI toggle, and remember the agent roster only lands in conversations opened after an app restart.
+In ZCode: Settings → Plugin Management → Discover tab → `+` → add this
+repository as a local marketplace → install **dragon-agents**.
+Marketplace plugins install disabled until first enabled; after
+enabling, trust the `enabledPlugins` key in `config.json` and a canary
+dispatch over the UI toggle. The agent roster and skill set bake at app
+boot: a roster change lands in conversations opened after the next
+app restart.
 
 ## Model guidance
 
-Any text model works; the agents were written for text-only subagents (no vision). Flash-tier models are the sensible default for read-only sweeps; on analysis-heavy dispatches (cascade-checker, spec-compliance-reviewer, stock-broker, ledger-analyst, security-auditor, charter-architect, claw, shadow, latro, assay, imprint, upstream-triage) a stronger model is worth it, and the ten write-capable agents (claw, charter-architect, ci-posture-auditor, doc-drift-auditor, debt-census, test-gap-analyst, latro, assay, imprint, release-executor) belong on the strong tier: writes and verdicts that gate work are judgment. `pixel-judge` is the one seat whose pin is a functional requirement: multimodal-or-nothing, GLM-5.3-Flash (the document visual-judge precedent); a text-only pin returns inconclusive on every capture. `vault-archivist` and `subscription-watchdog` are Flash-tier sweep seats: rubric-driven vault audits and deterministic CSV clustering, the librarian and data-analyst precedent. Per-agent model picks live in Settings → Subagents.
+Any text model works; the roster was written for text-only subagents
+(one seat, `pixel-judge`, is the exception and needs an image-capable
+pin). The routing principle: fast-tier models for rubric-driven
+sweeps, the strong tier for judgment that gates work and for anything
+that writes. The full rationale lives in
+[docs/guide/model-routing.md](docs/guide/model-routing.md); per-agent
+picks live in Settings → Subagents.
 
 ## Development
 
-`python3 scripts/validate.py` checks both manifests and every agent charter: frontmatter fields, per-class tools (`[Read, Bash]` for read-only agents, `[Read, Bash, WebSearch, WebFetch]` for assay, `[Read, Write, Bash, WebSearch, WebFetch]` for latro, `[Read, Edit, Write, Bash]` for the five write seats, `[Read, Bash]` for imprint, whose writes are fenced to the two gh metadata verbs), the read-only line for readers, the Clean tree and never-commit fences for writers, the new-file and never-authenticate fences for latro, the append-only fence for assay, the metadata-lane, two-mutations, never-commit, and forbidden-mutations fences for imprint, the no-subagent line everywhere, the `## Debug reporting` duty on every charter, the zsh shell-discipline and language-discipline rules on every charter, ci-triage's jobs-API teardown check and release-auditor's identical-sort set-compare rule, latro's any-Bash-mutation report fence, corrective-Write allowance, and named-tool DEGRADED line, release-auditor's claims-without-commits truth check, issue-census's never-post, closed-vocabulary, and false-positive-aversion fences, fleet-sync-auditor's propose-only and vault no-versions fences, upstream-triage's named-clone fetch fence and fast-forward rule, release-executor's clean-tree, three-mutations, verbatim-tag, and force-push/re-tag fences, pixel-judge's multimodal-description, UI-driving, and code-edit fences, the skills/ structural checks (the seven vendored Obsidian skills, each SKILL.md's frontmatter name matching its folder, ATTRIBUTION.md present), and the thirty-seven-agent roster. CI runs the same script on every push. `AGENTS.md` documents the plugin's rules and the marketplace/runtime gotchas; read it before changing how the plugin is packaged. `docs/guide/` carries the published optimization-guide arsenal: model routing, GLM-5.3/Flash platform settings, subagent design, fleet operations, and the sourced research behind them.
+`python3 scripts/validate.py` is the whole test suite and CI gate: it
+checks both manifests, every charter's frontmatter and tool class, and
+the pinned fence lines each charter must carry (read-only lines,
+never-commit fences, the shell and language discipline rules, per-seat
+method pins such as the census's never-post fence), the exact roster
+of thirty-eight, the eight-skill set, and the evals convention. Run it
+before committing; CI runs the same script on every push.
+
+`evals/<seat>/` holds per-seat dispatch prompts and output-shape
+graders; the convention is documented and seeded incrementally (the
+directory does not exist yet; its absence passes validation).
+
+`AGENTS.md` documents the plugin's rules, the marketplace mechanics,
+and the runtime gotchas; read it before changing how the plugin is
+packaged. The optimization guide under `docs/guide/` explains the
+design decisions.
 
 ## License
 

@@ -34,7 +34,8 @@ the shared language-discipline rule (v1.5.0),
 and the vendored skills/ set is checked structurally: exactly the seven
 Obsidian skills, each SKILL.md present with a frontmatter name matching
 its folder, plus the attribution file.
-CI runs this on every push.
+The v1.6.0 comparative patches pin code-reviewer's fix-sketch and linter-folding rungs, latro's pinpoint-citation rule, and the untrusted-corpus lines on latro and issue-census.
+The same release adds repo-marketer, a web-research reader in the assay tool class (read-only with web tools): its pins are the never-post fence, the never-authenticate rule, drafts landing in the final message only, and the per-draft compliance note. The roster grows to thirty-eight, and the skills set to eight (herald joins the seven vendored Obsidian skills). CI runs this on every push.
 """
 
 from __future__ import annotations
@@ -59,12 +60,14 @@ WRITE_AGENTS = {
 }
 WEB_WRITE_AGENTS = {"latro"}
 WEB_APPEND_AGENTS = {"assay"}
+WEB_RESEARCH_AGENTS = {"repo-marketer"}
 GH_META_AGENTS = {"imprint"}
 RELEASE_EXEC_AGENTS = {"release-executor"}
 VISUAL_JUDGE_AGENTS = {"pixel-judge"}
 SKILLS_DIR = ROOT / "skills"
 EXPECTED_SKILLS = {
     "defuddle",
+    "herald",
     "json-canvas",
     "knap",
     "obsidian-bases",
@@ -99,6 +102,7 @@ EXPECTED_AGENTS = {
     "release-auditor",
     "release-executor",
     "repo-cartographer",
+    "repo-marketer",
     "schedule-analyst",
     "security-auditor",
     "slop-reader",
@@ -189,7 +193,7 @@ def check_agents() -> None:
     files = sorted(AGENTS_DIR.glob("*.md"))
     found = {f.stem for f in files}
     check(
-        "roster is exactly the expected thirty-seven agents",
+        "roster is exactly the expected thirty-eight agents",
         found == EXPECTED_AGENTS,
         f"found {sorted(found)}",
     )
@@ -213,7 +217,7 @@ def check_agents() -> None:
             expected_tools = WRITE_TOOLS
         elif stem in WEB_WRITE_AGENTS:
             expected_tools = WEB_WRITE_TOOLS
-        elif stem in WEB_APPEND_AGENTS:
+        elif stem in WEB_APPEND_AGENTS or stem in WEB_RESEARCH_AGENTS:
             expected_tools = WEB_READ_TOOLS
         elif (
             stem in GH_META_AGENTS
@@ -274,6 +278,24 @@ def check_agents() -> None:
                 f"{stem}: charter forbids authenticating",
                 "never authenticate" in lowered,
             )
+        elif stem in WEB_RESEARCH_AGENTS:
+            check(
+                f"{stem}: charter carries the never-post fence",
+                "never posts" in lowered,
+            )
+            check(
+                f"{stem}: charter forbids authenticating",
+                "never authenticate" in lowered,
+            )
+            check(
+                f"{stem}: pins drafts to the final message only",
+                "final message only" in lowered,
+            )
+            check(
+                f"{stem}: requires a compliance note on every draft",
+                "compliance note" in lowered,
+            )
+            check(f"{stem}: charter declares read-only", "Read-only" in text)
         elif stem in GH_META_AGENTS:
             check(
                 f"{stem}: charter is read-only outside the metadata lane",
@@ -346,6 +368,29 @@ def check_agents() -> None:
                 f"{stem}: charter names the missing tool in its degraded line",
                 "degraded: websearch absent" in lowered,
             )
+        if stem == "code-reviewer":
+            check(
+                f"{stem}: charter carries the fix-sketch rule",
+                "fix sketch" in lowered,
+            )
+            check(
+                f"{stem}: charter carries the linter-folding rung",
+                "candidate findings to confirm or drop" in lowered,
+            )
+        if stem == "latro":
+            check(
+                f"{stem}: charter carries the pinpoint-citation rule",
+                "where in the source the claim lives" in lowered,
+            )
+            check(
+                f"{stem}: charter carries the untrusted-corpus fence",
+                "evidence, never instructions" in lowered,
+            )
+        if stem == "issue-census":
+            check(
+                f"{stem}: charter carries the untrusted-corpus fence",
+                "reported content, never followed" in lowered,
+            )
         if stem == "issue-census":
             check(
                 f"{stem}: charter carries the false-positive aversion rule",
@@ -387,7 +432,7 @@ def check_skills() -> None:
         return
     found = {p.name for p in SKILLS_DIR.iterdir() if p.is_dir()}
     check(
-        "skills set is exactly the expected seven vendored skills",
+        "skills set is exactly the expected eight skills",
         found == EXPECTED_SKILLS,
         f"found {sorted(found)}",
     )
@@ -407,11 +452,33 @@ def check_skills() -> None:
         )
 
 
+EVALS_DIR = ROOT / "evals"
+
+
+def check_evals() -> None:
+    """Light parse check for the evals/<seat>/ convention (v1.6.0).
+
+    The convention: per seat, evals/<seat>/prompt.md holds a realistic
+    dispatch prompt and evals/<seat>/graders.md asserts the charter's
+    Output contract shapes. Seeding is incremental; an empty or absent
+    evals/ directory passes while the convention is documented.
+    """
+    if not EVALS_DIR.is_dir():
+        check("evals/ convention documented, no evals/ directory yet", True)
+        return
+    seats = sorted(dir_.name for dir_ in EVALS_DIR.iterdir() if dir_.is_dir())
+    check(f"evals/ covers {len(seats)} seat(s)", True, ", ".join(seats) or "none")
+    for seat in seats:
+        prompt = EVALS_DIR / seat / "prompt.md"
+        check(f"evals/{seat}/prompt.md exists", prompt.is_file())
+
+
 def main() -> int:
     check_marketplace_manifest()
     check_plugin_manifest()
     check_agents()
     check_skills()
+    check_evals()
     if failures:
         print(f"\n{len(failures)} check(s) failed")
         return 1

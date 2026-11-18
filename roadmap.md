@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v1.5.0.
+future session re-litigates it. Updated as of v1.6.0.
 
 ## Standing rules (how this roster grows)
 
@@ -72,6 +72,12 @@ future session re-litigates it. Updated as of v1.5.0.
   Uninstall → Install, cache-slot verify, app relaunch, canary dispatch,
   and the full model re-pin (a reinstall wipes every pin). The pass is
   Brandon's; the release is not done until it has happened.
+- **evals/ is the standing eval convention (v1.6.0).** Per seat,
+  evals/<seat>/prompt.md holds a realistic dispatch prompt and
+  evals/<seat>/graders.md asserts the charter's Output contract shapes;
+  seeding is incremental (an empty evals/ passes), and new seats are
+  expected to seed at least the canary prompt when their release can
+  carry the file.
 - **Roster candidates go through charter-architect.** When a candidate's
   entry condition fires, dispatch the architect to scorecard it and
   draft the kit; no charter gets hand-written in the main thread
@@ -253,6 +259,25 @@ future session re-litigates it. Updated as of v1.5.0.
       the Snyk ToxicSkills numbers (36.82 percent of 3,984 community
       skills flawed, 76 malicious); validate.py gains the structural
       check.
+- [x] v1.6.0 (2026-11-18): the comparative-design and marketing wave
+      (roster 38: twenty-seven read-only, ten write seats, one
+      multimodal judge), drafted by charter-architect from the
+      repo-marketing research report (37 sources, the campaign's second
+      leg after v1.5.0's 69-source pair). repo-marketer is the launch
+      desk: placement analysis against live channel rules and the repo's
+      maturity, an explicit where-not-to-post list, channel-native
+      drafts from repo artifacts (demonstrate-don't-claim, honest
+      maturity, per-channel compliance notes, claims traced),
+      similar-projects research via the keyless hn.algolia.com API,
+      the paid-ad rubric with arithmetic, and the measurability plan;
+      read-only with web tools (the assay class), never posts, never
+      authenticates, drafts in the final message only. Probing fenced
+      Reddit's walled rules routes (curl 302s to login; WebFetch route
+      plus unverified marking chartered instead) and verified HN,
+      Lobsters, Changelog, and TWIR rules surfaces clean. skills/herald
+      (main-thread authored) lands beside the vendored seven; the same
+      release carries the comparative-design report's charter patches,
+      the evals/ convention, and a README rebuilt for readability.
 - [x] v0.8.1 (2026-11-10): charter hardening before activation - claw's
       rung 0 becomes an explicit three-tool toolchain gate (REFUSED +
       install command on any miss), shadow carries the matching BLOCKED
@@ -427,6 +452,16 @@ future session re-litigates it. Updated as of v1.5.0.
   and repo state reads), gcalcli event queries (RefreshError
   invalid_grant on the stored session, 2026-11-11; `list` still
   answers from local cache).
+- **Comparative-design report deltas (2026-11-18).** The 32-source
+  comparative seat-design report's verdicts: 5 STEALs landed
+  (code-reviewer fix-sketch and linter-folding, latro pinpoint
+  citations, the untrusted-corpus lines on latro and issue-census, and
+  the evals/ convention, v1.6.0); its 9 CONSIDERs and 11 SKIPs
+  (including all of the release-automation lane, judged additive over
+  release-auditor plus release-executor for a prose-first owner-gated
+  flow) live in /tmp ephemera (comparative-designs-report.md and the
+  campaign ledger, gone on reboot) and were never chartered from, so a
+  future session re-reads rather than assumes them.
 - **The usage-measurement gap:** ZCode session logs cannot measure
   dispatch counts (7-day retention, tool_use inputs not greppable), so
   roster-pruning calls ride judgment rather than telemetry. Revisit if
