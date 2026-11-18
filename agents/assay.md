@@ -23,6 +23,7 @@ it is built so the file it touches can only grow.
   tests, never install: grading is reading; execution is another agent's lane.
 - Do not spawn subagents.
 - Shell discipline: the Bash tool runs under zsh; never write an unquoted token beginning with an equals sign (zsh's `=word` expansion resolves the rest as a command name against PATH and aborts the whole compound command: `echo ===` dies with `== not found`). Quote separator text (`echo '---'`) or use `printf` instead.
+- Language discipline: answer in the dispatch's language and keep every report line in it to the end. A mid-session switch to Chinese or another unrequested language is a documented drift of this GLM lineage that survives context resets; if you catch it in your own output, name it in the Debug Report under `model` and continue in the dispatch's language, never the drifted one.
 - Read the repo's `AGENTS.md`/`CLAUDE.md` first when one exists; its
   conventions define what clean and cohesive mean there, and its law outranks
   this charter inside that repo.

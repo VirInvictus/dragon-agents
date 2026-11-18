@@ -29,7 +29,12 @@ release-executor (clean tree, the three-mutations allowlist, the
 verbatim tag flag, force-push and re-tag bans), and pixel-judge (the
 multimodal description requirement and the UI-driving and code-edit
 bans). Every charter also carries the shared zsh shell-discipline rule
-against unquoted leading-`=` tokens (v1.3.4). CI runs this on every push.
+against unquoted leading-`=` tokens (v1.3.4). Every charter also carries
+the shared language-discipline rule (v1.5.0),
+and the vendored skills/ set is checked structurally: exactly the seven
+Obsidian skills, each SKILL.md present with a frontmatter name matching
+its folder, plus the attribution file.
+CI runs this on every push.
 """
 
 from __future__ import annotations
@@ -57,6 +62,16 @@ WEB_APPEND_AGENTS = {"assay"}
 GH_META_AGENTS = {"imprint"}
 RELEASE_EXEC_AGENTS = {"release-executor"}
 VISUAL_JUDGE_AGENTS = {"pixel-judge"}
+SKILLS_DIR = ROOT / "skills"
+EXPECTED_SKILLS = {
+    "defuddle",
+    "json-canvas",
+    "knap",
+    "obsidian-bases",
+    "obsidian-cli",
+    "obsidian-headless",
+    "obsidian-markdown",
+}
 EXPECTED_AGENTS = {
     "assay",
     "cascade-checker",
@@ -89,9 +104,11 @@ EXPECTED_AGENTS = {
     "slop-reader",
     "spec-compliance-reviewer",
     "stock-broker",
+    "subscription-watchdog",
     "syshealth-auditor",
     "test-gap-analyst",
     "upstream-triage",
+    "vault-archivist",
     "workspace-sentinel",
 }
 SEMVER = re.compile(r"^\d+\.\d+\.\d+$")
@@ -172,7 +189,7 @@ def check_agents() -> None:
     files = sorted(AGENTS_DIR.glob("*.md"))
     found = {f.stem for f in files}
     check(
-        "roster is exactly the expected thirty-five agents",
+        "roster is exactly the expected thirty-seven agents",
         found == EXPECTED_AGENTS,
         f"found {sorted(found)}",
     )
@@ -223,6 +240,10 @@ def check_agents() -> None:
         check(
             f"{stem}: charter carries the zsh shell-discipline rule",
             "=word" in lowered,
+        )
+        check(
+            f"{stem}: charter carries the language-discipline rule",
+            "language discipline" in lowered,
         )
         if stem in WRITE_AGENTS:
             check(
@@ -359,10 +380,38 @@ def check_agents() -> None:
             )
 
 
+def check_skills() -> None:
+    check("skills/ directory exists", SKILLS_DIR.is_dir())
+    check("skills/ATTRIBUTION.md present", (SKILLS_DIR / "ATTRIBUTION.md").is_file())
+    if not SKILLS_DIR.is_dir():
+        return
+    found = {p.name for p in SKILLS_DIR.iterdir() if p.is_dir()}
+    check(
+        "skills set is exactly the expected seven vendored skills",
+        found == EXPECTED_SKILLS,
+        f"found {sorted(found)}",
+    )
+    for name in sorted(EXPECTED_SKILLS & found):
+        path = SKILLS_DIR / name / "SKILL.md"
+        check(f"skills/{name}/SKILL.md exists", path.is_file())
+        if not path.is_file():
+            continue
+        fields = parse_frontmatter(path.read_text(encoding="utf-8"))
+        if fields is None:
+            check(f"skills/{name}: frontmatter parses", False)
+            continue
+        check(
+            f"skills/{name}: frontmatter name matches folder",
+            fields.get("name") == name,
+            fields.get("name", ""),
+        )
+
+
 def main() -> int:
     check_marketplace_manifest()
     check_plugin_manifest()
     check_agents()
+    check_skills()
     if failures:
         print(f"\n{len(failures)} check(s) failed")
         return 1

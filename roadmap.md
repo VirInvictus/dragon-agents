@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v1.4.0.
+future session re-litigates it. Updated as of v1.5.0.
 
 ## Standing rules (how this roster grows)
 
@@ -225,6 +225,34 @@ future session re-litigates it. Updated as of v1.4.0.
       handed-in path), ydotool forbidden absolutely. release-auditor
       gains the claims-without-commits truth check (the pre-release
       cross-check now runs both ways).
+- [x] v1.5.0 (2026-11-18): the life-domains wave (roster 37:
+      twenty-six read-only, ten write seats, one multimodal judge),
+      drafted by charter-architect from the skills-ecosystem and
+      stealable-seats research pair (69 sources across two reports).
+      vault-archivist is the az9713 /vault-health pattern as a seat:
+      read-only vault hygiene against the vault's own conventions,
+      with the buildwithclaude connection-agent lane folded into its
+      method as a proposals-only rung (modes-before-agents) rather
+      than a separate seat. Probing found the enumerator trap the
+      charter now pins: the reference vault's .gitignore hides the
+      daily journal and eight personal notes from fd and partially
+      from rg, so rung 0 reconciles three universes before any count.
+      subscription-watchdog is the community subscription-audit
+      pattern over manually exported statement CSVs, deterministic
+      awk/sort clustering with the encrypted-finance, no-bank-API,
+      and no-mail fences absolute; it ships dormant (the
+      ledger-analyst precedent) and lights up when statement exports
+      exist (Dependencies below). The shared language-discipline line
+      lands on all thirty-seven charters, pinned in validate.py like
+      the v1.3.4 shell line before it; the history is the
+      optimization-guide self-audit's not-applied list (a GLM-lineage
+      language switch that survives context resets), promoted from
+      the v1.4.1 candidate into this wave. skills/ vendors the seven
+      official Obsidian skills (obsidianmd/obsidian-skills, commit
+      1c3f6df5, MIT) with ATTRIBUTION and the vet record shaped by
+      the Snyk ToxicSkills numbers (36.82 percent of 3,984 community
+      skills flawed, 76 malicious); validate.py gains the structural
+      check.
 - [x] v0.8.1 (2026-11-10): charter hardening before activation - claw's
       rung 0 becomes an explicit three-tool toolchain gate (REFUSED +
       install command on any miss), shadow carries the matching BLOCKED
@@ -261,6 +289,9 @@ future session re-litigates it. Updated as of v1.4.0.
       gains portfolio-relative guidance.
 - [ ] The gcalcli OAuth session is refreshed (`gcalcli init`,
       Brandon's act): schedule-analyst gains the calendar join.
+- [ ] Statement exports exist as plain CSVs in a dispatch-named
+      location: subscription-watchdog goes from not-applicable to
+      live renewal audits.
 - [x] The v0.3.0 + v0.4.0 + v0.5.0 activation pass (one reinstall
       covers all three). *(Completed 2026-10-05: install, relaunch,
       canaries all passing; pins were retained that time, only the new

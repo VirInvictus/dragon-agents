@@ -2,6 +2,91 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v1.5.0 (2026-11-18)
+
+The life-domains wave plus the fleet's first vendored skills: two new
+read-only seats, one shared charter line on every charter, and skills/
+in the repo. Drafted by charter-architect from the campaign's research
+pair (a 37-source stealable-seats report and a 32-source
+skills-ecosystem report, 69 sources total). Roster thirty-seven:
+twenty-six read-only, ten write seats, one multimodal judge.
+
+- **vault-archivist** (GLM-5.3-Flash): read-only hygiene audit of an
+  Obsidian vault, the az9713 /vault-health pattern proven on a
+  10,918-file vault (baseline ~4,979 unresolved links): unresolved
+  wikilinks and dangling targets, orphan and dead-end notes judged
+  against the vault's own linking conventions, frontmatter coverage
+  and key consistency, tag-taxonomy drift against the vault's declared
+  roots, duplicate and near-duplicate notes, unreferenced attachments,
+  plus PROPOSED connections between related notes (the buildwithclaude
+  connection-agent lane folded in as a proposals-only rung,
+  modes-before-agents: a suggestion list, never an edit). Vault prose
+  is never rewritten, and the vault's own guidance file outranks the
+  charter (the librarian law-corpus rule). Live probing on the
+  reference vault (730 notes by its own walk) pinned three charter
+  rungs: the audit universe is reconciled across enumerators because
+  the vault's .gitignore deliberately hides the daily journal and
+  eight personal notes (fd 626, rg 633, the vault's own script 730;
+  an audit trusting one enumerator silently skips the journal), the
+  vault's own graph_audit.py is the alias-aware primary authority
+  (live: 5 dangling links, 31 orphans under its no-in-and-out
+  definition, 2 unreferenced assets), and raw rg extraction carries
+  three traps (multi-file path prefixes without -I, 405 embeds and
+  136 empty dataview constructs absorbed by a naive pattern, aliases
+  and anchors needing strips). One live convention finding of the
+  kind the seat exists for: the core daily-notes config carries a
+  template path the vault's own law forbids (the Templater race);
+  reported, never fixed.
+- **subscription-watchdog** (GLM-5.3-Flash): the renewal audit over
+  manually exported bank and card statement CSVs, the offline pattern
+  community skills already shipped (dvcrn's subscription-audit; the
+  agentusecases corpus records a $700 recovery from exactly this
+  audit): merchant-stem clustering, cadence from date gaps,
+  stable/price-change/missed-billing/trial-to-paid/promo-step flags,
+  optional budget-line gate. Deterministic awk/sort work with
+  judgment labeled; the fences are absolute: never a bank API, never
+  Plaid, never mail (the OpenClaw inbox record is why), never ~/org/
+  or anything .gpg/.asc. Dormant until data (the ledger-analyst
+  precedent): no statements named returns a first-class
+  not-applicable verdict naming the export convention, so the seat
+  ships before the data exists. Probing on synthetic statements
+  verified the whole rubric and two parse traps: gawk FPAT keeps its
+  quotes (a quoted US date silently zeroed every gap until quotes
+  were stripped first), and a missed month hides from the median (a
+  31-day series carrying one 61-day gap needs the per-gap check, not
+  the average).
+- **Language discipline, all thirty-seven charters**: answer in the
+  dispatch's language to the end of the report. The history is the
+  optimization-guide self-audit's not-applied list: a mid-session
+  switch to Chinese or another unrequested language is a GLM-lineage
+  drift that survives context resets, so the line orders the drift
+  named in the Debug Report and the report continued in the
+  dispatch's language. Validator-pinned like the v1.3.4 shell line
+  before it (issue #7's sibling, promoted from the v1.4.1 candidate
+  slot into this wave), pin written first.
+- **skills/ vendored**: the seven official Obsidian skills
+  (obsidian-cli, obsidian-markdown, obsidian-bases, json-canvas,
+  obsidian-headless, defuddle, knap) from obsidianmd/obsidian-skills
+  commit 1c3f6df5, MIT, vendored verbatim with ATTRIBUTION.md
+  (provenance, commit pins, license chain) and a vet record shaped by
+  the Snyk ToxicSkills audit: 36.82 percent of 3,984 community skills
+  carried flaws, 13.4 percent critical, 76 confirmed malicious (91
+  percent prompt injection), which is why the set is
+  official-source-only, license-checked, and source-read before
+  vendoring. The community CLI-audit reference (the 57-scenario
+  Obsidian CLI gotcha set) is merged per the skills README.
+
+validate.py grows the roster to thirty-seven, pins the
+language-discipline rule on every charter, and adds the skills/
+structural check: exactly the seven expected skills, every SKILL.md
+present with a frontmatter name matching its folder, ATTRIBUTION.md
+present. A punctuation-hygiene sweep rode the same release: five
+charters (repo-cartographer, doc-drift-auditor, code-reviewer,
+spec-compliance-reviewer, claim-verifier) carried em-dashes in their
+output templates from before the house prose rule existed; the
+templates now use house punctuation, and no verdict vocabulary
+changed.
+
 ## v1.4.0 (2026-11-18)
 
 The issue-and-propagation wave: five new seats drafted by
