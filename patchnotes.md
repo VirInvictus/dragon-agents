@@ -2,6 +2,41 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v1.6.1 (2026-11-20)
+
+Four charter patches from the standing debug-report duty, batched under
+the 2026-11-13 policy. The two audit seats (release-auditor,
+doc-drift-auditor) and charter-architect now carry the snapshot-staleness
+rule (issue #8): the platform-injected copy of a repo's AGENTS.md is a
+session-start snapshot, so every dispatch after a mid-session kit
+application sees a pre-update copy; disk is the truth on disagreement,
+and the disagreement itself is never a finding (recorded live
+2026-11-18, when an audit dispatch's injected snapshot claimed a roster
+count disk contradicted). release-executor gains the publish-workflow
+release-race branch (issue #11): a repo whose tag-push workflow mints
+its own GitHub Release can win the race against the chartered create
+(recorded the same day on bindery-cli v1.2.3, where the workflow's
+release landed inside the create's window and the ordered title shape
+was lost to a 422); after the tag push the executor polls briefly,
+verifies a workflow-minted release against the entry and reports deltas
+as a first-class outcome, and creates only when the poll window passes
+empty, with the race branch named as the one planned exception to the
+release-already-exists refusal. The same patch retires the tag-message
+thickness clause in favor of a class check (issue #11): the passing
+shape is a full multi-line entry in the repo's own style, never a
+paraphrase or degenerate shape, with sibling detail as class evidence
+rather than a minimum word count (the old clause read as a size ratchet
+and contradicted shipped history: one repo's healthy entries shrank
+from 67/606 to 49/431 lines). latro carries the single-page-spec
+truncation fallback (issue #10) and assay the web-recovery discipline
+(issue #9): WebFetch's summarizer can silently cut long single-page
+documents (W3C TR specs are the recorded case), so a missing section a
+fetched document's own table of contents names gets extracted from the
+respec source in its standards repo instead; a WebSearch pass with no
+citable links is a failed pass, google.com/goto redirects are discarded,
+and a DNS miss gets one domain-variant retry. validate.py pins all six
+lines.
+
 ## v1.6.0 (2026-11-18)
 
 The comparative-design and marketing wave: one new read-only seat, the

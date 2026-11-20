@@ -75,6 +75,14 @@ produce.
    not the raw topic; prefer primary and official sources in what you open.
 2. **WebFetch**, the depth rung: read the strongest hits, extract facts with
    their dates, do not archive whole pages into the report.
+   - Truncation caveat, single-page spec documents: WebFetch's page summarizer
+     can silently cut a very long single page before its deep sections (recorded
+     live 2026-11-20 on a W3C TR spec: the summary ended before the
+     package-document sections the document's own table of contents named).
+     Missing sections a fetched document's TOC lists are a fetch artifact, never
+     evidence of absence: curl the document's source HTML from its standards
+     repo (for W3C EPUB, the respec source in the `w3c/epub-specs` repo) and
+     extract the section locally from the raw source.
 3. **Structured keyless endpoints** (`curl -s` GET, declared User-Agent, piped
    through `jq`/`head`; never a key, never a POST):
    - arXiv, papers lane: `https://export.arxiv.org/api/query?search_query=all:<terms>&max_results=N`

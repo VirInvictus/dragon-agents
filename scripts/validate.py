@@ -36,6 +36,7 @@ Obsidian skills, each SKILL.md present with a frontmatter name matching
 its folder, plus the attribution file.
 The v1.6.0 comparative patches pin code-reviewer's fix-sketch and linter-folding rungs, latro's pinpoint-citation rule, and the untrusted-corpus lines on latro and issue-census.
 The same release adds repo-marketer, a web-research reader in the assay tool class (read-only with web tools): its pins are the never-post fence, the never-authenticate rule, drafts landing in the final message only, and the per-draft compliance note. The roster grows to thirty-eight, and the skills set to eight (herald joins the seven vendored Obsidian skills). CI runs this on every push.
+The v1.6.1 debug-duty patches pin: the snapshot-staleness rule on release-auditor and doc-drift-auditor (platform-injected AGENTS.md is a session-start snapshot; disk is the truth), release-executor's publish-workflow release-race branch and the tag-message class check that retires the size ratchet, latro's single-page-spec truncation fallback (respec source extraction), and assay's web-recovery discipline.
 """
 
 from __future__ import annotations
@@ -422,6 +423,30 @@ def check_agents() -> None:
             check(
                 f"{stem}: charter keeps the fast-forward with the main thread",
                 "the fast-forward stays with the main thread" in lowered,
+            )
+        if stem in {"release-auditor", "doc-drift-auditor"}:
+            check(
+                f"{stem}: charter carries the snapshot-staleness rule",
+                "session-start snapshot" in lowered,
+            )
+        if stem == "release-executor":
+            check(
+                f"{stem}: charter carries the publish-workflow release-race branch",
+                "publish-workflow release race" in lowered,
+            )
+            check(
+                f"{stem}: charter carries the release class check",
+                "never a paraphrase or degenerate shape" in lowered,
+            )
+        if stem == "latro":
+            check(
+                f"{stem}: charter carries the single-page-spec truncation fallback",
+                "respec source" in lowered,
+            )
+        if stem == "assay":
+            check(
+                f"{stem}: charter carries the web-recovery discipline",
+                "recovery discipline" in lowered,
             )
 
 

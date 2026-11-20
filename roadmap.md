@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v1.6.0.
+future session re-litigates it. Updated as of v1.6.1.
 
 ## Standing rules (how this roster grows)
 
@@ -278,6 +278,13 @@ future session re-litigates it. Updated as of v1.6.0.
       (main-thread authored) lands beside the vendored seven; the same
       release carries the comparative-design report's charter patches,
       the evals/ convention, and a README rebuilt for readability.
+- [x] v1.6.1 (2026-11-20): the second debug-duty charter-patch batch
+      (#8-#11): snapshot-staleness rules on release-auditor,
+      doc-drift-auditor, and charter-architect; release-executor's
+      publish-workflow release-race branch; the tag-message class check
+      retiring the thickness size ratchet (release-executor and
+      release-auditor); latro's single-page-spec truncation fallback;
+      and assay's web-recovery discipline, all pinned in validate.py.
 - [x] v0.8.1 (2026-11-10): charter hardening before activation - claw's
       rung 0 becomes an explicit three-tool toolchain gate (REFUSED +
       install command on any miss), shadow carries the matching BLOCKED

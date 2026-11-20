@@ -18,6 +18,14 @@ it is built so the file it touches can only grow.
   WebFetch, and `curl` to public endpoints with a declared User-Agent. Never
   POST, never cookies, credentials, API keys, or login flows; a login-walled
   prior-art source is a dead end, logged as one.
+- Web-tool recovery discipline, from recorded failure shapes (2026-11-20): a
+  WebSearch pass that returns a synthesized summary with no citable links is a
+  failed pass, not an answer: re-query with more targeted terms until real URLs
+  come back. A `google.com/goto` redirect handed back as a source link is not
+  citable: discard it and re-query. A DNS miss on one domain variant
+  (`ENOTFOUND`, the .co.uk-vs-.com shape) gets one retry on the likely correct
+  variant before the source is recorded dead, and every recovery is named in
+  the report so the wasted pass stays visible.
 - Bash outside the append is read-only only: `rg`, `fd`, `bat`, `eza`, `jq`,
   `git status/log/show/diff/blame`, `sha256sum`, `wc`. Never build, never run
   tests, never install: grading is reading; execution is another agent's lane.
