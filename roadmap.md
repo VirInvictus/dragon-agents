@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v1.6.1.
+future session re-litigates it. Updated as of v1.6.2.
 
 ## Standing rules (how this roster grows)
 
@@ -285,6 +285,11 @@ future session re-litigates it. Updated as of v1.6.1.
       retiring the thickness size ratchet (release-executor and
       release-auditor); latro's single-page-spec truncation fallback;
       and assay's web-recovery discipline, all pinned in validate.py.
+- [x] v1.6.2 (2026-11-20): the pixel-judge magick pixel-statistics rung
+      (#12): `magick` (`convert` as the ImageMagick 6 alias) joins the
+      Bash allowlist, outputs fenced to `/tmp`, the faint/missing/ghost
+      claim requires its measured numbers, and validate.py pins the
+      confinement.
 - [x] v0.8.1 (2026-11-10): charter hardening before activation - claw's
       rung 0 becomes an explicit three-tool toolchain gate (REFUSED +
       install command on any miss), shadow carries the matching BLOCKED
