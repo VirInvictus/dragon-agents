@@ -37,6 +37,7 @@ its folder, plus the attribution file.
 The v1.6.0 comparative patches pin code-reviewer's fix-sketch and linter-folding rungs, latro's pinpoint-citation rule, and the untrusted-corpus lines on latro and issue-census.
 The same release adds repo-marketer, a web-research reader in the assay tool class (read-only with web tools): its pins are the never-post fence, the never-authenticate rule, drafts landing in the final message only, and the per-draft compliance note. The roster grows to thirty-eight, and the skills set to eight (herald joins the seven vendored Obsidian skills). CI runs this on every push.
 The v1.6.1 debug-duty patches pin: the snapshot-staleness rule on release-auditor and doc-drift-auditor (platform-injected AGENTS.md is a session-start snapshot; disk is the truth), release-executor's publish-workflow release-race branch and the tag-message class check that retires the size ratchet, latro's single-page-spec truncation fallback (respec source extraction), and assay's web-recovery discipline.
+The v1.6.2 charter patch adds magick (convert as the ImageMagick 6 alias) to pixel-judge's Bash allowlist for the pixel-statistics rung, and pins the /tmp confinement of its outputs.
 """
 
 from __future__ import annotations
@@ -339,6 +340,10 @@ def check_agents() -> None:
             check(
                 f"{stem}: description states the multimodal requirement",
                 "multimodal" in fields.get("description", "").lower(),
+            )
+            check(
+                f"{stem}: magick output confined to /tmp",
+                "magick" in lowered and "under `/tmp`" in text,
             )
         else:
             check(f"{stem}: charter declares read-only", "Read-only" in text)

@@ -2,6 +2,20 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v1.6.2 (2026-11-20)
+
+One charter patch from the standing debug-report duty (issue #12): the
+pixel-judge Bash allowlist gains `magick` (`convert` as the ImageMagick 6
+name) so a dispatch can crop a capture region and print channel
+statistics instead of eyeballing a low-amplitude artifact (recorded
+live on a phase-10 window acceptance, where the seat could not quantify
+a faint ghost region because only full-file `identify` was allowlisted).
+The charter adds a pixel-statistics rung to the surface ladder
+(zero-write statistics through `info:`, crops under `/tmp` only, the
+handed-in capture never modified in place), requires the measured
+numbers behind any faint, missing, or ghost claim, and validate.py pins
+the `/tmp` confinement.
+
 ## v1.6.1 (2026-11-20)
 
 Four charter patches from the standing debug-report duty, batched under
