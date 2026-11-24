@@ -473,7 +473,11 @@ future session re-litigates it. Updated as of v1.6.2.
   shells (passphrase-gated; use sys-maintain timestamps, cache mtimes,
   and repo state reads), gcalcli event queries (RefreshError
   invalid_grant on the stored session, 2026-11-11; `list` still
-  answers from local cache).
+  answers from local cache), the HuggingFace per-repo model endpoint
+  `api/models/<org>/<model>` (HTTP 401 keylessly and identical for a
+  nonexistent repo, so absent and private are indistinguishable without
+  auth; use the org listing `api/models?author=<org>` and the global
+  `?search=` endpoint instead, both verified keyless-live 2026-11-23).
 - **Comparative-design report deltas (2026-11-18).** The 32-source
   comparative seat-design report's verdicts: 5 STEALs landed
   (code-reviewer fix-sketch and linter-folding, latro pinpoint
