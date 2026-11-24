@@ -2,6 +2,28 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v1.6.3 (2026-11-23)
+
+Two charter patches from the standing debug-report duty, batched under
+the 2026-11-13 policy. The shared zsh shell-discipline line on all
+thirty-eight charters gains the no-mid-command-`cd` rule (issue #14,
+recorded live on upstream-triage, where compound `cd` commands printed
+zoxide's doctor warning into dispatch output, noise that reads as a
+failure to the next reader): files go by absolute path, repos and
+hosts by `git -C <path>` and `gh -R <owner/repo>`, and validate.py
+pins the clause fleet-wide. release-executor's push step learns
+`push.followTags` (issue #15, recorded live the same day on opends,
+where the ordered one-tag push carried both same-commit annotated
+tags because the host's global followTags is on; git's own semantics
+carry every annotated tag reachable from the pushed ref and missing
+from the remote, not just same-commit ones): before any push the
+executor enumerates that rider set (`git for-each-ref refs/tags
+--merged <release-commit>` filtered to annotated tags, diffed against
+`git ls-remote --tags origin`), stops with quoted evidence if a tag
+it did not mint this dispatch would ride along, discloses minted
+siblings in multi-tag dispatches, and reads back every ref the push
+actually moved; validate.py pins the enumeration.
+
 ## v1.6.2 (2026-11-20)
 
 One charter patch from the standing debug-report duty (issue #12): the

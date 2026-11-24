@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v1.6.2.
+future session re-litigates it. Updated as of v1.6.3.
 
 ## Standing rules (how this roster grows)
 
@@ -290,6 +290,16 @@ future session re-litigates it. Updated as of v1.6.2.
       Bash allowlist, outputs fenced to `/tmp`, the faint/missing/ghost
       claim requires its measured numbers, and validate.py pins the
       confinement.
+- [x] v1.6.3 (2026-11-23): the third debug-duty charter-patch batch
+      (#14, #15): the fleet shell-discipline line gains the
+      no-mid-command-`cd` rule (absolute paths for files, `git -C`
+      and `gh -R` for repos and hosts; zoxide's doctor warning
+      documented as dispatch-output noise), and release-executor's
+      push step learns `push.followTags` (the reachability
+      enumeration before the push: annotated tags merged at the
+      release commit minus the remote's, a stop on un-minted
+      ride-alongs, disclosed siblings in multi-tag dispatches,
+      per-ref read-backs), both pinned in validate.py.
 - [x] v0.8.1 (2026-11-10): charter hardening before activation - claw's
       rung 0 becomes an explicit three-tool toolchain gate (REFUSED +
       install command on any miss), shadow carries the matching BLOCKED

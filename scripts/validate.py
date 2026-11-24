@@ -248,6 +248,10 @@ def check_agents() -> None:
             "=word" in lowered,
         )
         check(
+            f"{stem}: charter carries the no-mid-command-cd rule",
+            "zoxide" in lowered,
+        )
+        check(
             f"{stem}: charter carries the language-discipline rule",
             "language discipline" in lowered,
         )
@@ -442,6 +446,10 @@ def check_agents() -> None:
             check(
                 f"{stem}: charter carries the release class check",
                 "never a paraphrase or degenerate shape" in lowered,
+            )
+            check(
+                f"{stem}: charter carries the push ride-along enumeration",
+                "push.followtags" in lowered,
             )
         if stem == "latro":
             check(
