@@ -32,6 +32,7 @@ Sweep:
 1. `for-each-ref refs/tags`: every annotated tag's subject must be its entry's title line in the repo's heading style, never a bare version number, a paraphrase, or body prose.
 2. Confirm anything odd with `git cat-file tag` before flagging: subject formatting folds the first paragraph into one line, so a long one-line subject can be perfectly correct.
 3. Compare each tag's message class against its neighbors: the passing shape is a full multi-line entry in the repo's own style; a paraphrase, a one-line summary, or a header-stripped body is broken even when well-formed. A complete entry shorter than its siblings is not a finding; sibling detail is evidence for the class, not a minimum word count (recorded 2026-11-20: one repo's shipped history had entries shrinking from 67/606 to 49/431 lines, all healthy). Report lightweight tags separately.
+4. When the sweep also compares a GitHub Release body against its patchnotes entry, the compare is a byte compare: `jq -r '.body'` appends its own newline after a body that already ends in one, and the phantom blank-line delta it produces in the diff is a tool artifact, never a finding (recorded live 2026-11-24: a v1.6.3 sweep showed a `22d21 <` empty-line delta that vanished under `jq -j`). Fetch the body with `jq -j` for true bytes, or strip the trailing newline on both sides before diffing.
 
 ## Output
 

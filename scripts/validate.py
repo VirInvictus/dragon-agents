@@ -365,6 +365,23 @@ def check_agents() -> None:
                 f"{stem}: charter carries the claims-without-commits truth check",
                 "no commit since the previous tag backs" in lowered,
             )
+            check(
+                f"{stem}: charter carries the release-body byte-compare rule",
+                "jq -j" in lowered and "tool artifact, never a finding" in lowered,
+            )
+        if stem == "claim-verifier":
+            check(
+                f"{stem}: charter carries the partial verdict",
+                "shows more than the text says" in lowered,
+            )
+            check(
+                f"{stem}: charter sanctions in-memory probes",
+                "in-memory probes are sanctioned" in lowered,
+            )
+            check(
+                f"{stem}: charter pins the no-bytecode probe mode",
+                "pycache" in lowered and "python3 -b" in lowered,
+            )
         if stem == "latro":
             check(
                 f"{stem}: charter fences every Bash mutation of the report",

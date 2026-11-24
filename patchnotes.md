@@ -2,6 +2,29 @@
 
 Release notes for dragon-agents, newest at top.
 
+## v1.6.4 (2026-11-24)
+
+Two charter patches from the standing debug-report duty, batched under
+the 2026-11-13 policy. release-auditor's sweep method gains the
+GitHub-release-body byte-compare rule (issue #16, recorded live on the
+v1.6.3 sweep, where `jq -r '.body'` appended its own newline after a
+release body that already ended in one and the body-vs-entry diff
+showed a phantom `22d21 <` blank-line delta): release-body compares
+are byte compares, fetched with `jq -j` or stripped of the trailing
+newline on both sides, and the phantom delta is named a tool artifact,
+never a finding; validate.py pins the rule. claim-verifier gains a
+fourth verdict, `partial`, for claims every stated part of which is
+true while the evidence shows more than the text says (issue #17,
+recorded live on a bindery-cli docs verification, where a dispatch
+invented the word PARTLY because confirmed hides undocumented extras
+and refuted overstates them), wired into the output template and
+tally, and its read-only fence now sanctions in-memory probes
+(pure-function calls, `BytesIO`, mocked I/O) so a behavior claim can
+be verified by execution without leaving the process, with imports of
+cited code run in no-bytecode mode (`python3 -B`) because a plain
+import silently writes `__pycache__` bytecode into the target tree
+the fence forbids; validate.py pins all three.
+
 ## v1.6.3 (2026-11-23)
 
 Two charter patches from the standing debug-report duty, batched under

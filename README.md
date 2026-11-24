@@ -75,7 +75,7 @@ A local ZCode plugin of research subagents: **thirty-eight agents** (twenty-seve
 
 | Agent | Job |
 |---|---|
-| `claim-verifier` | Independent re-verification of a findings list: confirmed, refuted, or unverifiable per claim. |
+| `claim-verifier` | Independent re-verification of a findings list: confirmed, partial, refuted, or unverifiable per claim. |
 | `slop-reader` | AI-prose pass on commissioned text; flags quotes, never rewrites. |
 | `pixel-judge` | Multimodal acceptance pass on app, game, and desktop captures; JSON verdicts against a stated bar. |
 | `assay` ✍ | Five-metric repo report card; goals append to roadmap.md with zero deletions. Idea mode is read-only. |

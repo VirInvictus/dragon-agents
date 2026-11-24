@@ -2,7 +2,7 @@
 
 Forward plan for the dragon-agents roster: what shipped, what could ship
 next and under what conditions, and what was declined with reasons so no
-future session re-litigates it. Updated as of v1.6.3.
+future session re-litigates it. Updated as of v1.6.4.
 
 ## Standing rules (how this roster grows)
 
@@ -300,6 +300,16 @@ future session re-litigates it. Updated as of v1.6.3.
       release commit minus the remote's, a stop on un-minted
       ride-alongs, disclosed siblings in multi-tag dispatches,
       per-ref read-backs), both pinned in validate.py.
+- [x] v1.6.4 (2026-11-24): the fourth debug-duty charter-patch batch
+      (#16, #17): release-auditor's sweep method gains the
+      GitHub-release-body byte-compare rule (`jq -j` or strip the
+      trailing newline on both sides; `jq -r`'s appended newline
+      fakes a blank-line delta that is a tool artifact, never a
+      finding), and claim-verifier gains the `partial` verdict (true
+      as stated, the evidence shows more than the text says) plus the
+      sanctioned in-memory probe fence (pure-function calls,
+      `BytesIO`, mocked I/O; no disk writes, no network), all pinned
+      in validate.py.
 - [x] v0.8.1 (2026-11-10): charter hardening before activation - claw's
       rung 0 becomes an explicit three-tool toolchain gate (REFUSED +
       install command on any miss), shadow carries the matching BLOCKED
