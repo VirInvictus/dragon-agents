@@ -733,12 +733,6 @@ Wolfe's Shadow & Claw.
   script set; the manifest schema read from that day's live batch; the
   Calibre-closed guard; and the external CLI set. Nothing probed
   turned up dead.
-- Toolchain gate hardened in both charters (Brandon's pre-activation
-  check): claw's rung 0 names all three tools (cquarry/calibrequarry,
-  bindery-cli, and the companion-script venv python) and on any miss
-  reports `REFUSED: toolchain missing` with the exact install command
-  and stops; shadow carries the matching BLOCKED gate for its own
-  reads.
 - librarian's run-verb fence reworded to route the acquisition verbs
   to claw's lane; every librarian fence of its own is unchanged.
 
