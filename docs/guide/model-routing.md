@@ -10,8 +10,9 @@ routing principle, the evidence behind it, and the refusal cases.
 ## The principle
 
 One sentence: **breadth runs on the fast tier, judgment runs on the
-strong tier, and anything that writes or gates other work runs on the
-strong tier at max effort.**
+strong tier, deep certification digs run on the audit tier (pilot), and
+anything that writes or gates other work runs on the strong tier at max
+effort.**
 
 Expanded into the four rules this roster dispatches by:
 
@@ -34,11 +35,36 @@ Expanded into the four rules this roster dispatches by:
    fences, and fences are judgment under pressure. The quota arithmetic
    does not matter: write dispatches are rare next to sweeps, and the
    cost of a misfenced write dwarfs any token savings.
-4. **Multimodal seats on the fast tier, as a functional requirement.**
-   The strong tier is text-only, so the pin is the capability: a vision
-   seat pinned to a text-only model returns "inconclusive" on every
-   dispatch. Verify this pin after every reinstall rather than letting
-   it inherit.
+4. **Multimodal seats need a multimodal pin, as a functional
+   requirement.** GLM-5.3 is text-only, so the pin is the capability: a
+   vision seat pinned to a text-only model returns "inconclusive" on
+   every dispatch. GLM-5.4 (2026-11-23) is the first strong-tier model
+   the docs call multimodal (image and video input, unverified on this
+   harness until the pixel-judge canary), so the rule's form survives
+   even as its constraint changes: the pin is the capability, verified
+   by dispatch, never assumed. Verify this pin after every reinstall
+   rather than letting it inherit.
+5. **Deep certification digs on GLM-5.4 (the audit tier, pilot since
+   2026-11-23).** The seats whose value is finding what a rubric cannot
+   specify: claim verification, security review, defect hunting,
+   contract interpretation. The model's one documented weakness is the
+   fit: Z.ai itself admits it "tends to get caught in overly long
+   'marathon thinking' loops" while claiming the prolonged reflection
+   improves accuracy beyond its parameter count, and for report-only
+   seats whose charters forbid fixing anything,
+   depth-without-convergence is the deliverable, not a failure mode.
+   The frequency guard is what makes the economics work: audit seats
+   are the fleet's lowest-frequency dispatches, and on the Coding Plan
+   the model bills two-thirds of GLM-5.3's credits per token
+   (4.6/1.1/16 against 6.9/1.7/24) with a 1.5x weekly quota. The metric
+   that can still kill the pilot is per-task burn, not per-token price;
+   one week of per-day model lines in the usage gauge decides whether
+   code-reviewer, spec-compliance-reviewer, and shadow follow. Never
+   route to the audit tier: anything that writes, drivers, open-ended
+   missions (a digging agent is the idle-watchdog kill profile).
+   Day-one caveats on record: zero published benchmarks and two
+   5.4-specific endpoint bugs, which is why every audit-tier pin is
+   canary-gated before reliance.
 
 ## The evidence, briefly
 
@@ -88,7 +114,8 @@ generation is more expensive than running a sort.
 ## Refusal cases: when not to route down
 
 - Verification and certification of any kind (issue-triage verdicts,
-  release readiness, claim verification): strong tier, max effort.
+  release readiness, claim verification): strong tier, max effort; the
+  open-ended digs among them (rule 5) go to the audit tier instead.
 - Writes of any kind: strong tier.
 - Anything whose wrong output chains downstream: strong tier. The
   routing question is not "could the fast tier probably do this" but

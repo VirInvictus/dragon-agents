@@ -437,6 +437,16 @@ future session re-litigates it. Updated as of v1.6.2.
   issue-census ships as the census-first answer: read-only, label-only
   verdicts never applied, never a comment or closure, on-demand only.
   The notifications half stays declined; the seat never watches.)*
+- **A dedicated GLM-5.4 deep-audit seat** (2026-11-23): Z.ai's
+  release-day flagship made an audit-native seat tempting (the official
+  marathon-thinking admission reads as an audit trait, and the two-seat
+  pin pilot landed the same day: claim-verifier and security-auditor on
+  GLM-5.4). The existing audit seats already own every surface a
+  consolidated forensic seat would claim (claim verification, security
+  review, defect hunting, contract interpretation), so a new seat would
+  duplicate the roster it serves; the write-axis saturation verdict
+  stands. Revisit only if the pilot week shows the existing seats
+  under-using 5.4's depth.
 
 ## Records kept here
 

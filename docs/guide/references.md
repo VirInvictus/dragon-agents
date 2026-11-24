@@ -1,7 +1,7 @@
 # References
 
 Every source behind this guide, merged from the two research passes of
-2026-11-18. "As-of" is the date the page was fetched and read; pages
+2026-11-18 and the GLM-5.4 release-day pass of 2026-11-23. "As-of" is the date the page was fetched and read; pages
 that state their own publication date carry both. Vendor-reported
 numbers are labeled where they were used. The full reports,
 including dead-end logs and per-source verdicts, live in
@@ -48,6 +48,20 @@ including dead-end logs and per-source verdicts, live in
 | reddit.com r/cursor 1uhnvid (search-summary only) | GLM-5.2 language-drift reports | 2026-11-18 |
 | github.com/zai-org/GLM-4.5 + resources | Lineage: parsers, thinking-mode history | 2026-11-18 |
 | github.com/zai-org/GLM-skills, zai-coding-plugins, MetaGLM repos | Ecosystem freshness verdicts | 2026-11-18 |
+
+## GLM-5.4 release (2026-11-23)
+
+| Source | What it supported | As-of |
+|---|---|---|
+| docs.z.ai/guides/llm/glm-5.4 | Plan availability, modalities, 1M/128K limits, effort vocabulary, the marathon-thinking admission | 2026-11-23 |
+| z.ai/blog/glm-5.4 | Loop architecture (28 layers x 2 iterations, 750B scale), hybrid KV cache, 30B ablation claims, API and weights gated on a security assessment | 2026-11-23 |
+| docs.z.ai/devpack/overview | Credit multipliers 4.6/1.1/16, exactly two-thirds of GLM-5.3's; off-peak 50% | 2026-11-23 |
+| docs.z.ai/devpack/latest-model | All Coding Plan tiers serve 5.4; glm-5.4[1m]; effort remap table; 5.4-and-Flash multimodal statement | 2026-11-23 |
+| docs.z.ai/guides/overview/pricing | No GLM-5.4 API row on release day; GLM-5.3 family prices for contrast | 2026-11-23 |
+| news.ycombinator.com item 50609685 | Benchmark-absence reaction; lineage overthinking measurements (118k to 274k output tokens, 5.1 to 5.2); the AA 32-versus-23 effort reference for 5.3 | 2026-11-23 |
+| github.com/zai-org/GLM-5 #183; zai-org/feedback #1628, #1629, #1630 | Day-one 5.4 endpoint bugs (529 on anthropic-beta headers; a deterministic 429 on one system-prompt string; reconnect stalls) and the interactive-latency report | 2026-11-23 |
+| huggingface.co zai-org listing API; openrouter.ai models API | No weights and no OpenRouter listing on release day | 2026-11-23 |
+| Reddit day-one threads (titles and summaries only; bodies blocked) | Coding-strong, writing-weak sentiment; thinking-loop reports; all single-source | 2026-11-23 |
 
 ## Harness and fleet literature
 
@@ -97,6 +111,12 @@ including dead-end logs and per-source verdicts, live in
   single-source via secondary coverage.
 - Quantified fleet-pruning studies: none published; the criterion in
   the literature is measured degradation.
+- GLM-5.4: every benchmark score (none published on release day), the
+  effort-versus-quality trade-off on 5.4, API pricing and general
+  availability (security-assessment gated), weights date and license.
+- GLM-5.4 per-task token burn versus GLM-5.3 on real audit dispatches:
+  the audit-pilot metric, measured in the usage gauge's per-day model
+  lines, not published anywhere.
 
 ## Refresh guidance
 
