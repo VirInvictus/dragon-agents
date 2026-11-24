@@ -56,7 +56,9 @@ Expanded into the four rules this roster dispatches by:
    The frequency guard is what makes the economics work: audit seats
    are the fleet's lowest-frequency dispatches, and on the Coding Plan
    the model bills two-thirds of GLM-5.3's credits per token
-   (4.6/1.1/16 against 6.9/1.7/24) with a 1.5x weekly quota. The metric
+   (4.6/1.1/16 against 6.9/1.7/24) and the vendor's own allowance table
+   grants it about 1.5x GLM-5.3's weekly tokens (2.25x is unconfirmed
+   stacking arithmetic, an upper bound). The metric
    that can still kill the pilot is per-task burn, not per-token price;
    one week of per-day model lines in the usage gauge decides whether
    code-reviewer, spec-compliance-reviewer, and shadow follow. Never
